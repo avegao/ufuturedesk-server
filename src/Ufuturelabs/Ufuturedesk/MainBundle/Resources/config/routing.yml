@@ -2,7 +2,7 @@ index:
     path:  /
     defaults:
         _controller: FrameworkBundle:Redirect:redirect
-        route: login
+        route: user_login
         permanent: true
 
 user_login:
