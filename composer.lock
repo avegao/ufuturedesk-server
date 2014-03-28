@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "2f37a06094088a7e88bc8d5f13d2b878",
+    "hash": "035b79a79595a110988fe2deaafc02ee",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1228,12 +1228,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
-                "reference": "eddba56c66dd740b541d3f4f80dc16b6ab8b098f"
+                "reference": "fd126c1a0101a7703489b2fd65c91526d2b75774"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/eddba56c66dd740b541d3f4f80dc16b6ab8b098f",
-                "reference": "eddba56c66dd740b541d3f4f80dc16b6ab8b098f",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/fd126c1a0101a7703489b2fd65c91526d2b75774",
+                "reference": "fd126c1a0101a7703489b2fd65c91526d2b75774",
                 "shasum": ""
             },
             "require": {
@@ -1294,7 +1294,7 @@
                 "documentation",
                 "rest"
             ],
-            "time": "2014-03-12 13:46:04"
+            "time": "2014-03-28 12:48:20"
         },
         {
             "name": "phpcollection/phpcollection",
