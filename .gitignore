@@ -6,7 +6,8 @@
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 /build/
-/vendor/
+/vendor/*
+!/vendor/*.php
 /bin/
 /composer.phar
 .idea
