@@ -1,0 +1,7 @@
+parameters:
+#    teacher.example.class: Ufuturelabs\Ufuturedesk\TeacherBundle\Example
+
+services:
+#    teacher.example:
+#        class: %teacher.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,16 @@
+index:
+    path:  /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: login
+        permanent: true
+
+user_login:
+    pattern:  /user/login
+    defaults: { _controller: MainBundle:Default:login }
+
+user_login_check:
+    path: /user/login_check
+
+user_logout:
+    path: /user/logout

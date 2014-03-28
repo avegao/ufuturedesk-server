@@ -1,0 +1,27 @@
+security:
+    encoders:
+        Ufuturelabs\Ufuturedesk\MainBundle\Entity\User: sha512
+
+    role_hierarchy:
+        ROLE_TEACHER: ROLE_STUDENT
+        ROLE_ADMIN: [ROLE_STUDENT, ROLE_TEACHER]
+
+    providers:
+        users:
+            entity:
+                class: Ufuturelabs\Ufuturedesk\MainBundle\Entity\User
+                property: userName
+
+    firewalls:
+        user:
+            pattern:  ^/*
+            anonymous: ~
+            form_login:
+                login_path: user_login
+                check_path: user_login_check
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/teacher, roles: ROLE_TEACHER }
+        - { path: ^/student, roles: ROLE_STUDENT }

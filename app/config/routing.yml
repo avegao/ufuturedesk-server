@@ -1,0 +1,20 @@
+sync:
+    resource: "@SyncBundle/Resources/config/routing.yml"
+    prefix:   /sync
+
+teacher:
+    resource: "@TeacherBundle/Resources/config/routing.yml"
+    prefix:   /teacher
+
+student:
+    resource: "@StudentBundle/Resources/config/routing.yml"
+    prefix:   /student
+
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+main:
+    resource: "@MainBundle/Resources/config/routing.yml"
+    prefix:   /
+
