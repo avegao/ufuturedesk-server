@@ -34,6 +34,24 @@ class InstallCommand extends ContainerAwareCommand
 
 	protected function setupStep(InputInterface $input, OutputInterface $output)
 	{
+		$output->writeln("<comment>Creating the database...</comment>\n");
+		$this->runCommand("doctrine:database:create", $input, $output);
+		$output->writeln("<comment>Database created</comment>\n");
+
+		$output->writeln("<comment>Creating tables...</comment>\n");
+		$this->runCommand("doctrine:schema:create", $input, $output);
+		$output->writeln("<comment>Tables created</comment>\n");
+
+		// $output->writeln("<comment>Creating the database...</comment>\n");
+		// $this->runCommand("doctrine:phpcr:repository:init", $input, $output);
+		// $output->writeln("<comment>Creating the database...</comment>\n");
+
+		$output->writeln("<comment>Generating CSS, JavaScript, images...</comment>\n");
+		$this->runCommand("assetic:dump", $input, $output);
+		$output->writeln("<comment>CSS, JavaScript and images generated</comment>\n");
+
+		$this->runCommand("ufuturedesk:admin:create", $input, $output);
+
 		return $this;
 	}
 

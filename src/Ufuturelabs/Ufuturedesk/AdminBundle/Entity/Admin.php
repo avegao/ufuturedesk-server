@@ -41,7 +41,12 @@ class Admin extends User {
 
 	public function getRoles()
 	{
-		return array("ROLE_USER", "ROLE_ADMIN");
+		return array("ROLE_ADMIN");
+	}
+
+	public function getUserType()
+	{
+		return "admin";
 	}
 
 }

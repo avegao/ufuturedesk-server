@@ -80,9 +80,9 @@ class User implements UserInterface {
 	/**
 	 * @param string $salt
 	 */
-	public function setSalt($salt)
+	public function setSalt()
 	{
-		$this->salt = $salt;
+		$this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
 	}
 
 	/**

@@ -18,7 +18,9 @@ class DefaultController extends Controller
 			"last_username" => $session->get(SecurityContext::LAST_USERNAME),
 			"error" => $error
 		));
+	}
 
-		//return $this->render('MainBundle:Default:login.html.twig');
+	public function renderHeader()
+	{
 	}
 }

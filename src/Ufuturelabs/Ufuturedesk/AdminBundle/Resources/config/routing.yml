@@ -1,3 +1,3 @@
-admin_homepage:
-    pattern:  /hello/{name}
+admin_index:
+    pattern:  /
     defaults: { _controller: AdminBundle:Default:index }
