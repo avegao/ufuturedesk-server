@@ -42,7 +42,7 @@ class CreateCourseCommand extends ContainerAwareCommand
 		$course = new Course();
 		$course->setName($name);
 		
-		$em = $this->getContainer()->get("doctrine.orm.entity_manager);
+		$em = $this->getContainer()->get("doctrine.orm.entity_manager");
 		$em->persist($course);
 		$em->flush();
 		
