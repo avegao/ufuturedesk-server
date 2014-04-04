@@ -12,7 +12,7 @@ class CreateCourseCommand extends ContainerAwareCommand
 	{
 		$this
 			->setName('ufuturedesk:course:create')
-			->setDescription(Create a course');
+			->setDescription('Create a course');
 	}
 	
 	protected function execute(InputInterface $input, OutputInterface $output)
