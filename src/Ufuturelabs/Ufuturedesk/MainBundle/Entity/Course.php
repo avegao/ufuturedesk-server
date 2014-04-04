@@ -5,14 +5,14 @@ namespace Ufuturelabs\Ufuturedesk\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Grade
+ * Class Course
  *
  * @package Ufuturelabs\Ufuturedesk\MainBundle\Entity
  *
  * @ORM\Entity
- * @ORM\Table(name="grades")
+ * @ORM\Table(name="courses")
  */
-class Grade {
+class Course {
 
 	/**
 	 * @var integer
