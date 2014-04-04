@@ -10,3 +10,8 @@
 /bin/
 /composer.phar
 .idea
+app/SymfonyRequirements.php
+app/bootstrap.php.cache
+app/check.php
+vendor/autoload.php
+web/config.php
