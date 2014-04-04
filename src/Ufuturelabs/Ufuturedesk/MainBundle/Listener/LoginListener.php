@@ -10,36 +10,30 @@ use Symfony\Component\Routing\Router;
 
 class LoginListener
 {
-
-	private $logger;
 	private $router;
+	private $user;
 
 	/**
 	 * @var string
 	 */
 	private $userType;
 
-	public function __construct(LoggerInterface $logger, Router $router)
+	public function __construct(Router $router)
 	{
-		$this->logger = $logger;
 		$this->router = $router;
 	}
 
 	public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
 	{
 
-		$user = $event->getAuthenticationToken()->getUser();
-
-		$this->userType = $user->getUserType();
-
-		$this->logger->debug("User Type: ".$this->userType);
+		$this->user = $event->getAuthenticationToken()->getUser();
 
 	}
 
 	public function onKernelResponse(FilterResponseEvent $event)
 	{
 
-		switch ($this->userType)
+		switch ($this->user->userType)
 		{
 			case "admin":
 
