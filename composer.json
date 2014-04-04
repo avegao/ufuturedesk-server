@@ -2,7 +2,7 @@
     "name": "ufuturelabs/ufuturedesk-server",
     "license": "Apache 2.0",
     "type": "project",
-    "description": "",
+    "description": "uFutureDesk Server is an open-source solutions for the Education Sector, from a college to a university, through a simple academy.",
     "autoload": {
         "psr-0": { "": "src/" }
     },
@@ -49,7 +49,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-            "dev-master": "2.4-dev"
+            "dev-master": "1.0-dev"
         }
     }
 }
