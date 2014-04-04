@@ -4,7 +4,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-Ufuturelabs\Ufuturedesk\MainBundle\Entity
+use Ufuturelabs\Ufuturedesk\MainBundle\Entity
 
 class CreateCourseCommand extends ContainerAwareCommand
 {
