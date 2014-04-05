@@ -37,23 +37,26 @@ class LoginListener
 		{
 			case "admin":
 
-				$this->logger->debug("redirect to admin_index");
+				$this->logger->info("Redirect to admin_index");
 
 				$redirect = $this->router->generate("admin_index");
+
+				$this->logger->info("$redirect".$redirect);
+
 				$event->setResponse(new RedirectResponse($redirect));
 
 				break;
 
 			case "teacher":
 
-				$redirect = $this->router->generate("teacher_index");
+				$redirect = $this->router->generateUrl("teacher_index");
 				$event->setResponse(new RedirectResponse($redirect));
 
 				break;
 
 			case "student":
 
-				$redirect = $this->router->generate("student_index");
+				$redirect = $this->router->generateUrl("student_index");
 				$event->setResponse(new RedirectResponse($redirect));
 
 				break;

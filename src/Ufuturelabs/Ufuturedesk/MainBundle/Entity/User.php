@@ -54,6 +54,13 @@ class User implements UserInterface {
 	private $salt;
 
 	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+	 */
+	private $photo;
+
+	/**
 	 * @return int
 	 */
 	public function getId()
@@ -132,6 +139,38 @@ class User implements UserInterface {
 	public function getRoles()
 	{
 		return array("ROLE_USER");
+	}
+
+	/**
+	 * @param string $name
+	 */
+	public function setName($name)
+	{
+		$this->name = $name;
+	}
+
+	/**
+	 * @param string $photo
+	 */
+	public function setPhoto($photo)
+	{
+		$this->photo = $photo;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getPhoto()
+	{
+		return $this->photo;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->userName;
 	}
 
 } 

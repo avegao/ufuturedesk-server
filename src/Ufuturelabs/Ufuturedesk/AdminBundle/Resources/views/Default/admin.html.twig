@@ -1,0 +1,7 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}<link href="{{ asset("bundles/main/css/styles.css") }}" rel="stylesheet" type="text/css" />{% endblock %}
+
+{% block body %}
+{{ render(controller('MainBundle:Default:showHeader')) }}
+{% endblock %}

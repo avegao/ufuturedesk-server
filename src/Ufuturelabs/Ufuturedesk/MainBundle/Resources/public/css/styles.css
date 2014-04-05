@@ -1,0 +1,147 @@
+body {
+	font-family: Helvetica, sans-serif;
+	background-color: white;
+	margin: 0px;
+}
+
+nav {
+	color: #7f9cff;
+    background-color: #525252;
+	width: 25%;
+	max-width: 250px;
+	min-width: 130px;
+    min-height: 100%;
+	font-size: 12px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+nav ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+nav ul li {
+	border-bottom: 1px solid #bebebe;
+	padding: 20px;
+	margin-top: 0px;
+}
+
+nav ul li:hover, .nav_active {
+	background-color: white;
+}
+
+#nav_logo {
+	border-bottom: none;
+	background-color: #7f9cff;
+}
+
+nav ul li a:link, nav ul li a:visited {
+	text-decoration: none;
+	color: #7f9cff;
+}
+
+.nav_active {
+	background-color: white;
+}
+
+.menu_notification {
+	/* display: none; */
+	float: right;
+	background-color: #f04848;
+	color: #f0f0f0;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-radius: 3px;
+	position: relative;
+	top: -3px;
+}
+
+header {
+	color: #4C4C4C;
+	background-color: #F3F3F3;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	height: 65px;
+}
+
+header h1 {
+	position: relative;
+	left: 260px;
+	float: left;
+}
+
+header ul {
+	list-style-type: none;
+	height: 100%;
+	float: right;
+	position: relative;
+	top: -25%;
+}
+
+header ul:hover {
+	background-color: #ebebeb;
+}
+
+header ul li {
+	display: inline;
+	margin-right: 25px;
+}
+
+#header_user_name {
+	position: relative;
+	top: -5px;
+}
+
+#header_user_photo {
+	border-radius: 25px;
+	position: relative;
+	top: 10px;
+}
+
+article {
+	position: relative;
+	left: 260px;
+	top: 80px;
+}
+
+#login_box {
+	background-color: #dddddd;
+	position: absolute;
+	top: 25%;
+	left: 40%;
+	padding: 35px;
+	text-align: center;
+}
+
+#login_box input {
+	position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+
+#login_box input:focus {
+  z-index: 2;
+}
+
+#login_box input[type="text"] {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	margin-bottom: -1px;
+}
+
+#login_box input[type="password"] {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	margin-bottom: 10px;
+}

@@ -20,7 +20,10 @@ class DefaultController extends Controller
 		));
 	}
 
-	public function renderHeader()
+	public function showHeaderAction()
 	{
+		$user = $this->get('security.context')->getToken()->getUser();
+
+		return $this->render("::header.html.twig", array("user" => $user));
 	}
 }

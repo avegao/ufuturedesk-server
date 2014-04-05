@@ -53,13 +53,6 @@ class Student extends User {
 	private $address;
 
 	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="photo", type="string", length=255, nullable=true)
-	 */
-	private $photo;
-
-	/**
 	 * @var \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Grade
 	 *
 	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Grade")
@@ -132,22 +125,6 @@ class Student extends User {
 	}
 
 	/**
-	 * @param string $photo
-	 */
-	public function setPhoto($photo)
-	{
-		$this->photo = $photo;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getPhoto()
-	{
-		return $this->photo;
-	}
-
-	/**
 	 * @param string $surname
 	 */
 	public function setSurname($surname)
@@ -181,7 +158,12 @@ class Student extends User {
 
 	public function getRoles()
 	{
-		return array("ROLE_USER", "ROLE_STUDENT");
+		return array("ROLE_STUDENT");
+	}
+
+	public function __toString()
+	{
+		return $this->getName()." ".$this->getSurname();
 	}
 
 } 

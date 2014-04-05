@@ -53,13 +53,6 @@ class Teacher extends User {
 	private $telephone;
 
 	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="photo", type="string", length=255, nullable=true)
-	 */
-	private $photo;
-
-	/**
 	 * @param string $address
 	 */
 	public function setAddress($address)
@@ -108,22 +101,6 @@ class Teacher extends User {
 	}
 
 	/**
-	 * @param string $photo
-	 */
-	public function setPhoto($photo)
-	{
-		$this->photo = $photo;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getPhoto()
-	{
-		return $this->photo;
-	}
-
-	/**
 	 * @param string $surname
 	 */
 	public function setSurname($surname)
@@ -158,6 +135,11 @@ class Teacher extends User {
 	public function getRoles()
 	{
 		return array("ROLE_USER", "ROLE_TEACHER");
+	}
+
+	public function __toString()
+	{
+		return $this->getName()." ".$this->getSurname();
 	}
 
 }
