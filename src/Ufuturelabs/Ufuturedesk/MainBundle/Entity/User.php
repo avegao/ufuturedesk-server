@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity
  * @ORM\Table(name="users")
  * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="user_type", type="string")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({
  *      "admin"   = "Ufuturelabs\Ufuturedesk\AdminBundle\Entity\Admin",
  *      "teacher" = "Ufuturelabs\Ufuturedesk\TeacherBundle\Entity\Teacher",
@@ -21,8 +21,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * })
  *
  */
-class User implements UserInterface {
-
+class User implements UserInterface
+{
 	/**
 	 * @var integer
 	 *
@@ -84,9 +84,6 @@ class User implements UserInterface {
 		return $this->password;
 	}
 
-	/**
-	 * @param string $salt
-	 */
 	public function setSalt()
 	{
 		$this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
@@ -117,19 +114,19 @@ class User implements UserInterface {
 	}
 
 	/**
-	 * @param string $userType
+	 * @param string $type
 	 */
-	public function setUserType($userType)
+	public function setType($type)
 	{
-		$this->userType = $userType;
+		$this->type = $type;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getUserType()
+	public function getType()
 	{
-		return $this->userType;
+		return $this->type;
 	}
 
 	public function eraseCredentials()
@@ -172,5 +169,4 @@ class User implements UserInterface {
 	{
 		return $this->userName;
 	}
-
 } 
