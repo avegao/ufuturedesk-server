@@ -69,7 +69,7 @@ class CreateAdminCommand extends ContainerAwareCommand
 			null
 		);
 
-		$repassword = $dialog->askAndValidate(
+		$dialog->askAndValidate(
 			$output,
 			"<question>Enter the password again:</question> ",
 			function($data) use ($password)
