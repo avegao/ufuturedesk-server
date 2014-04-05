@@ -17,7 +17,7 @@ class Course {
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="grade_id", type="integer", nullable=false)
+	 * @ORM\Column(name="course_id", type="integer", nullable=false)
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */

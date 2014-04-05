@@ -31,12 +31,12 @@ class Modality {
 	private $name;
 
 	/**
-	 * @var \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Grade
+	 * @var \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Course
 	 *
-	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Grade")
-	 * @ORM\JoinColumn(name="grade", referencedColumnName="grade_id")
+	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Course")
+	 * @ORM\JoinColumn(name="course", referencedColumnName="course_id")
 	 */
-	private $grade;
+	private $course;
 
 	/**
 	 * @return int
@@ -49,17 +49,17 @@ class Modality {
 	/**
 	 * @param \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Grade $grade
 	 */
-	public function setGrade(\Ufuturelabs\Ufuturedesk\MainBundle\Entity\Grade $grade)
+	public function setCourse(\Ufuturelabs\Ufuturedesk\MainBundle\Entity\Course $course)
 	{
-		$this->grade = $grade;
+		$this->course = $course;
 	}
 
 	/**
-	 * @return \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Grade
+	 * @return \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Course
 	 */
-	public function getGrade()
+	public function getCourse()
 	{
-		return $this->grade;
+		return $this->course;
 	}
 
 	/**

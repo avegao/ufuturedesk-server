@@ -1,10 +1,12 @@
+<?php
+
 namespace Ufuturelabs\Ufuturedesk\MainBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Ufuturelabs\Ufuturedesk\MainBundle\Entity
+use Ufuturelabs\Ufuturedesk\MainBundle\Entity;
 
 class CreateCourseCommand extends ContainerAwareCommand
 {
@@ -46,7 +48,7 @@ class CreateCourseCommand extends ContainerAwareCommand
 		$em->persist($course);
 		$em->flush();
 		
-		$output->writeln("\n<info>Grade created</info>")
+		$output->writeln("\n<info>Grade created</info>");
 		
 	}
 }

@@ -53,12 +53,12 @@ class Student extends User {
 	private $address;
 
 	/**
-	 * @var \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Grade
+	 * @var \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Course
 	 *
-	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Grade")
-	 * @ORM\JoinColumn(name="grade", referencedColumnName="grade_id")
+	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Course")
+	 * @ORM\JoinColumn(name="course", referencedColumnName="course_id")
 	 */
-	private $grade;
+	private $course;
 
 	/**
 	 * @param string $address
@@ -93,19 +93,19 @@ class Student extends User {
 	}
 
 	/**
-	 * @param \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Grade $grade
+	 * @param \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Course $course
 	 */
-	public function setGrade(\Ufuturelabs\Ufuturedesk\MainBundle\Entity\Grade $grade)
+	public function setGrade(\Ufuturelabs\Ufuturedesk\MainBundle\Entity\Course $course)
 	{
-		$this->grade = $grade;
+		$this->course = $course;
 	}
 
 	/**
 	 * @return \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Grade
 	 */
-	public function getGrade()
+	public function getCourse()
 	{
-		return $this->grade;
+		return $this->course;
 	}
 
 	/**
