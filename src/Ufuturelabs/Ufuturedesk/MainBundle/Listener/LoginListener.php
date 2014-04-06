@@ -2,65 +2,43 @@
 
 namespace Ufuturelabs\Ufuturedesk\MainBundle\Listener;
 
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
-use Symfony\Component\HttpKernel\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
 
-class LoginListener
+class LoginListener implements AuthenticationSuccessHandlerInterface
 {
 	private $router;
-	private $user;
+	private $security;
 
-	/**
-	 * @var string
-	 */
-	private $userType;
-
-	public function __construct(Router $router)
+	public function __construct(Router $router, SecurityContext $security)
 	{
 		$this->router = $router;
+		$this->security = $security;
 	}
 
-	public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
+	public function onAuthenticationSuccess(Request $request, TokenInterface $token)
 	{
-
-		$this->user = $event->getAuthenticationToken()->getUser();
-
-	}
-
-	public function onKernelResponse(FilterResponseEvent $event)
-	{
-
-		switch ($this->user->userType)
+		if ($this->security->isGranted('ROLE_ADMIN'))
 		{
-			case "admin":
-
-				$this->logger->info("Redirect to admin_index");
-
-				$redirect = $this->router->generate("admin_index");
-
-				$this->logger->info("$redirect".$redirect);
-
-				$event->setResponse(new RedirectResponse($redirect));
-
-				break;
-
-			case "teacher":
-
-				$redirect = $this->router->generateUrl("teacher_index");
-				$event->setResponse(new RedirectResponse($redirect));
-
-				break;
-
-			case "student":
-
-				$redirect = $this->router->generateUrl("student_index");
-				$event->setResponse(new RedirectResponse($redirect));
-
-				break;
+			$redirect = $this->router->generate("admin_index");
+		}
+		elseif ($this->security->isGranted('ROLE_TEACHER'))
+		{
+			$redirect = $this->router->generate("teacher_index");
+		}
+		elseif ($this->security->isGranted('ROLE_STUDENT'))
+		{
+			$redirect = $this->router->generate("student_index");
+		}
+		else
+		{
+			$redirect = $this->router->generate("user_login");
 		}
 
+		return new RedirectResponse($redirect);
 	}
 } 
