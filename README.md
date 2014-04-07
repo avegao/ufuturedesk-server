@@ -17,3 +17,11 @@ $ php app/console ufuturedesk:install
 Starting
 --------
 WIP
+
+For development
+---------------
+```bash
+$ git clone https://github.com/uFutureLabs/ufuturedesk-server.git
+$ cd ufuturedesk-server
+$ php composer.phar install
+```
