@@ -3,5 +3,6 @@
 {% block stylesheets %}<link href="{{ asset("bundles/main/css/styles.css") }}" rel="stylesheet" type="text/css" />{% endblock %}
 
 {% block body %}
-{{ render(controller('MainBundle:Default:showHeader')) }}
+{{ render(controller('MainBundle:Default:renderHeader')) }}
+{{ render(controller('AdminBundle:Default:renderNav')) }}
 {% endblock %}

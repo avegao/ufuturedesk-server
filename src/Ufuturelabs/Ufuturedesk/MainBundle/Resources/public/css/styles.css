@@ -38,6 +38,11 @@ nav ul li:hover, .nav_active {
 	background-color: #7f9cff;
 }
 
+#nav_logo img {
+	position: relative;
+	left: 10%;
+}
+
 nav ul li a:link, nav ul li a:visited {
 	text-decoration: none;
 	color: #7f9cff;
@@ -81,28 +86,38 @@ header ul {
 	list-style-type: none;
 	height: 100%;
 	float: right;
-	position: relative;
-	top: -25%;
 }
 
-header ul:hover {
+header .user_info:hover {
 	background-color: #ebebeb;
 }
 
-header ul li {
+header .user_info li {
 	display: inline;
 	margin-right: 25px;
 }
 
-#header_user_name {
+header .user_info .user_name {
 	position: relative;
-	top: -5px;
+	top: 20%;
 }
 
-#header_user_photo {
+header .user_info .user_photo {
 	border-radius: 25px;
 	position: relative;
 	top: 10px;
+}
+
+header .user_info_extended {
+	display: none;
+	position: absolute;
+	top: 100%;
+	background-color: #ebebeb;
+	padding: 15px;
+}
+
+.user_info:hover .user_info_extended {
+	display: block;
 }
 
 article {

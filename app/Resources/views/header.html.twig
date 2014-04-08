@@ -1,7 +1,16 @@
 <header>
 	<h1>{{ block("title") }}</h1>
-	<ul>
-		<li id="header_user_name">{{ user }}</li>
-		<li><img id="header_user_photo" alt="Foto del usuario" src="{{ user.photo }}" width="48px"  height="48px" /></li>
+	<ul class="user_info">
+		<li class="user_name">{{ user }}</li>
+		<li><img class="user_photo" alt="Foto del usuario" src="
+			{% if user.photo == '' %}
+				{{ asset('img/default_user_photo.jpg') }}
+			{% else %}
+				{{ asset('bundles/main/users' ~ user.photo) }}
+			{% endif %}
+		" width="48px"  height="48px" /></li>
+		<ul class="user_info_extended">
+			<li><a href="{{ path('user_logout') }}">Cerrar sesi&oacute;n</a></li>
+		</ul>
 	</ul>
 </header>
