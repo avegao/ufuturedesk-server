@@ -48,6 +48,10 @@ nav ul li a:link, nav ul li a:visited {
 	color: #7f9cff;
 }
 
+nav ul li a span {
+	padding-right: 10px;
+}
+
 .nav_active {
 	background-color: white;
 }
@@ -114,6 +118,7 @@ header .user_info_extended {
 	top: 100%;
 	background-color: #ebebeb;
 	padding: 15px;
+	z-index: 2;
 }
 
 .user_info:hover .user_info_extended {
@@ -124,6 +129,7 @@ article {
 	position: relative;
 	left: 260px;
 	top: 80px;
+	max-width: 75%;
 }
 
 #login_box {

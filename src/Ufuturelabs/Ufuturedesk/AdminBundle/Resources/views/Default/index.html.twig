@@ -1,3 +1,18 @@
 {% extends 'AdminBundle:Default:admin.html.twig' %}
 
-{% block title %}Inicio{% endblock %}
+{% block title %}{{ parent() }}Inicio{% endblock %}
+
+{% block article %}
+<ol class="breadcrumb">
+  <li><a href="{{ path('admin_index') }}" class="active">Inicio</a></li>
+</ol>
+
+<div class="page-header">
+	<h1><small>Administradores</small></h1>
+</div>
+<p>Número de administradores: {{ adminsNumber }}<p>
+<button type="button" class="btn btn-primary">Ver</button>
+<button type="button" class="btn btn-info">Crear</button>
+<button type="button" class="btn btn-warning">Editar</button>
+<button type="button" class="btn btn-danger">Eliminar</button>
+{% endblock %}

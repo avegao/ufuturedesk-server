@@ -8,7 +8,11 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-		return $this->render("AdminBundle:Default:index.html.twig");
+    	$em = $this->getDoctrine()->getEntityManager();
+
+    	$adminsNumber = $em->getRepository("MainBundle:User")->findAdminsNumber();
+    	
+		return $this->render("AdminBundle:Default:index.html.twig", array("adminsNumber" => $adminsNumber));
     }
     
     public function renderNavAction()
