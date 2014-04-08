@@ -6,13 +6,32 @@
 <ol class="breadcrumb">
   <li><a href="{{ path('admin_index') }}" class="active">Inicio</a></li>
 </ol>
-
-<div class="page-header">
-	<h1><small>Administradores</small></h1>
+<div class="ufuturedesk-server-administration-preview">
+	<div class="page-header">
+		<h1><small>uFutureDesk</small></h1>
+	</div>
+	<ul>
+		<li>Producto: uFutureDesk Server</li>
+		<li>Versión: 1.0</li>
+		<li>Canal de distribución: dev (master)</li>
+		<li>Idioma: Español</li>
+	</ul>
 </div>
-<p>Número de administradores: {{ adminsNumber }}<p>
-<button type="button" class="btn btn-primary">Ver</button>
-<button type="button" class="btn btn-info">Crear</button>
-<button type="button" class="btn btn-warning">Editar</button>
-<button type="button" class="btn btn-danger">Eliminar</button>
+<div class="ufuturedesk-admins-administration-preview">
+	<div class="page-header">
+		<h1><small>Administradores</small></h1>
+	</div>
+	<p>Número de administradores: {{ adminsNumber }}<p>
+	<form class="form-inline" role="form">
+		<div class="form-group">
+			<label class="control-label" for="admin-search">Buscar administrador</label>
+			<input type="search" class="form-control" placeholder="Buscar administrador" />
+			<span class="glyphicon glyphicon-search form-control-feedback" />
+		</div><br />
+		<button type="button" class="btn btn-primary">Ver</button>
+		<button type="button" class="btn btn-info">Crear</button>
+		<button type="button" class="btn btn-warning">Editar</button>
+		<button type="button" class="btn btn-danger">Eliminar</button>
+	</form>
+</div>
 {% endblock %}
