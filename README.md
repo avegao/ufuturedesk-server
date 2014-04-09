@@ -7,9 +7,18 @@ This is developed in **PHP**  the [**Symfony2**](http://symfony.com) framework.
 
 Quick installation
 ------------------
+For stables versions (not yet avalible) (production recomended):
 ```bash
 $ wget http://getcomposer.org/composer.phar
 $ php composer.phar create-project ufuturelabs/ufuturedesk-server
+$ cd ufuturedesk-server
+$ php app/console ufuturedesk:install
+```
+
+For development versions:
+```bash
+$ wget http://getcomposer.org/composer.phar
+$ php composer.phar create-project ufuturelabs/ufuturedesk-server ./ @dev
 $ cd ufuturedesk-server
 $ php app/console ufuturedesk:install
 ```
