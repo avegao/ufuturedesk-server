@@ -51,6 +51,7 @@ class InstallCommand extends ContainerAwareCommand
 		$output->writeln("<comment>CSS, JavaScript and images generated</comment>\n");
 
 		$this->runCommand("ufuturedesk:admin:create", $input, $output);
+		$this->runCommand("ufuturedesk:school:create", $input, $output);
 
 		return $this;
 	}

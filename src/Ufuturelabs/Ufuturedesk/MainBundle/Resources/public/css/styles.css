@@ -15,6 +15,7 @@ nav {
     position: fixed;
     top: 0px;
     left: 0px;
+	z-index: 2;
 }
 
 nav ul {
@@ -78,6 +79,7 @@ header {
 	top: 0px;
 	right: 0px;
 	height: 65px;
+	z-index: 1;
 }
 
 header h1 {
@@ -130,6 +132,7 @@ article {
 	left: 260px;
 	top: 80px;
 	max-width: 75%;
+	z-index: -1;
 }
 
 #login_box {
@@ -165,4 +168,8 @@ article {
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	margin-bottom: 10px;
+}
+
+.administration-preview-actions {
+	padding-top: 10px;
 }

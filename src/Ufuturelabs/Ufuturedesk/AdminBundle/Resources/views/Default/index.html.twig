@@ -12,26 +12,148 @@
 	</div>
 	<ul>
 		<li>Producto: uFutureDesk Server</li>
-		<li>Versión: 1.0</li>
-		<li>Canal de distribución: dev (master)</li>
-		<li>Idioma: Español</li>
+		<li>Versión: {{ ufuturedesk.version }}</li>
+		<li>Canal de distribución: {{ ufuturedesk.channel }}</li>
+		<li>Idioma: {{ app.request.locale }} </li>
+		<li>Entorno de ejecución: {{ app.environment }}</li>
+		<li>Ruta de instalación: {{ documentRoot }}</li>
+		<li>Dominio: {{ app.request.host }}</li>
 	</ul>
 </div>
 <div class="ufuturedesk-admins-administration-preview">
 	<div class="page-header">
 		<h1><small>Administradores</small></h1>
 	</div>
-	<p>Número de administradores: {{ adminsNumber }}<p>
 	<form class="form-inline" role="form">
+		<p>Número de administradores: {{ adminsNumber }}<p>
 		<div class="form-group">
 			<label class="control-label" for="admin-search">Buscar administrador</label>
-			<input type="search" class="form-control" placeholder="Buscar administrador" />
-			<span class="glyphicon glyphicon-search form-control-feedback" />
-		</div><br />
-		<button type="button" class="btn btn-primary">Ver</button>
-		<button type="button" class="btn btn-info">Crear</button>
-		<button type="button" class="btn btn-warning">Editar</button>
-		<button type="button" class="btn btn-danger">Eliminar</button>
+			<input type="search" class="form-control" />
+		</div>
+		<input href="#" type="submit" class="btn btn-primary" />
+		<div class="administration-preview-actions">
+			<button href="#" type="button" class="btn btn-primary">Ver</button>
+			<button href="#" type="button" class="btn btn-info">Crear</button>
+		</div>
+	</form>
+</div>
+<div class="ufuturedesk-teachers-administration-preview">
+	<div class="page-header">
+		<h1><small>Profesores</small></h1>
+	</div>
+	<form class="form-inline" role="form">
+		<p>Número de profesores: {{ teachersNumber }}<p>
+		<div class="form-group">
+			<label class="control-label" for="teacher-search">Buscar profesor</label>
+			<input type="search" name="teacher-search" class="form-control" />
+		</div>
+		<input href="#" type="submit" class="btn btn-primary" />
+		<div class="administration-preview-actions">
+			<button href="#" type="button" class="btn btn-primary">Ver</button>
+			<button href="#" type="button" class="btn btn-info">Crear</button>
+		</div>
+	</form>
+</div>
+<div class="ufuturedesk-students-administration-preview">
+	<div class="page-header">
+		<h1><small>Alumnos</small></h1>
+	</div>
+	<form class="form-inline" role="form">
+		<p>Número de alumnos: {{ studentsNumber }}<p>
+		<div class="form-group">
+			<label class="control-label" for="student-search">Buscar alumno</label>
+			<input type="search" name="student-search" class="form-control" />
+		</div>
+		<input href="#" type="submit" class="btn btn-primary" />
+		<div class="administration-preview-actions">
+			<button href="#" type="button" class="btn btn-primary">Ver</button>
+			<button href="#" type="button" class="btn btn-info">Crear</button>
+		</div>
+	</form>
+</div>
+<div class="ufuturedesk-courses-administration-preview">
+	<div class="page-header">
+		<h1><small>Cursos</small></h1>
+	</div>
+	<form class="form-inline" role="form">
+		<p>Número de cursos: {{ "" }}<p>
+		<div class="form-group">
+			<label class="control-label" for="courses-search">Buscar curso</label>
+			<input type="search" name="course-search" class="form-control" />
+		</div>
+		<input href="#" type="submit" class="btn btn-primary" />
+		<div class="administration-preview-actions">
+			<button href="#" type="button" class="btn btn-primary">Ver</button>
+			<button href="#" type="button" class="btn btn-info">Crear</button>
+		</div>
+	</form>
+</div>
+<div class="ufuturedesk-modalities-administration-preview">
+	<div class="page-header">
+		<h1><small>Modalidades</small></h1>
+	</div>
+	<form class="form-inline" role="form">
+		<p>Número de modalidades: {{ "" }}<p>
+		<div class="form-group">
+			<label class="control-label" for="modality-search">Buscar modalidad</label>
+			<input type="search" name="modality-search" class="form-control" placeholder="Buscar por curso" />
+		</div>
+		<input href="#" type="submit" class="btn btn-primary" />
+		<div class="administration-preview-actions">
+			<button href="#" type="button" class="btn btn-primary">Ver</button>
+			<button href="#" type="button" class="btn btn-info">Crear</button>
+		</div>
+	</form>
+</div>
+<div class="ufuturedesk-subjects-administration-preview">
+	<div class="page-header">
+		<h1><small>Asignaturas</small></h1>
+	</div>
+	<form class="form-inline" role="form">
+		<p>Número de asignturas: {{ "" }}<p>
+		<div class="form-group">
+			<label class="control-label" for="subject-search">Buscar asignatura</label>
+			<input type="search" name="subject-search" class="form-control" placeholder="Buscar por curso" />
+		</div>
+		<input href="#" type="submit" class="btn btn-primary" />
+		<div class="administration-preview-actions">
+			<button href="#" type="button" class="btn btn-primary">Ver</button>
+			<button href="#" type="button" class="btn btn-info">Crear</button>
+		</div>
+	</form>
+</div>
+<div class="ufuturedesk-exams-administration-preview">
+	<div class="page-header">
+		<h1><small>Exámenes</small></h1>
+	</div>
+	<form class="form-inline" role="form">
+		<p>Número de exámenes: {{ "" }}<p>
+		<div class="form-group">
+			<label class="control-label" for="exam-search">Buscar examen</label>
+			<input type="search" name="exam-search" class="form-control" placeholder="Buscar por nombre de la asignatura" />
+		</div>
+		<input href="#" type="submit" class="btn btn-primary" />
+		<div class="administration-preview-actions">
+			<button href="#" type="button" class="btn btn-primary">Ver</button>
+			<button href="#" type="button" class="btn btn-info">Crear</button>
+		</div>
+	</form>
+</div>
+<div class="ufuturedesk-tasks-administration-preview">
+	<div class="page-header">
+		<h1><small>Tareas</small></h1>
+	</div>
+	<form class="form-inline" role="form">
+		<p>Número de tareas: {{ "" }}<p>
+		<div class="form-group">
+			<label class="control-label" for="stundent-search">Buscar tarea</label>
+			<input type="search" name="student-search" class="form-control" placeholder="Buscar por nombre de la asignatura" />
+		</div>
+		<input href="#" type="submit" class="btn btn-primary" />
+		<div class="administration-preview-actions">
+			<button href="#" type="button" class="btn btn-primary">Ver</button>
+			<button href="#" type="button" class="btn btn-info">Crear</button>
+		</div>
 	</form>
 </div>
 {% endblock %}

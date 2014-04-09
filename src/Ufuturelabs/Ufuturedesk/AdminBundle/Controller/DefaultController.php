@@ -8,15 +8,23 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-    	$em = $this->getDoctrine()->getEntityManager();
+    	$em = $this->getDoctrine()->getManager();
+		$logger = $this->container->get("logger");
 
-    	$adminsNumber = $em->getRepository("MainBundle:User")->findAdminsNumber();
-    	
-		return $this->render("AdminBundle:Default:index.html.twig", array("adminsNumber" => $adminsNumber));
+    	$adminsNumber = count($em->getRepository("MainBundle:User")->findAdminsNumber());
+		$teachersNumber = count($em->getRepository("MainBundle:User")->findTeachersNumber());
+		$studentsNumber = count($em->getRepository("MainBundle:User")->findStudentsNumber());
+
+		return $this->render("AdminBundle:Default:index.html.twig", array(
+			"adminsNumber" => $adminsNumber,
+			"teachersNumber" => $teachersNumber,
+			"studentsNumber" => $studentsNumber,
+			"documentRoot" => str_replace("/web/".basename($_SERVER['SCRIPT_FILENAME']), "", $_SERVER['SCRIPT_FILENAME']),
+		));
     }
     
     public function renderNavAction()
-    {	
+    {
     	return $this->render("AdminBundle:Default:nav.html.twig");
     }
 }

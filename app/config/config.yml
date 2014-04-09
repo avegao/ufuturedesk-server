@@ -28,6 +28,10 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        ufuturedesk:
+            version: %ufuturedesk.version%
+            channel: %ufuturedesk.channel%
 
 # Assetic Configuration
 assetic:
