@@ -9,7 +9,6 @@ class DefaultController extends Controller
     public function indexAction()
     {
     	$em = $this->getDoctrine()->getManager();
-		$logger = $this->container->get("logger");
 
     	$adminsNumber = count($em->getRepository("MainBundle:User")->findAdminsNumber());
 		$teachersNumber = count($em->getRepository("MainBundle:User")->findTeachersNumber());

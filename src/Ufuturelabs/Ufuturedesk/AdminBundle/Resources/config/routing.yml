@@ -1,3 +1,7 @@
 admin_index:
     pattern:  /
     defaults: { _controller: AdminBundle:Default:index }
+
+admin_school:
+    prefix: /school
+    resource: "@AdminBundle/Resources/config/routing/school.yml"

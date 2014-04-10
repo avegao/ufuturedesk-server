@@ -1,0 +1,3 @@
+admin_school_index:
+    pattern: /
+    defaults: { _controller: AdminBundle:School:index }

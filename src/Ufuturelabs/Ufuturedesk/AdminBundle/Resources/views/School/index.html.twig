@@ -1,0 +1,10 @@
+{% extends 'AdminBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }}{{ school.name }}{% endblock %}
+
+{% block article %}
+<ol class="breadcrumb">
+	<li><a href="{{ path('admin_index') }}">Inicio</a></li>
+	<li><a href="{{ path('admin_school_index') }}" class="active">{{ school.name }}</a></li>
+</ol>
+{% endblock %}
