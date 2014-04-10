@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @package Ufuturelabs\Ufuturedesk\MainBundle\Entity
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ufuturelabs\Ufuturedesk\MainBundle\Entity\SchoolRepository")
  * @ORM\Table(name="school")
  */
 class School {

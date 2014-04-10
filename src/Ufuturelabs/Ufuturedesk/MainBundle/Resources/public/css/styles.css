@@ -132,7 +132,6 @@ article {
 	left: 260px;
 	top: 80px;
 	max-width: 75%;
-	z-index: -1;
 }
 
 #login_box {
@@ -172,4 +171,21 @@ article {
 
 .administration-preview-actions {
 	padding-top: 10px;
+}
+
+.ufuturedesk-school-administration-preview
+{
+	position: relative;
+	top: -144px;
+}
+
+.ufuturedesk-data-administration-preview-group {
+	position: relative;
+	top: -250px;
+}
+
+.ufuturedesk-administration-preview-info {
+	position: relative;
+	left: 20%;
+	top: -144px;
 }

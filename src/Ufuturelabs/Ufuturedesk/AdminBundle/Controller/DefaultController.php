@@ -15,11 +15,14 @@ class DefaultController extends Controller
 		$teachersNumber = count($em->getRepository("MainBundle:User")->findTeachersNumber());
 		$studentsNumber = count($em->getRepository("MainBundle:User")->findStudentsNumber());
 
+		$school = $em->getRepository("MainBundle:School")->findSchool();
+
 		return $this->render("AdminBundle:Default:index.html.twig", array(
 			"adminsNumber" => $adminsNumber,
 			"teachersNumber" => $teachersNumber,
 			"studentsNumber" => $studentsNumber,
 			"documentRoot" => str_replace("/web/".basename($_SERVER['SCRIPT_FILENAME']), "", $_SERVER['SCRIPT_FILENAME']),
+			"school" => $school[0],
 		));
     }
     
