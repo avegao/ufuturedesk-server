@@ -1,0 +1,27 @@
+{% extends 'AdminBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }} Editar {{ school.name }}{% endblock %}
+
+{% block article %}
+	<ol class="breadcrumb">
+		<li><a href="{{ path('admin_index') }}">Inicio</a></li>
+		<li><a href="{{ path('admin_school_index') }}">{{ school.name }}</a></li>
+		<li><a href="{{ path('admin_school_edit') }}" class="active">Editar</a></li>
+	</ol>
+	<div class="ufuturedesk-school-administration-view">
+		<div class="page-header">
+			<h1><small>{{ school.name }}</small></h1>
+		</div>
+		{% if school.logo is defined %}
+			<img class="ufuturedesk-administration-preview-logo" src="{{ asset('uploads/school/img/' ~ school.logo) }}" witdh="144px" height="144" />
+		{% endif %}
+		<ul class="ufuturedesk-administration-preview-info">
+			<li>Nombre: {{ school.name }}</li>
+			<li>Dirección: {{ school.address }}</li>
+			<li>Teléfono: <a href="tel:{{ school.telephone }}">{{ school.telephone }}</a></li>
+			<li>Fax: <a href="fax:{{ school.fax }}">{{ school.fax }}</a></li>
+			<li>Email: <a href="mailto:{{ school.email }}">{{ school.email }}</a></li>
+			<a href="{{ path("admin_school_edit") }}" class="btn btn-primary">Editar datos</a>
+		</ul>
+	</div>
+{% endblock %}
