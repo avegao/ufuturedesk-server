@@ -3,5 +3,5 @@ admin_school_index:
     defaults: { _controller: AdminBundle:School:index }
 
 admin_school_edit:
-    pattern: /edit
-    defauts: { _controller: AdminBundle:School:index }
+    pattern: /edit/
+    defaults: { _controller: AdminBundle:School:edit }

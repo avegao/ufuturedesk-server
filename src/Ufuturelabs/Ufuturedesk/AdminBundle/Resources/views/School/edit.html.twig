@@ -1,27 +1,61 @@
 {% extends 'AdminBundle:Default:admin.html.twig' %}
 
-{% block title %}{{ parent() }} Editar {{ school.name }}{% endblock %}
+{% block title %}{{ parent() }} Editar{% endblock %}
 
 {% block article %}
-	<ol class="breadcrumb">
-		<li><a href="{{ path('admin_index') }}">Inicio</a></li>
-		<li><a href="{{ path('admin_school_index') }}">{{ school.name }}</a></li>
-		<li><a href="{{ path('admin_school_edit') }}" class="active">Editar</a></li>
-	</ol>
-	<div class="ufuturedesk-school-administration-view">
-		<div class="page-header">
-			<h1><small>{{ school.name }}</small></h1>
+<ol class="breadcrumb">
+	<li><a href="{{ path('admin_index') }}">Inicio</a></li>
+	<li><a href="{{ path('admin_school_index') }}">Centro</a></li>
+	<li><a href="{{ path('admin_school_edit') }}" class="active">Editar</a></li>
+</ol>
+<div class="ufuturedesk-school-administration-edit">
+	<form action="{{ path('admin_school_edit') }}" method="post" role="form" {{ form_enctype(schoolForm) }}>
+		<div class="form-group">
+			<label>
+				{{ form_label(schoolForm.name) }}
+				{{ form_widget(schoolForm.name, {'attr': {
+					'class': 'form-control'
+				}
+				}) }}
+			</label>
 		</div>
-		{% if school.logo is defined %}
-			<img class="ufuturedesk-administration-preview-logo" src="{{ asset('uploads/school/img/' ~ school.logo) }}" witdh="144px" height="144" />
-		{% endif %}
-		<ul class="ufuturedesk-administration-preview-info">
-			<li>Nombre: {{ school.name }}</li>
-			<li>Dirección: {{ school.address }}</li>
-			<li>Teléfono: <a href="tel:{{ school.telephone }}">{{ school.telephone }}</a></li>
-			<li>Fax: <a href="fax:{{ school.fax }}">{{ school.fax }}</a></li>
-			<li>Email: <a href="mailto:{{ school.email }}">{{ school.email }}</a></li>
-			<a href="{{ path("admin_school_edit") }}" class="btn btn-primary">Editar datos</a>
-		</ul>
-	</div>
+		<div class="form-group">
+			<label>
+				{{ form_label(schoolForm.address) }}
+				{{ form_widget(schoolForm.address, {'attr': {
+				'class': 'form-control'
+				}
+				}) }}
+			</label>
+		</div>
+		<div class="form-group">
+			<label>
+				{{ form_label(schoolForm.telephone) }}
+				{{ form_widget(schoolForm.telephone, {'attr': {
+				'class': 'form-control'
+				}
+				}) }}
+			</label>
+		</div>
+		<div class="form-group">
+			<label>
+				{{ form_label(schoolForm.fax) }}
+				{{ form_widget(schoolForm.fax, {'attr': {
+				'class': 'form-control'
+				}
+				}) }}
+			</label>
+		</div>
+		<div class="form-group">
+			<label>
+				{{ form_label(schoolForm.email) }}
+				{{ form_widget(schoolForm.email, {'attr': {
+				'class': 'form-control'
+				}
+				}) }}
+			</label>
+		</div>
+		<input class="btn btn-primary" type="submit" value="Editar" />
+	</form>
+</div>
 {% endblock %}
