@@ -21,7 +21,7 @@ class SchoolType extends AbstractType
 	public function setDefaultsOptions(OptionsResolveInterface $resolver)
 	{
 		$resolver->setDefaults(array(
-			'data_class' => 'Ufuturelabs\Ufuturedesk\MainBundle\Entity\User'
+			'data_class' => 'Ufuturelabs\Ufuturedesk\MainBundle\Entity\School'
 		));
 	}
 
