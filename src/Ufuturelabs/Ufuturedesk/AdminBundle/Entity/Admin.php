@@ -3,7 +3,7 @@
 namespace Ufuturelabs\Ufuturedesk\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Ufuturelabs\Ufuturedesk\MainBundle\Entity\User;
 
 /**
@@ -20,6 +20,8 @@ class Admin extends User {
 	 * @var string
 	 *
 	 * @ORM\Column(name="permissions", type="string", length=255, nullable=true)
+	 *
+	 * @Assert\Type(type="array")
 	 */
 	private $permissions;
 

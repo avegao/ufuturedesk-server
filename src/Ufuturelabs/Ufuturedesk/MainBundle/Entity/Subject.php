@@ -3,6 +3,7 @@
 namespace Ufuturelabs\Ufuturedesk\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Subject
@@ -12,7 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="subjects")
  */
-class Subject {
+class Subject
+{
 
 	/**
 	 * @var integer
@@ -27,6 +29,8 @@ class Subject {
 	 * @var string
 	 *
 	 * @ORM\Column(name="name", type="string", length=30, nullable=false)
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $name;
 
@@ -35,6 +39,8 @@ class Subject {
 	 *
 	 * @ORM\OneToOne(targetEntity="Ufuturelabs\Ufuturedesk\TeacherBundle\Entity\Teacher")
 	 * @ORM\JoinColumn(name="teacher", referencedColumnName="user_id")
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $teacher;
 
@@ -43,6 +49,8 @@ class Subject {
 	 *
 	 * @ORM\OneToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Modality")
 	 * @ORM\JoinColumn(name="modality", referencedColumnName="modality_id")
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $modality;
 

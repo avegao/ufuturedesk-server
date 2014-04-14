@@ -4,6 +4,7 @@ namespace Ufuturelabs\Ufuturedesk\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class User
@@ -36,6 +37,8 @@ class User implements UserInterface
 	 * @var string
 	 *
 	 * @ORM\Column(name="user_name", type="string", unique=true, length=30, nullable=false)
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $userName;
 
@@ -57,6 +60,8 @@ class User implements UserInterface
 	 * @var string
 	 *
 	 * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+	 *
+	 * @Assert\Image()
 	 */
 	private $photo;
 

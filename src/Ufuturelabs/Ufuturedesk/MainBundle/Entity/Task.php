@@ -3,6 +3,7 @@
 namespace Ufuturelabs\Ufuturedesk\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Task
@@ -13,7 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="tasks")
  */
-class Task {
+class Task
+{
 
 	/**
 	 * @var integer
@@ -28,6 +30,8 @@ class Task {
 	 * @var string
 	 *
 	 * @ORM\Column(name="name", type="string", length=20, nullable=false)
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $name;
 
@@ -42,6 +46,8 @@ class Task {
 	 * @var \DateTime
 	 *
 	 * @ORM\Column(name="creation_date", type="datetime", nullable=false)
+	 *
+	 * @Assert\DateTime()
 	 */
 	private $creationDate;
 
@@ -49,6 +55,8 @@ class Task {
 	 * @var \DateTime
 	 *
 	 * @ORM\Column(name="delivery_date", type="datetime", nullable=false)
+	 *
+	 * @Assert\DateTime()
 	 */
 	private $deliveryDate;
 
@@ -56,6 +64,8 @@ class Task {
 	 * @var \DateTime
 	 *
 	 * @ORM\Column(name="completion_date", type="datetime", nullable=true)
+	 *
+	 * @Assert\DateTime()
 	 */
 	private $completionDate;
 
@@ -70,6 +80,8 @@ class Task {
 	 * @var double
 	 *
 	 * @ORM\Column(name="calification", type="decimal", precision=2, scale=2, nullable=true)
+	 *
+	 * @Assert\Length(min=0.00, max=10.00)
 	 */
 	private $calification;
 
@@ -78,6 +90,8 @@ class Task {
 	 *
 	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Subject")
 	 * @ORM\JoinColumn(name="subject", referencedColumnName="subject_id")
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $subject;
 

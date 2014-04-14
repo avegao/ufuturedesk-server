@@ -3,6 +3,7 @@
 namespace Ufuturelabs\Ufuturedesk\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Course
@@ -27,6 +28,8 @@ class Course {
 	 * @var string
 	 *
 	 * @ORM\Column(name="name", type="string", unique=true, length=30, nullable=false)
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $name;
 

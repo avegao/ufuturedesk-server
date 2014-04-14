@@ -3,6 +3,7 @@
 namespace Ufuturelabs\Ufuturedesk\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Exam
@@ -12,7 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="exams")
  */
-class Exam {
+class Exam
+{
 
 	/**
 	 * @var integer
@@ -27,6 +29,8 @@ class Exam {
 	 * @var string
 	 *
 	 * @ORM\Column(name="name", type="string", length=30, nullable=false)
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $name;
 
@@ -41,6 +45,9 @@ class Exam {
 	 * @var \DateTime
 	 *
 	 * @ORM\Column(name="date", type="datetime", nullable=false)
+	 *
+	 * @Assert\NotBlank()
+	 * @Assert\DateTime()
 	 */
 	private $date;
 
@@ -48,6 +55,8 @@ class Exam {
 	 * @var double
 	 *
 	 * @ORM\Column(name="calification", type="decimal", precision=2, scale=2, nullable=true)
+	 *
+	 * @Assert\Length(min=0.00, max=10.00)
 	 */
 	private $calification;
 
@@ -56,6 +65,8 @@ class Exam {
 	 *
 	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Percentage")
 	 * @ORM\JoinColumn(name="percentage", referencedColumnName="percentage_id")
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $percentage;
 
@@ -64,6 +75,8 @@ class Exam {
 	 *
 	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Subject")
 	 * @ORM\JoinColumn(name="subject", referencedColumnName="subject_id")
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $subject;
 

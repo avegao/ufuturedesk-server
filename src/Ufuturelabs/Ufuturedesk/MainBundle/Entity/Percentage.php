@@ -9,6 +9,7 @@
 namespace Ufuturelabs\Ufuturedesk\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Percentage
@@ -18,7 +19,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="subjects_percentages")
  */
-class Percentage {
+class Percentage
+{
 
 	/**
 	 * @var integer
@@ -33,6 +35,8 @@ class Percentage {
 	 * @var string
 	 *
 	 * @ORM\Column(name="name", type="string", length=30, nullable=false)
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $name;
 
@@ -40,6 +44,9 @@ class Percentage {
 	 * @var int
 	 *
 	 * @ORM\Column(name="percentage", type="integer", nullable=false, length=3)
+	 *
+	 * @Assert\NotBlank()
+	 * @Assert\Length(min=1, max=100)
 	 */
 	private $percentage;
 
@@ -48,6 +55,8 @@ class Percentage {
 	 *
 	 * @ORM\OneToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Subject")
 	 * @ORM\JoinColumn(name="subject", referencedColumnName="subject_id")
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $subject;
 

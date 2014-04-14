@@ -3,7 +3,7 @@
 namespace Ufuturelabs\Ufuturedesk\StudentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Ufuturelabs\Ufuturedesk\MainBundle\Entity\User;
 
 /**
@@ -14,12 +14,15 @@ use Ufuturelabs\Ufuturedesk\MainBundle\Entity\User;
  * @ORM\Entity
  * @ORM\Table(name="students")
  */
-class Student extends User {
+class Student extends User
+{
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="name", type="string", length=30, nullable=false)
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $name;
 
@@ -27,6 +30,8 @@ class Student extends User {
 	 * @var string
 	 *
 	 * @ORM\Column(name="surname", type="string", length=30, nullable=false)
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $surname;
 
@@ -34,6 +39,9 @@ class Student extends User {
 	 * @var string
 	 *
 	 * @ORM\Column(name="email", type="string", unique=true, length=30, nullable=false)
+	 *
+	 * @Assert\NotBlank()
+	 * @Assert\Email(checkMX=true)
 	 */
 	private $email;
 
@@ -42,6 +50,8 @@ class Student extends User {
 	 *
 	 * @ORM\OneToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Telephone")
 	 * @ORM\JoinColumn(name="telephone", referencedColumnName="telephone_id")
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $telephone;
 
@@ -49,6 +59,8 @@ class Student extends User {
 	 * @var string
 	 *
 	 * @ORM\Column(name="address", type="string", length=150, nullable=false)
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $address;
 

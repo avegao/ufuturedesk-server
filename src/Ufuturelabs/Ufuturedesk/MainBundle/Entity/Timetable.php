@@ -3,6 +3,7 @@
 namespace Ufuturelabs\Ufuturedesk\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Timetable
@@ -12,13 +13,16 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="subjects_timetable")
  */
-class Timetable {
+class Timetable
+{
 
 	/**
 	 * @var integer
 	 *
 	 * @ORM\Column(name="day", type="integer", nullable=false)
 	 * @ORM\Id
+	 *
+	 * @Assert\Length(min=1, max=7)
 	 */
 	private $day;
 
@@ -27,6 +31,8 @@ class Timetable {
 	 *
 	 * @ORM\Column(name="start_time", type="time", nullable=false)
 	 * @ORM\Id
+	 *
+	 * @Assert\Time()
 	 */
 	private $startTime;
 
@@ -35,6 +41,8 @@ class Timetable {
 	 *
 	 * @ORM\Column(name="end_time", type="time", nullable=false)
 	 * @ORM\Id
+	 *
+	 * @Assert\Time()
 	 */
 	private $endTime;
 

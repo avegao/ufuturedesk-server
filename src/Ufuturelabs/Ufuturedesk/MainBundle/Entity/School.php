@@ -3,6 +3,7 @@
 namespace Ufuturelabs\Ufuturedesk\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class School
@@ -12,13 +13,16 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Ufuturelabs\Ufuturedesk\MainBundle\Entity\SchoolRepository")
  * @ORM\Table(name="school")
  */
-class School {
+class School
+{
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="name", type="string", length=30, nullable=false)
 	 * @ORM\Id
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $name;
 
@@ -26,6 +30,8 @@ class School {
 	 * @var string
 	 *
 	 * @ORM\Column(name="address", type="string", length=150, nullable=false)
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $address;
 
@@ -33,6 +39,8 @@ class School {
 	 * @var string
 	 *
 	 * @ORM\Column(name="telephone", type="string", length=15, nullable=false)
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $telephone;
 
@@ -47,6 +55,9 @@ class School {
 	 * @var string
 	 *
 	 * @ORM\Column(name="email", type="string", length=50, nullable=false)
+	 *
+	 * @Assert\NotBlank()
+	 * @Assert\Email(checkMX=true)
 	 */
 	private $email;
 
@@ -54,6 +65,8 @@ class School {
 	 * @var string
 	 *
 	 * @ORM\Column(name="logo", type="string", length=255, nullable=true)
+	 *
+	 * @Assert\Image()
 	 */
 	private $logo;
 

@@ -3,6 +3,7 @@
 namespace Ufuturelabs\Ufuturedesk\StudentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Absence
@@ -12,7 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="absences")
  */
-class Absence {
+class Absence
+{
 
 	/**
 	 * @var integer
@@ -27,6 +29,8 @@ class Absence {
 	 * @var \DateTime
 	 *
 	 * @ORM\Column(name="date", type="datetime", nullable=false)
+	 *
+	 * @Assert\DateTime()
 	 */
 	private $date;
 

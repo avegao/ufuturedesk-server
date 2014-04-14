@@ -3,6 +3,7 @@
 namespace Ufuturelabs\Ufuturedesk\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Modality
@@ -12,7 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="modalities")
  */
-class Modality {
+class Modality
+{
 
 	/**
 	 * @var integer
@@ -27,6 +29,8 @@ class Modality {
 	 * @var string
 	 *
 	 * @ORM\Column(name="name", type="string", length=20, nullable=false)
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $name;
 
@@ -35,6 +39,8 @@ class Modality {
 	 *
 	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Course")
 	 * @ORM\JoinColumn(name="course", referencedColumnName="course_id")
+	 *
+	 * @Assert\NotBlank()
 	 */
 	private $course;
 
