@@ -2,8 +2,19 @@
 
 namespace Ufuturelabs\Ufuturedesk\StudentBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
-class Delay {
+/**
+ * Class Delay
+ *
+ * @package Ufuturelabs\Ufuturedesk\StudentBundle\Entity
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="delays")
+ */
+class Delay
+{
 
 	/**
 	 * @var integer
@@ -18,6 +29,8 @@ class Delay {
 	 * @var \DateTime
 	 *
 	 * @ORM\Column(name="date", type="datetime", nullable=false)
+	 *
+	 * @Assert\DateTime()
 	 */
 	private $date;
 
