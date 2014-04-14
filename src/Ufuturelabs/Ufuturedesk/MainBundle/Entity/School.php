@@ -3,6 +3,7 @@
 namespace Ufuturelabs\Ufuturedesk\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -64,7 +65,12 @@ class School
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="logo", type="string", length=255, nullable=true)
+	 * @ORM\Column(name="logo_path", type="string", length=255, nullable=true)
+	 */
+	private $logoPath;
+
+	/**
+	 * @var UploadedFile
 	 *
 	 * @Assert\Image()
 	 */
@@ -127,15 +133,31 @@ class School
 	}
 
 	/**
-	 * @param string $logo
+	 * @param string $logoPath
 	 */
-	public function setLogo($logo)
+	public function setLogoPath($logoPath)
+	{
+		$this->logoPath = $logoPath;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getLogoPath()
+	{
+		return $this->logoPath;
+	}
+
+	/**
+	 * @param UploadedFile $logo
+	 */
+	public function setLogo(UploadedFile $logo = null)
 	{
 		$this->logo = $logo;
 	}
 
 	/**
-	 * @return string
+	 * @return UploadedFile
 	 */
 	public function getLogo()
 	{
@@ -174,4 +196,17 @@ class School
 		return $this->telephone;
 	}
 
+	public function uploadLogo()
+	{
+		if ($this->logo == null)
+		{
+			return;
+		}
+
+		$path = __DIR__.'/../../../../../web/uploads/school/img';
+		$name = uniqid().".".$this->logo->getClientOriginalExtension();
+
+		$this->logo->move($path, $name);
+		$this->setLogoPath($name);
+	}
 } 

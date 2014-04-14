@@ -134,6 +134,11 @@ article {
 	max-width: 75%;
 }
 
+article div {
+	position: relative;
+	left: 1%;
+}
+
 #login_box {
 	background-color: #dddddd;
 	position: absolute;

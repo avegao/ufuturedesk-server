@@ -5,3 +5,7 @@ admin_index:
 admin_school:
     prefix: /school
     resource: "@AdminBundle/Resources/config/routing/school.yml"
+
+admin_admin:
+    prefix: /admin
+    resource: "@AdminBundle/Resources/config/routing/admin.yml"

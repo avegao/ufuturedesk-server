@@ -5,14 +5,14 @@
 {% block article %}
 <ol class="breadcrumb">
 	<li><a href="{{ path('admin_index') }}">Inicio</a></li>
-	<li><a href="{{ path('admin_school_index') }}" class="active">{{ school.name }}</a></li>
+	<li class="active">{{ school.name }}</li>
 </ol>
 <div class="ufuturedesk-school-administration-view">
 	<div class="page-header">
 		<h1><small>{{ school.name }}</small></h1>
 	</div>
-	{% if school.logo is defined %}
-		<img class="ufuturedesk-administration-preview-logo" src="{{ asset('uploads/school/img/' ~ school.logo) }}" witdh="144px" height="144" />
+	{% if school.logoPath is not null or not '' %}
+		<img class="ufuturedesk-administration-preview-logo" src="{{ asset('uploads/school/img/' ~ school.logoPath) }}" witdh="144px" height="144" />
 	{% endif %}
 	<ul class="ufuturedesk-administration-preview-info">
 		<li>Nombre: {{ school.name }}</li>

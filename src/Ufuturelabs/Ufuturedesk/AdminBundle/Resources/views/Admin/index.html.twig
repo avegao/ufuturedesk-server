@@ -1,0 +1,36 @@
+{% extends 'AdminBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }} Administradores{% endblock %}
+
+{% block article %}
+<ol class="breadcrumb">
+	<li><a href="{{ path('admin_index') }}">Inicio</a></li>
+	<li class="active">Administradores</li>
+</ol>
+<div class="ufuturedesk-school-administration-view">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>Nombre de usuario</th>
+				<th>Permisos</th>
+				<th>Foto</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for admin in admins %}
+				<tr>
+					<td>{{ admin.user_id }}</td>
+					<td>{{ admin.user_name }}</td>
+					<td>{{ admin.permissions }}</td>
+					<td>
+						{% if admin.photo is defined and admin.photo is not null and admin.photo is not empty %}
+							<img src="{{ assets('uploads/users/' ~ admin.photo) }}" width="32px" height="32px" />
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}

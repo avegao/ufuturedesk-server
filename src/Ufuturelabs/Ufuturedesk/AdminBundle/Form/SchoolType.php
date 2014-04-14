@@ -11,11 +11,11 @@ class SchoolType extends AbstractType
 	{
 		$builder
 			->add('name')
-			->add('address')
+			->add('address', 'textarea')
 			->add('telephone')
 			->add('fax')
-			->add('email')
-			->add('logo');
+			->add('email', 'email')
+			->add('logo', 'file', array('required' => false));
 	}
 
 	public function setDefaultsOptions(OptionsResolveInterface $resolver)

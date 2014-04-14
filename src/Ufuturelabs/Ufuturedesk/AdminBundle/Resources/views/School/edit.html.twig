@@ -6,9 +6,9 @@
 <ol class="breadcrumb">
 	<li><a href="{{ path('admin_index') }}">Inicio</a></li>
 	<li><a href="{{ path('admin_school_index') }}">Centro</a></li>
-	<li><a href="{{ path('admin_school_edit') }}" class="active">Editar</a></li>
+	<li class="active">Editar</li>
 </ol>
-<div class="ufuturedesk-school-administration-edit">
+<div class="ufuturedesk-administration-edit">
 	<form action="{{ path('admin_school_edit') }}" method="post" role="form" {{ form_enctype(schoolForm) }}>
 		<div class="form-group">
 			<label>
@@ -55,6 +55,13 @@
 				}) }}
 			</label>
 		</div>
+		<div class="form-group">
+			<label>
+				{{ form_label(schoolForm.logo) }}
+				{{ form_widget(schoolForm.logo) }}
+			</label>
+		</div>
+		{{ form_rest(schoolForm) }}
 		<input class="btn btn-primary" type="submit" value="Editar" />
 	</form>
 </div>
