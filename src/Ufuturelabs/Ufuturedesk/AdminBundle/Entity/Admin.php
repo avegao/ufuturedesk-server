@@ -19,7 +19,7 @@ class Admin extends User {
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="permissions", type="string", length=255, nullable=true)
+	 * @ORM\Column(name="permissions", type="array", nullable=true)
 	 *
 	 * @Assert\Type(type="array")
 	 */

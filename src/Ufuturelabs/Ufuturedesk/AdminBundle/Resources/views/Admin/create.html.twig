@@ -1,0 +1,49 @@
+{% extends 'AdminBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }} Crear administrador{% endblock %}
+
+{% block article %}
+<ol class="breadcrumb">
+	<li><a href="{{ path('admin_index') }}">Inicio</a></li>
+	<li><a href="{{ path('admin_admin_index') }}">Administradores</a></li>
+	<li class="active">Crear administrador</li>
+</ol>
+<div class="ufuturedesk-administration-edit">
+	<form action="{{ path('admin_admin_create') }}" method="post" role="form" {{ form_enctype(adminForm) }}>
+	<div class="form-group">
+		<label>
+			{{ form_label(adminForm.userName) }}
+			{{ form_widget(adminForm.userName, {'attr': {
+				'class': 'form-control'
+			}
+			}) }}
+		</label>
+	</div>
+	<div class="form-group">
+		<label>
+			Contrase&ntilde;a
+			{{ form_widget(adminForm.password.first, {'attr': {
+				'class': 'form-control'
+			}
+			}) }}
+		</label>
+		<label>
+			Repite la contrase&ntilde;a
+			{{ form_widget(adminForm.password.second, {'attr': {
+				'class': 'form-control'
+			}
+			}) }}
+		</label>
+	</div>
+	<div class="form-group">
+		<p><b>Permisos</b></p>
+		<div class="checkbox">
+			<label for="permissions_superuser">Superusuario</label>
+			<input type="checkbox" name="Superusuario" class="" />
+		</div>
+	</div>
+	{{ form_rest(adminForm) }}
+	<input class="btn btn-primary" type="submit" value="Crear" />
+	</form>
+</div>
+{% endblock %}

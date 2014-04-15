@@ -40,30 +40,35 @@ class User implements UserInterface
 	 *
 	 * @Assert\NotBlank()
 	 */
-	private $userName;
+	protected $userName;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="password", type="string", length=255, nullable=false)
 	 */
-	private $password;
+	protected $password;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="salt", type="string", length=255, nullable=false)
 	 */
-	private $salt;
+	protected $salt;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+	 */
+	protected $photoPath;
+
+	/**
+	 * @var UploadedImage
 	 *
 	 * @Assert\Image()
 	 */
-	private $photo;
+	protected $photo;
 
 	/**
 	 * @return int
@@ -152,19 +157,35 @@ class User implements UserInterface
 	}
 
 	/**
-	 * @param string $photo
+	 * @return string
 	 */
-	public function setPhoto($photo)
+	public function getPhotoPath()
+	{
+		return $this->photoPath;
+	}
+
+	/**
+	 * @return UploadedImage
+	 */
+	public function getPhoto()
+	{
+		return $this->photo;
+	}
+
+	/**
+	 * @param UploadedImage $photo
+	 */
+	public function setPhoto(UploadedImage $photo = null)
 	{
 		$this->photo = $photo;
 	}
 
 	/**
-	 * @return string
+	 * @param string $photoPath
 	 */
-	public function getPhoto()
+	public function setPhotoPath($photoPath)
 	{
-		return $this->photo;
+		$this->photoPath = $photoPath;
 	}
 
 	/**
@@ -173,5 +194,19 @@ class User implements UserInterface
 	public function __toString()
 	{
 		return $this->userName;
+	}
+
+	public function uploadPhoto()
+	{
+		if ($this->photo == null)
+		{
+			return;
+		}
+
+		$path = __DIR__.'/../../../../../web/uploads/users/img';
+		$name = uniqid().".".$this->photo->getClientOriginalExtension();
+
+		$this->photo->move($path, $name);
+		$this->setPhotoPath($name);
 	}
 } 

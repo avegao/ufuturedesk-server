@@ -8,6 +8,13 @@
 	<li class="active">Administradores</li>
 </ol>
 <div class="ufuturedesk-school-administration-view">
+	<form class="form-inline" role="form">
+		<a class="btn btn-primary"  href="{{ path('admin_admin_create') }}">Nuevo</a>
+		<div class="form-group">
+			<label class="control-label" for="teacher-search">Buscar profesor</label>
+			<input type="search" name="teacher-search" class="form-control" />
+		</div>
+	</form>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -15,18 +22,24 @@
 				<th>Nombre de usuario</th>
 				<th>Permisos</th>
 				<th>Foto</th>
+				<th>Acciones</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for admin in admins %}
 				<tr>
-					<td>{{ admin.user_id }}</td>
-					<td>{{ admin.user_name }}</td>
+					<td>{{ admin.id }}</td>
+					<td>{{ admin.userName }}</td>
 					<td>{{ admin.permissions }}</td>
 					<td>
 						{% if admin.photo is defined and admin.photo is not null and admin.photo is not empty %}
-							<img src="{{ assets('uploads/users/' ~ admin.photo) }}" width="32px" height="32px" />
+							<img src="{{ asset('uploads/users/' ~ admin.photo) }}" width="32px" height="32px" />
 						{% endif %}
+					</td>
+					<td>
+						<a class="btn btn-primary" href="{{ path('admin_admin_view', {'id': admin.id}) }}">Ver</a>
+						<a class="btn btn-warning" href="{{ path('admin_admin_edit', {'id': admin.id}) }}">Editar</a>
+						<a class="btn btn-danger" href="{{ path('admin_admin_delete', {'id': admin.id}) }}">Eliminar</a>
 					</td>
 				</tr>
 			{% endfor %}

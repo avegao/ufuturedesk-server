@@ -10,6 +10,14 @@ admin_admin_create:
     pattern: /create
     defaults: { _controller: AdminBundle:Admin:create }
 
+admin_admin_edit:
+    pattern: /edit/{id}
+    defaults: { _controller: AdminBundle:Admin:view }
+
+admin_admin_delete:
+    pattern: /delete/{id}
+    defaults: { _controller: AdminBundle:Admin:view }
+
 admin_school_edit:
     pattern: /edit/{id}
     defaults: { _controller: AdminBundle:Admin:edit }
