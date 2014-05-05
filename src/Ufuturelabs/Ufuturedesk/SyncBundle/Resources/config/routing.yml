@@ -1,0 +1,9 @@
+sync_user:
+    type: rest
+    prefix: /user
+    resource: "Ufuturelabs\Ufuturedesk\SyncBundle\Controller\UserController"
+
+sync_token:
+    type: rest
+    prefix: /token
+    resource: "Ufuturelabs\Ufuturedesk\SyncBundle\Controller\TokenController"

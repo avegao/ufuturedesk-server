@@ -18,7 +18,10 @@
         "sensio/distribution-bundle": "~2.3",
         "sensio/framework-extra-bundle": "~3.0",
         "sensio/generator-bundle": "~2.3",
-        "incenteev/composer-parameter-handler": "~2.0"
+        "incenteev/composer-parameter-handler": "~2.0",
+		"friendsofsymfony/rest-bundle": "1.3.*",
+		"jms/serializer-bundle": "0.13.*@dev",
+		"nelmio/api-doc-bundle": "2.5.*@dev"
     },
     "scripts": {
         "post-install-cmd": [

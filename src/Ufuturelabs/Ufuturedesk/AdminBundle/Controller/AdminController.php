@@ -29,6 +29,7 @@ class AdminController extends Controller
 
 		if ($form->isValid())
 		{
+			$request->request->get('');
 			$admin->uploadPhoto();
 
 			$em->persist($admin);

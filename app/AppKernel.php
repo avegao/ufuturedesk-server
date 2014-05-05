@@ -1,7 +1,7 @@
 <?php
 
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\HttpKernel\Kernel;
 
 class AppKernel extends Kernel
 {
@@ -20,12 +20,10 @@ class AppKernel extends Kernel
             new Ufuturelabs\Ufuturedesk\AdminBundle\AdminBundle(),
             new Ufuturelabs\Ufuturedesk\StudentBundle\StudentBundle(),
             new Ufuturelabs\Ufuturedesk\TeacherBundle\TeacherBundle(),
-            new Ufuturelabs\Ufuturedesk\SyncBundle\SyncBundle()
-			/* REST
+            new Ufuturelabs\Ufuturedesk\SyncBundle\SyncBundle(),
 			new FOS\RestBundle\FOSRestBundle(),
 			new JMS\SerializerBundle\JMSSerializerBundle(),
 			new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-			*/
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

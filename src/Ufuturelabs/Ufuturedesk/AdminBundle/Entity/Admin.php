@@ -14,33 +14,8 @@ use Ufuturelabs\Ufuturedesk\MainBundle\Entity\User;
  * @ORM\Entity
  * @ORM\Table(name="administrators")
  */
-class Admin extends User {
-
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="permissions", type="array", nullable=true)
-	 *
-	 * @Assert\Type(type="array")
-	 */
-	private $permissions;
-
-	/**
-	 * @param string $permissions
-	 */
-	public function setPermissions($permissions)
-	{
-		$this->permissions = $permissions;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getPermissions()
-	{
-		return $this->permissions;
-	}
-
+class Admin extends User
+{
 	public function getRoles()
 	{
 		return array("ROLE_ADMIN");

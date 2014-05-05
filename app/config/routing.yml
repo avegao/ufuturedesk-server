@@ -1,6 +1,11 @@
 sync:
     resource: "@SyncBundle/Resources/config/routing.yml"
     prefix:   /sync
+    type: rest
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /sync/doc
 
 teacher:
     resource: "@TeacherBundle/Resources/config/routing.yml"
