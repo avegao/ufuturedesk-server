@@ -4,6 +4,7 @@ namespace Ufuturelabs\Ufuturedesk\SyncBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Ufuturelabs\Ufuturedesk\SyncBundle\Entity\SyncToken;
 
@@ -16,6 +17,13 @@ class TokenController extends FOSRestController
 	 * 		resources = true,
 	 * 		description = "Get session token. This token expires at 3 hours",
 	 * 		output = "Ufuturelabs\Ufuturedesk\SyncBundle\SyncToken",
+	 * 		requeriments = {
+	 * 			{
+	 * 				"name": "username",
+	 * 				"dataType": "string",
+	 * 				"description": "Username to get the token"
+	 * 			}
+	 * 		},
 	 * 		statusCodes = {
 	 * 			200 = "Returned when all is successful",
 	 * 			403 = "Returned when username or password are wrong",
@@ -23,15 +31,12 @@ class TokenController extends FOSRestController
 	 * 		}
 	 * )
 	 */
-	public function getTokenAction()
+	public function getTokenAction(Request $request)
 	{
 		$em = $this->container->get('doctrine.orm.entity_manager');
-		$request = $this->container->get('request');
-		$logger = $this->container->get('logger');
 
-		$usernameRequest = trim($request->attributes->get('username'));
-		$username = "admin";
-		$password = "admin";
+		$username = $request->query->get('username');
+		$password = $request->query->get('password');
 
 		$query = $em->createQuery('SELECT u FROM MainBundle:User u WHERE u.userName = :username');
 		$query->setParameter('username', $username);
@@ -56,8 +61,7 @@ class TokenController extends FOSRestController
 
 				$view->setData(array(
 					"token" => $token->getTokenId(),
-					"expiration_date" => $token->getExpirationDate(),
-					"username" => $usernameRequest
+					"expiration_date" => $token->getExpirationDate()
 				));
 
 				return $this->container->get('fos_rest.view_handler')->handle($view);
