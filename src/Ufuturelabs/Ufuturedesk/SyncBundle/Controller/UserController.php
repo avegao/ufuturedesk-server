@@ -4,7 +4,6 @@ namespace Ufuturelabs\Ufuturedesk\SyncBundle\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Response;
-use Ufuturelabs\Ufuturedesk\SyncBundle\Entity\SyncToken;
 
 class UserController extends FOSRestController
 {
@@ -12,69 +11,89 @@ class UserController extends FOSRestController
 	 * Get user info
 	 *
 	 * @ApiDoc(
-	 * 		resources = true,
 	 * 		description = "Gets user info for a username and a password",
-	 * 		output = "Ufuturelabs\Ufuturedesk\MainBundle\User",
 	 * 		statusCodes = {
 	 * 			200 = "Returned when all is successful",
-	 * 			403 = "Returned when username or password are wrong"
+	 * 			401 = "Returned when the token is wrong"
 	 * 		}
 	 * )
+	 *
+	 * @param $token String Session token neccesary for do anything
 	 */
-	public function getUserAction()
+	public function getUserAction($token)
 	{
 		$em = $this->container->get('doctrine.orm.entity_manager');
-		$request = $this->container->get('request');
-		$logger = $this->container->get('logger');
 
-		$username = "admin";//trim($request->query->get('username'));
-		$password = "admin";//trim($request->query->get('password'));
+		$query = $em->createQuery('SELECT u FROM SyncBundle:SyncToken u WHERE u.tokenId = :token');
+		$query->setParameter('token', $token);
+		$tokenObject = $query->getOneOrNullResult();
 
-		//$logger->debug('username: '.$username.' - password: '.$password);
-
-		$query = $em->createQuery('SELECT u FROM MainBundle:User u WHERE u.userName = :username');
-		$query->setParameter('username', $username);
-		$user = $query->getOneOrNullResult();
-
-		if ($user)
+		if ($tokenObject != null && $tokenObject->getExpirationDate() > new \DateTime("now"))
 		{
-			$encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
+			$user = $tokenObject->getUser();
 
-			$encodedPassword = $encoder->encodePassword($password, $user->getSalt());
+			$view = View::create();
+			$view->setStatusCode(Response::HTTP_OK);
 
-			if ($user->getPassword() == $encodedPassword)
+			if ($user->getRoles()[0] == "ROLE_ADMIN")
 			{
-				$view = View::create();
-				$view->setStatusCode(Response::HTTP_OK);
-				//$view->setData($user);
-				// TEST para tokens
-				$token = new SyncToken();
-				$token->newToken($user);
-
-				$em->persist($token);
-				$em->flush();
-
 				$data = array(
-					"token" => $token->getTokenId(),
-					"expiration_date" => $token->getExpirationDate(),
+					"id" => $user->getId(),
+					"username" => $user->getUserName(),
+					"type" => "admin",
+					"photo" => (($user->getPhotoPath()) == null ? "" : $user->getPhotoPath()),
+					"permissions" => array(
+						"superuser" => true,
+						//TODO: Finish admin permissions
+					),
 				);
-
-				$view->setData($data);
-
-				return $this->container->get('fos_rest.view_handler')->handle($view);
+			}
+			elseif ($user->getRoles()[0] == "ROLE_STUDENT")
+			{
+				$data = array(
+					"id" => $user->getId(),
+					"username" => $user->getUserName(),
+					"type" => "student",
+					"name" => $user->getName(),
+					"surname" => $user->getSurname(),
+					"email" => $user->getEmail(),
+					"telephone" => $user->getTelephone(),
+					"address" => $user->getAddress(),
+					"course_id" => $user->getCourse()->getId()
+				);
+			}
+			elseif ($user->getRoles()[0] == "ROLE_TEACHER")
+			{
+				$data = array(
+					"id" => $user->getId(),
+					"username" => $user->getUserName(),
+					"type" => "student",
+					"name" => $user->getName(),
+					"surname" => $user->getSurname(),
+					"email" => $user->getEmail(),
+					"telephone" => $user->getTelephone(),
+					"address" => $user->getAddress()
+				);
 			}
 			else
 			{
-				$view = View::create();
-				$view->setStatusCode(Response::HTTP_FORBIDDEN);
-
-				return $this->container->get('fos_rest.view_handler')->handle($view);
+				$view->setStatusCode(Response::HTTP_BAD_REQUEST);
+				$data = array(
+					"error" => array(
+						"code" => Response::HTTP_BAD_REQUEST,
+						"message" => "User type not found or not supported. Update your application"
+					)
+				);
 			}
+
+			$view->setData($data);
+
+			return $this->container->get('fos_rest.view_handler')->handle($view);
 		}
 		else
 		{
 			$view = View::create();
-			$view->setStatusCode(Response::HTTP_NOT_FOUND);
+			$view->setStatusCode(Response::HTTP_UNAUTHORIZED);
 
 			return $this->container->get('fos_rest.view_handler')->handle($view);
 		}
