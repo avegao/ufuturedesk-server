@@ -75,3 +75,28 @@ swiftmailer:
 parameters:
     ufuturedesk.version: v1.0.0
     ufuturedesk.channel: dev(master)
+
+sensio_framework_extra:
+    view: { annotations: false }
+
+fos_rest:
+    disable_csrf_role: ROLE_API
+    param_fetcher_listener: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            xml:  true
+            json: true
+    format_listener:
+        rules:
+            - { path: ^/, priorities: [ json, xml ], fallback_format: ~, prefer_extension: true }
+    exception:
+        codes:
+            'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
+            'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
+        messages:
+            'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
+    allowed_methods_listener: true
+    access_denied_listener:
+        json: true
+    body_listener: true
