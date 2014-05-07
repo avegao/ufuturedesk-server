@@ -4,6 +4,7 @@ namespace Ufuturelabs\Ufuturedesk\SyncBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Ufuturelabs\Ufuturedesk\SyncBundle\Entity\SyncToken;
