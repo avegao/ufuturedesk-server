@@ -12,8 +12,8 @@ class AdminType extends AbstractType
 		$builder
 			->add('userName')
 			->add('password', 'repeated')
+			->add('photo', 'file', array('required' => false))
 			->add('permissionsSuperuser', 'checkbox', array('required' => false))
-			->add('permissionsSchoolEdit', 'checkbox', array('required' => false))
 			->add('permissionsAdminView', 'checkbox', array('required' => false))
 			->add('permissionsAdminCreate', 'checkbox', array('required' => false))
 			->add('permissionsAdminEdit', 'checkbox', array('required' => false))
@@ -22,10 +22,6 @@ class AdminType extends AbstractType
 			->add('permissionsTeacherCreate', 'checkbox', array('required' => false))
 			->add('permissionsTeacherEdit', 'checkbox', array('required' => false))
 			->add('permissionsTeacherDelete', 'checkbox', array('required' => false))
-			->add('permissionsStudentView', 'checkbox', array('required' => false))
-			->add('permissionsStudentCreate', 'checkbox', array('required' => false))
-			->add('permissionsStudentEdit', 'checkbox', array('required' => false))
-			->add('permissionsStudentDelete', 'checkbox', array('required' => false))
 			->add('permissionsStudentView', 'checkbox', array('required' => false))
 			->add('permissionsStudentCreate', 'checkbox', array('required' => false))
 			->add('permissionsStudentEdit', 'checkbox', array('required' => false))
@@ -40,9 +36,8 @@ class AdminType extends AbstractType
 			->add('permissionsModalityDelete', 'checkbox', array('required' => false))
 			->add('permissionsSubjectView', 'checkbox', array('required' => false))
 			->add('permissionsSubjectCreate', 'checkbox', array('required' => false))
-			->add('permissionsSubjectCourseEdit', 'checkbox', array('required' => false))
-			->add('permissionsSubjectDelete', 'checkbox', array('required' => false))
-			->add('photo', 'file', array('required' => false));
+			->add('permissionsSubjectEdit', 'checkbox', array('required' => false))
+			->add('permissionsSubjectDelete', 'checkbox', array('required' => false));
 	}
 
 	public function setDefaultsOptions(OptionsResolveInterface $resolver)
