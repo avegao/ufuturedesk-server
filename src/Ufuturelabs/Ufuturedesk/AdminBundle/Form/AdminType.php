@@ -11,7 +11,12 @@ class AdminType extends AbstractType
 	{
 		$builder
 			->add('userName')
-			->add('password', 'repeated')
+			->add('password', 'repeated', array(
+				'type' => 'password',
+				'invalid_message' => 'Las dos contraseñas deben coincidir',
+				'first_options'   => array('label' => 'Contraseña'),
+				'second_options'  => array('label' => 'Repite Contraseña')
+			))
 			->add('photo', 'file', array('required' => false))
 			->add('permissionsSuperuser', 'checkbox', array('required' => false))
 			->add('permissionsAdminView', 'checkbox', array('required' => false))
