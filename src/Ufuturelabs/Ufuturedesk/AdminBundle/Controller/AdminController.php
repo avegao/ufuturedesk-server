@@ -29,9 +29,16 @@ class AdminController extends Controller
 
 		if ($form->isValid())
 		{
-			$request->request->get('');
 			$admin->uploadPhoto();
 
+            $admin->setSalt();
+
+            $encoder = $this->get("security.encoder_factory")->getEncoder($admin);
+            $encryptedPassword = $encoder->encodePassword($admin->getPassword(), $admin->getSalt());
+
+            $admin->setPassword($encryptedPassword);
+
+            $em = $this->getDoctrine()->getManager();
 			$em->persist($admin);
 			$em->flush();
 
