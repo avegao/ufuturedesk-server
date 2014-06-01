@@ -1,0 +1,19 @@
+admin_teacher_index:
+    pattern: /
+    defaults: { _controller: AdminBundle:Teacher:index }
+
+admin_teacher_view:
+    pattern: /view/{id}
+    defaults: { _controller: AdminBundle:Teacher:view }
+
+admin_teacher_create:
+    pattern: /create
+    defaults: { _controller: AdminBundle:Teacher:create }
+
+admin_teacher_edit:
+    pattern: /edit/{id}
+    defaults: { _controller: AdminBundle:Teacher:edit }
+
+admin_teacher_delete:
+    pattern: /delete/{id}
+    defaults: { _controller: AdminBundle:Teacher:view }
