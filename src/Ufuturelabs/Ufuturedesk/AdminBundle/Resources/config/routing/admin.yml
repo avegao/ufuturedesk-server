@@ -12,7 +12,7 @@ admin_admin_create:
 
 admin_admin_edit:
     pattern: /edit/{id}
-    defaults: { _controller: AdminBundle:Admin:view }
+    defaults: { _controller: AdminBundle:Admin:edit }
 
 admin_admin_delete:
     pattern: /delete/{id}

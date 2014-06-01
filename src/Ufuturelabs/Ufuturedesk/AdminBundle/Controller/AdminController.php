@@ -6,6 +6,7 @@ namespace Ufuturelabs\Ufuturedesk\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ufuturelabs\Ufuturedesk\AdminBundle\Entity\Admin;
 use Ufuturelabs\Ufuturedesk\AdminBundle\Form\AdminType;
+use Ufuturelabs\Ufuturedesk\AdminBundle\Form\AdminEditType;
 
 class AdminController extends Controller
 {
@@ -64,4 +65,57 @@ class AdminController extends Controller
 			"adminForm" => $form->createView()
 		));
 	}
+
+    public function editAction($id)
+    {
+        $request = $this->container->get('request');
+        $em = $this->getDoctrine()->getManager();
+
+        $admin = $em->getRepository("AdminBundle:Admin")->findOneBy(array("id" => $id));
+
+        $form = $this->createForm(new AdminEditType(), $admin);
+
+        $originalPassword = $admin->getPassword();
+        $originalPhoto = $admin->getPhotoPath();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid())
+        {
+            if ($form->getData()->getPassword() == null)
+            {
+                $admin->setPassword($originalPassword);
+            }
+            else
+            {
+                $admin->setSalt();
+
+                $encoder = $this->get("security.encoder_factory")->getEncoder($admin);
+                $encryptedPassword = $encoder->encodePassword($admin->getPassword(), $admin->getSalt());
+
+                $admin->setPassword($encryptedPassword);
+            }
+
+            if ($form->getData()->getPhoto() != null)
+            {
+                $admin->uploadPhoto();
+            }
+
+            $em->persist($admin);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add('info',
+                'Los datos del administrador se han editado correctamente'
+            );
+
+            return $this->redirect($this->generateUrl('admin_admin_view', array(
+                'id' => $admin->getId()
+            )));
+        }
+
+        return $this->render("AdminBundle:Admin:edit.html.twig", array(
+            "admin" => $admin,
+            "adminForm" => $form->createView()
+        ));
+    }
 } 
