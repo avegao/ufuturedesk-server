@@ -1,3 +1,17 @@
 .ufuturedesk-administration-edit table .checkbox {
 	margin-right: 15px;
 }
+
+
+.ufuturedesk-administration-edit input[type="submit"] {
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.ufuturedesk-administration-admin-view table th {
+    padding-right: 300px;
+}
+
+.ufuturedesk-administration-admin-view table input[type="checkbox"] {
+    margin-left: 15px;
+}

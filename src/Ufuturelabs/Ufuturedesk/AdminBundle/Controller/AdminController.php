@@ -18,6 +18,15 @@ class AdminController extends Controller
 		return $this->render("AdminBundle:Admin:index.html.twig", array("admins" => $admins));
 	}
 
+    public function viewAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $admin = $em->getRepository("AdminBundle:Admin")->find($id);
+
+        return $this->render("AdminBundle:Admin:view.html.twig", array("admin" => $admin));
+    }
+
 	public function createAction()
 	{
 		$request = $this->container->get('request');
@@ -29,9 +38,16 @@ class AdminController extends Controller
 
 		if ($form->isValid())
 		{
-			$request->request->get('');
 			$admin->uploadPhoto();
 
+            $admin->setSalt();
+
+            $encoder = $this->get("security.encoder_factory")->getEncoder($admin);
+            $encryptedPassword = $encoder->encodePassword($admin->getPassword(), $admin->getSalt());
+
+            $admin->setPassword($encryptedPassword);
+
+            $em = $this->getDoctrine()->getManager();
 			$em->persist($admin);
 			$em->flush();
 

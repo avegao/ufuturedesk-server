@@ -30,7 +30,6 @@
 				<tr>
 					<td>{{ admin.id }}</td>
 					<td>{{ admin.userName }}</td>
-					<td>{{ admin.permissions }}</td>
 					<td>
 						{% if admin.photo is defined and admin.photo is not null and admin.photo is not empty %}
 							<img src="{{ asset('uploads/users/' ~ admin.photo) }}" width="32px" height="32px" />
