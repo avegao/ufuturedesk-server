@@ -39,8 +39,52 @@ class AdminController extends Controller
 		if ($form->isValid())
 		{
 			$admin->uploadPhoto();
-
             $admin->setSalt();
+
+            if ($admin->isPermissionsSuperuser())
+            {
+                // School permissions
+                $admin->setPermissions(array(
+                    "superuser" => true,
+                    "school" => array( "edit" => true),
+                    "admin" => array(
+                        "view" => true,
+                        "create" => true,
+                        "edit" => true,
+                        "delete" => true
+                    ),
+                    "teacher" => array(
+                        "view" => true,
+                        "create" => true,
+                        "edit" => true,
+                        "delete" => true
+                    ),
+                    "student" => array(
+                        "view" => true,
+                        "create" => true,
+                        "edit" => true,
+                        "delete" => true
+                    ),
+                    "courses" => array(
+                        "view" => true,
+                        "create" => true,
+                        "edit" => true,
+                        "delete" => true
+                    ),
+                    "modalities" => array(
+                        "view" => true,
+                        "create" => true,
+                        "edit" => true,
+                        "delete" => true
+                    ),
+                    "subjects" => array(
+                        "view" => true,
+                        "create" => true,
+                        "edit" => true,
+                        "delete" => true
+                    ),
+                ));
+            }
 
             $encoder = $this->get("security.encoder_factory")->getEncoder($admin);
             $encryptedPassword = $encoder->encodePassword($admin->getPassword(), $admin->getSalt());
@@ -116,5 +160,18 @@ class AdminController extends Controller
             "admin" => $admin,
             "adminForm" => $form->createView()
         ));
+    }
+
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $admin = $em->getRepository("AdminBundle:Admin")->findOneBy(array("id" => $id));
+
+        $em->remove($admin);
+
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('admin_admin_index'));
     }
 } 

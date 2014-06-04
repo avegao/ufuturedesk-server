@@ -548,6 +548,11 @@ class Admin extends User
 	public function setPermissionsSuperuser($permissionsSuperuser)
 	{
 		$this->permissionsSuperuser = $permissionsSuperuser;
+
+        if ($permissionsSuperuser)
+        {
+            $this->setPermissions(array("superuser" => true));
+        }
 	}
 
 	/**
