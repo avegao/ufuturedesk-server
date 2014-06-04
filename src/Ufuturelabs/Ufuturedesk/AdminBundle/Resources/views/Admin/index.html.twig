@@ -3,39 +3,64 @@
 {% block title %}{{ parent() }} Administradores{% endblock %}
 
 {% block article %}
-<ol class="breadcrumb">
-	<li><a href="{{ path('admin_index') }}">Inicio</a></li>
-	<li class="active">Administradores</li>
-</ol>
-<div class="ufuturedesk-school-administration-view">
-	<form class="form-inline" role="form">
-		<a class="btn btn-primary"  href="{{ path('admin_admin_create') }}">Nuevo</a>
-		<div class="form-group">
-			<label class="control-label" for="admin-search">Buscar administrador </label>
-			<input type="search" name="admin-search" class="form-control" />
-		</div>
-	</form>
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>id</th>
-				<th>Nombre de usuario</th>
-				<th>Acciones</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for admin in admins %}
-				<tr>
-					<td>{{ admin.id }}</td>
-					<td>{{ admin.userName }}</td>
-					<td>
-						<a class="btn btn-primary" href="{{ path('admin_admin_view', {'id': admin.id}) }}">Ver</a>
-						<a class="btn btn-warning" href="{{ path('admin_admin_edit', {'id': admin.id}) }}">Editar</a>
-						<a class="btn btn-danger" href="{{ path('admin_admin_delete', {'id': admin.id}) }}">Eliminar</a>
-					</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-</div>
+    <ol class="breadcrumb">
+        <li><a href="{{ path('admin_index') }}">Inicio</a></li>
+        <li class="active">Administradores</li>
+    </ol>
+    <div class="ufuturedesk-school-administration-view">
+        <form class="form-inline" role="form">
+            <a class="btn btn-primary"  href="{{ path('admin_admin_create') }}">Nuevo</a>
+            <div class="form-group">
+                <label class="control-label" for="admin-search">Buscar administrador </label>
+                <input type="search" name="admin-search" class="form-control" />
+            </div>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre de usuario</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for admin in admins %}
+                    <tr>
+                        <td>{{ admin.id }}</td>
+                        <td>{{ admin.userName }}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('admin_admin_view', {'id': admin.id}) }}" >Ver</a>
+                            <a class="btn btn-warning" href="{{ path('admin_admin_edit', {'id': admin.id}) }}">Editar</a>
+                            <a class="btn btn-danger" {# href="  {{ path('admin_admin_delete', {'id': admin.id}) }}" #} data-toggle="modal" data-target="#modal-delete-admin-{{ admin.id }}">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        {% for admin in admins %}
+            <div class="modal fade" id="modal-delete-admin-{{ admin.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Eliminar administrador</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>¿Estás seguro de querer eliminar al administrador con nombre de usuario "{{ admin.userName }}"?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <a class="btn btn-danger" href="{{ path('admin_admin_delete', {'id': admin.id}) }}">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+
+    </script>
 {% endblock %}

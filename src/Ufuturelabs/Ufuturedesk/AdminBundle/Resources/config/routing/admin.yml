@@ -16,4 +16,4 @@ admin_admin_edit:
 
 admin_admin_delete:
     pattern: /delete/{id}
-    defaults: { _controller: AdminBundle:Admin:view }
+    defaults: { _controller: AdminBundle:Admin:delete }
