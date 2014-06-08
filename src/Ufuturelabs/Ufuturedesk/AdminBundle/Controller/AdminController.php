@@ -3,6 +3,7 @@
 namespace Ufuturelabs\Ufuturedesk\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Ufuturelabs\Ufuturedesk\AdminBundle\Entity\Admin;
 use Ufuturelabs\Ufuturedesk\AdminBundle\Form\AdminType;
 use Ufuturelabs\Ufuturedesk\AdminBundle\Form\AdminEditType;
@@ -11,6 +12,13 @@ class AdminController extends Controller
 {
 	public function indexAction()
 	{
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        if (!$user->getPermissions()['admin']['view'])
+        {
+            throw new AccessDeniedException("No tienes permisos suficientes");
+        }
+
 		$em = $this->getDoctrine()->getManager();
 
 		$admins = $em->getRepository("AdminBundle:Admin")->findAll();
@@ -20,6 +28,13 @@ class AdminController extends Controller
 
     public function viewAction($id)
     {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        if (!$user->getPermissions()['admin']['view'])
+        {
+            throw new AccessDeniedException("No tienes permisos suficientes");
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $admin = $em->getRepository("AdminBundle:Admin")->find($id);
@@ -29,6 +44,13 @@ class AdminController extends Controller
 
 	public function createAction()
 	{
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        if (!$user->getPermissions()['admin']['create'])
+        {
+            throw new AccessDeniedException("No tienes permisos suficientes");
+        }
+
 		$request = $this->container->get('request');
 
 		$admin = new Admin();
@@ -111,6 +133,13 @@ class AdminController extends Controller
 
     public function editAction($id)
     {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        if (!$user->getPermissions()['admin']['edit'])
+        {
+            throw new AccessDeniedException("No tienes permisos suficientes");
+        }
+
         $request = $this->container->get('request');
         $em = $this->getDoctrine()->getManager();
 
@@ -164,6 +193,12 @@ class AdminController extends Controller
 
     public function deleteAction($id)
     {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        if (!$user->getPermissions()['admin']['delete'])
+        {
+            throw new AccessDeniedException("No tienes permisos suficientes");
+        }
         $em = $this->getDoctrine()->getManager();
 
         $admin = $em->getRepository("AdminBundle:Admin")->findOneBy(array("id" => $id));
