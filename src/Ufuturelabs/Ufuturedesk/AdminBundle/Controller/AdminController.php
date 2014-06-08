@@ -47,9 +47,7 @@ class AdminController extends Controller
         $user = $this->container->get('security.context')->getToken()->getUser();
 
         if (!$user->getPermissions()['admin']['create'])
-        {
             throw new AccessDeniedException("No tienes permisos suficientes");
-        }
 
 		$request = $this->container->get('request');
 
@@ -63,9 +61,62 @@ class AdminController extends Controller
 			$admin->uploadPhoto();
             $admin->setSalt();
 
+            if ($admin->isPermissionsAdminCreate())
+                $admin->setPermissionsAdminView(true);
+
+            if ($admin->isPermissionsAdminEdit())
+                $admin->setPermissionsAdminCreate(true);
+
+            if ($admin->isPermissionsAdminDelete())
+                $admin->setPermissionsAdminEdit(true);
+
+            if ($admin->isPermissionsTeacherCreate())
+                $admin->setPermissionsTeacherView(true);
+
+            if ($admin->isPermissionsTeacherEdit())
+                $admin->setPermissionsTeacherCreate(true);
+
+            if ($admin->isPermissionsTeacherDelete())
+                $admin->setPermissionsTeacherEdit(true);
+
+            if ($admin->isPermissionsStudentCreate())
+                $admin->setPermissionsStudentView(true);
+
+            if ($admin->isPermissionsStudentEdit())
+                $admin->setPermissionsStudentCreate(true);
+
+            if ($admin->isPermissionsStudentDelete())
+                $admin->setPermissionsStudentEdit(true);
+
+            if ($admin->isPermissionsCourseCreate())
+                $admin->setPermissionsCourseView(true);
+
+            if ($admin->isPermissionsCourseEdit())
+                $admin->setPermissionsCourseCreate(true);
+
+            if ($admin->isPermissionsCourseDelete())
+                $admin->setPermissionsCourseEdit(true);
+
+            if ($admin->isPermissionsModalityCreate())
+                $admin->setPermissionsModalityView(true);
+
+            if ($admin->isPermissionsModalityEdit())
+                $admin->setPermissionsModalityCreate(true);
+
+            if ($admin->isPermissionsModalityDelete())
+                $admin->setPermissionsModalityEdit(true);
+
+            if ($admin->isPermissionsAdminCreate())
+                $admin->setPermissionsAdminView(true);
+
+            if ($admin->isPermissionsAdminEdit())
+                $admin->setPermissionsAdminCreate(true);
+
+            if ($admin->isPermissionsAdminDelete())
+                $admin->setPermissionsAdminEdit(true);
+
             if ($admin->isPermissionsSuperuser())
             {
-                // School permissions
                 $admin->setPermissions(array(
                     "superuser" => true,
                     "school" => array( "edit" => true),
