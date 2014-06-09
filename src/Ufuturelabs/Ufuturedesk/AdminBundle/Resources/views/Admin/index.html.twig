@@ -7,12 +7,12 @@
         <li><a href="{{ path('admin_index') }}">Inicio</a></li>
         <li class="active">Administradores</li>
     </ol>
-    <div class="ufuturedesk-school-administration-view">
+    <div class="ufuturedesk-administration-admin">
         <form class="form-inline" role="form">
-            <a class="btn btn-primary"  href="{{ path('admin_admin_create') }}">Nuevo</a>
+            <button type="button" class="btn btn-primary" href="{{ path('admin_admin_create') }}"><span class="glyphicon glyphicon-plus"></span></button>
             <div class="form-group">
-                <label class="control-label" for="admin-search">Buscar administrador </label>
-                <input type="search" name="admin-search" class="form-control" />
+                <input type="search" name="admin-search" class="form-control" placeholder="Buscar administrador" />
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </form>
         <table class="table table-striped">
@@ -20,7 +20,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre de usuario</th>
-                    <th>Acciones</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -29,9 +29,9 @@
                         <td>{{ admin.id }}</td>
                         <td>{{ admin.userName }}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{ path('admin_admin_view', {'id': admin.id}) }}" >Ver</a>
-                            <a class="btn btn-warning" href="{{ path('admin_admin_edit', {'id': admin.id}) }}">Editar</a>
-                            <a class="btn btn-danger" {# href="  {{ path('admin_admin_delete', {'id': admin.id}) }}" #} data-toggle="modal" data-target="#modal-delete-admin-{{ admin.id }}">Eliminar</a>
+                            <button type="button" class="btn btn-primary" href="{{ path('admin_admin_view', {'id': admin.id}) }}" ><span class="glyphicon glyphicon-eye-open"></span></button>
+                            <button type="button" class="btn btn-warning" href="{{ path('admin_admin_edit', {'id': admin.id}) }}"><span class="glyphicon glyphicon-pencil"></span></button>
+                            <button type="button" class="btn btn-danger" {# href="  {{ path('admin_admin_delete', {'id': admin.id}) }}" #} data-toggle="modal" data-target="#modal-delete-admin-{{ admin.id }}"><span class="glyphicon glyphicon-remove"></span></button>
                         </td>
                     </tr>
                 {% endfor %}

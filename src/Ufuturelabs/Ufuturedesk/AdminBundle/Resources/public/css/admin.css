@@ -8,6 +8,15 @@
     margin-left: 10px;
 }
 
+.ufuturedesk-administration-admin form.form-inline div.form-group {
+    float: right;
+}
+
+.ufuturedesk-administration-admin td button {
+    float: right;
+    margin-right: 15px;
+}
+
 .ufuturedesk-administration-admin-view table th {
     padding-right: 300px;
 }
