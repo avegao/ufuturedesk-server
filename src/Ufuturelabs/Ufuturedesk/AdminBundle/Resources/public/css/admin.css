@@ -1,3 +1,7 @@
+.ufuturedesk-administration-data-preview .form-group input {
+    margin-left: 50px;
+}
+
 .ufuturedesk-administration-edit table .checkbox {
 	margin-right: 15px;
 }
@@ -8,13 +12,14 @@
     margin-left: 10px;
 }
 
-.ufuturedesk-administration-admin form.form-inline div.form-group {
+.ufuturedesk-administration-admin .search-box {
     float: right;
+    margin-right: 20px;
 }
 
-.ufuturedesk-administration-admin td button {
+.ufuturedesk-administration-admin td a {
     float: right;
-    margin-right: 15px;
+    margin-right: 5px;
 }
 
 .ufuturedesk-administration-admin-view table th {

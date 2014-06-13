@@ -34,145 +34,114 @@
 		<li>Teléfono: <a href="tel:{{ school.telephone }}">{{ school.telephone }}</a></li>
 		<li>Fax: <a href="fax:{{ school.fax }}">{{ school.fax }}</a></li>
 		<li>Email: <a href="mailto:{{ school.email }}">{{ school.email }}</a></li>
-		<a href="{{ path('admin_school_index') }}" class="btn btn-primary">Ver</a>
+		<a href="{{ path('admin_school_index') }}" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
 	</ul>
 </div>
 <div class="ufuturedesk-data-administration-preview-group">
-	<div class="ufuturedesk-admins-administration-preview">
+	<div class="ufuturedesk-administration-data-preview">
 		<div class="page-header">
 			<h1><small>Administradores</small></h1>
 		</div>
-		<form class="form-inline" role="form">
-			<p>Número de administradores: {{ adminsNumber }}<p>
-			<div class="form-group">
-				<label class="control-label" for="admin-search">Buscar administrador</label>
-				<input type="search" class="form-control" />
-			</div>
-			<input href="#" type="submit" class="btn btn-primary" />
-			<div class="administration-preview-actions">
-				<a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary">Ver</a>
-				<a href="{{ path('admin_admin_create') }}" type="button" class="btn btn-info">Crear</a>
-			</div>
-		</form>
+        <p>Número de administradores: {{ adminsNumber }}<p>
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
+                <a href="{{ path('admin_admin_create') }}" type="button" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></a>
+                <input type="search" name="admin-search" class="form-control" placeholder="Buscar administrador" />
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </form>
 	</div>
-	<div class="ufuturedesk-teachers-administration-preview">
+	<div class="ufuturedesk-administration-data-preview">
 		<div class="page-header">
 			<h1><small>Profesores</small></h1>
 		</div>
-		<form class="form-inline" role="form">
-			<p>Número de profesores: {{ teachersNumber }}<p>
-			<div class="form-group">
-				<label class="control-label" for="teacher-search">Buscar profesor</label>
-				<input type="search" name="teacher-search" class="form-control" />
-			</div>
-			<input href="#" type="submit" class="btn btn-primary" />
-			<div class="administration-preview-actions">
-				<a href="#" type="button" class="btn btn-primary">Ver</a>
-				<a href="#" type="button" class="btn btn-info">Crear</a>
-			</div>
-		</form>
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
+                <a href="{{ path('admin_admin_create') }}" type="button" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></a>
+                <input type="search" name="teacher-search" class="form-control" placeholder="Buscar profesor" />
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </form>
 	</div>
-	<div class="ufuturedesk-students-administration-preview">
+	<div class="ufuturedesk-administration-data-preview">
 		<div class="page-header">
 			<h1><small>Alumnos</small></h1>
 		</div>
-		<form class="form-inline" role="form">
-			<p>Número de alumnos: {{ studentsNumber }}<p>
-			<div class="form-group">
-				<label class="control-label" for="student-search">Buscar alumno</label>
-				<input type="search" name="student-search" class="form-control" />
-			</div>
-			<input href="#" type="submit" class="btn btn-primary" />
-			<div class="administration-preview-actions">
-				<a href="#" type="button" class="btn btn-primary">Ver</a>
-				<a href="#" type="button" class="btn btn-info">Crear</a>
-			</div>
-		</form>
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
+                <a href="{{ path('admin_admin_create') }}" type="button" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></a>
+                <input type="search" name="student-search" class="form-control" placeholder="Buscar alumno" />
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </form>
 	</div>
-	<div class="ufuturedesk-courses-administration-preview">
+	<div class="ufuturedesk-administration-data-preview">
 		<div class="page-header">
 			<h1><small>Cursos</small></h1>
 		</div>
-		<form class="form-inline" role="form">
-			<p>Número de cursos: {{ "" }}<p>
-			<div class="form-group">
-				<label class="control-label" for="courses-search">Buscar curso</label>
-				<input type="search" name="course-search" class="form-control" />
-			</div>
-			<input href="#" type="submit" class="btn btn-primary" />
-			<div class="administration-preview-actions">
-				<a href="#" type="button" class="btn btn-primary">Ver</a>
-				<a href="#" type="button" class="btn btn-info">Crear</a>
-			</div>
-		</form>
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
+                <a href="{{ path('admin_admin_create') }}" type="button" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></a>
+                <input type="search" name="course-search" class="form-control" placeholder="Buscar curso" />
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </form>
 	</div>
-	<div class="ufuturedesk-modalities-administration-preview">
+	<div class="ufuturedesk-administration-data-preview">
 		<div class="page-header">
 			<h1><small>Modalidades</small></h1>
 		</div>
-		<form class="form-inline" role="form">
-			<p>Número de modalidades: {{ "" }}<p>
-			<div class="form-group">
-				<label class="control-label" for="modality-search">Buscar modalidad</label>
-				<input type="search" name="modality-search" class="form-control" placeholder="Buscar por curso" />
-			</div>
-			<input href="#" type="submit" class="btn btn-primary" />
-			<div class="administration-preview-actions">
-				<a href="#" type="button" class="btn btn-primary">Ver</a>
-				<a href="#" type="button" class="btn btn-info">Crear</a>
-			</div>
-		</form>
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
+                <a href="{{ path('admin_admin_create') }}" type="button" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></a>
+                <input type="search" name="modality-search" class="form-control" placeholder="Buscar modalidad" />
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </form>
 	</div>
-	<div class="ufuturedesk-subjects-administration-preview">
+	<div class="ufuturedesk-administration-data-preview">
 		<div class="page-header">
 			<h1><small>Asignaturas</small></h1>
 		</div>
-		<form class="form-inline" role="form">
-			<p>Número de asignturas: {{ "" }}<p>
-			<div class="form-group">
-				<label class="control-label" for="subject-search">Buscar asignatura</label>
-				<input type="search" name="subject-search" class="form-control" placeholder="Buscar por curso" />
-			</div>
-			<input href="#" type="submit" class="btn btn-primary" />
-			<div class="administration-preview-actions">
-				<a href="#" type="button" class="btn btn-primary">Ver</a>
-				<a href="#" type="button" class="btn btn-info">Crear</a>
-			</div>
-		</form>
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
+                <a href="{{ path('admin_admin_create') }}" type="button" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></a>
+                <input type="search" name="subject-search" class="form-control" placeholder="Buscar asignatura" />
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </form>
 	</div>
-	<div class="ufuturedesk-exams-administration-preview">
+	<div class="ufuturedesk-administration-data-preview">
 		<div class="page-header">
 			<h1><small>Exámenes</small></h1>
 		</div>
-		<form class="form-inline" role="form">
-			<p>Número de exámenes: {{ "" }}<p>
-			<div class="form-group">
-				<label class="control-label" for="exam-search">Buscar examen</label>
-				<input type="search" name="exam-search" class="form-control" placeholder="Buscar por nombre de la asignatura" />
-			</div>
-			<input href="#" type="submit" class="btn btn-primary" />
-			<div class="administration-preview-actions">
-				<a href="#" type="button" class="btn btn-primary">Ver</a>
-				<a href="#" type="button" class="btn btn-info">Crear</a>
-			</div>
-		</form>
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
+                <a href="{{ path('admin_admin_create') }}" type="button" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></a>
+                <input type="search" name="exam-search" class="form-control" placeholder="Buscar examen" />
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </form>
 	</div>
-	<div class="ufuturedesk-tasks-administration-preview">
+	<div class="ufuturedesk-administration-data-preview">
 		<div class="page-header">
 			<h1><small>Tareas</small></h1>
 		</div>
-		<form class="form-inline" role="form">
-			<p>Número de tareas: {{ "" }}<p>
-			<div class="form-group">
-				<label class="control-label" for="stundent-search">Buscar tarea</label>
-				<input type="search" name="student-search" class="form-control" placeholder="Buscar por nombre de la asignatura" />
-			</div>
-			<input href="#" type="submit" class="btn btn-primary" />
-			<div class="administration-preview-actions">
-				<a href="#" type="button" class="btn btn-primary">Ver</a>
-				<a href="#" type="button" class="btn btn-info">Crear</a>
-			</div>
-		</form>
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
+                <a href="{{ path('admin_admin_create') }}" type="button" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></a>
+                <input type="search" name="task-search" class="form-control" placeholder="Buscar tarea" />
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </form>
 	</div>
 </div>
 {% endblock %}
