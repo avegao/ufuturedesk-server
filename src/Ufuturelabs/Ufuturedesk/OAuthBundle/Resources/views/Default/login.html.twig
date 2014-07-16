@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Iniciar sesi&oacute;n{% endblock %}
+
+{% block stylesheets %}<link href="{{ asset("bundles/main/css/login.css") }}" rel="stylesheet" type="text/css" />{% endblock %}
+
+{% block body %}
+    <form class="form-login" role="form" action="{{ path('oauth_login_check') }}" method="post">
+        <div class="form-login-header">
+            <img src="{{ asset('img/logo.png') }}" id="img-login-form" alt="Logo" />
+            <h1>uFutureDesk</h1>
+            <h2>Iniciar sesi&oacute;n</h2>
+        </div>
+        {% if error %}
+            <div class="form-login-error bg-danger">{{ error.message }}</div>
+        {% endif %}
+        <div class="form-login-body">
+            <input type="text" id="username" class="form-control" name="_username" placeholder="Nombre de usuario" value="{{ last_username }}" required autofocus /><br />
+            <input type="password" id="password" class="form-control" name="_password" placeholder="Contrase&ntilde;a" required /><br />
+            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Iniciar sesi&oacute;n" />
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'AdminBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }} Administradores{% endblock %}
+
+{% block article %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('admin_index') }}">Inicio</a></li>
+        <li class="active">Administradores</li>
+    </ol>
+    <div class="ufuturedesk-administration-admin">
+        <form class="form-inline" role="form">
+            <a type="button" class="btn btn-primary" href="{{ path('admin_admin_create') }}"><span class="glyphicon glyphicon-plus"></span></a>
+            <div class="search-box form-group">
+                <input type="search" name="admin-search" class="form-control" placeholder="Buscar administrador" />
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </form>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre de usuario</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for admin in admins %}
+                    <tr>
+                        <td>{{ admin.id }}</td>
+                        <td>{{ admin.userName }}</td>
+                        <td>
+                            <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-admin-{{ admin.id }}"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a type="button" class="btn btn-warning" href="{{ path('admin_admin_edit', {'id': admin.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a type="button" class="btn btn-primary" href="{{ path('admin_admin_view', {'id': admin.id}) }}" ><span class="glyphicon glyphicon-eye-open"></span></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        {% for admin in admins %}
+            <div class="modal fade" id="modal-delete-admin-{{ admin.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Eliminar administrador</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>¿Estás seguro de querer eliminar al administrador con nombre de usuario "{{ admin.userName }}"?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <a class="btn btn-danger" href="{{ path('admin_admin_delete', {'id': admin.id}) }}">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+
+    </script>
+{% endblock %}

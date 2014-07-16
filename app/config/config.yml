@@ -101,3 +101,12 @@ fos_rest:
     access_denied_listener:
         json: true
     body_listener: true
+
+fos_oauth_server:
+    db_driver: orm
+    client_class:        Ufuturelabs\Ufuturedesk\OAuthBundle\Entity\Client
+    access_token_class:  Ufuturelabs\Ufuturedesk\OAuthBundle\Entity\AccessToken
+    refresh_token_class: Ufuturelabs\Ufuturedesk\OAuthBundle\Entity\RefreshToken
+    auth_code_class:     Ufuturelabs\Ufuturedesk\OAuthBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_manager

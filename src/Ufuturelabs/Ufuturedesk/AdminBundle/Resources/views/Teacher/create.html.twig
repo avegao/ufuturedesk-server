@@ -1,0 +1,301 @@
+{% extends 'AdminBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }} Crear administrador{% endblock %}
+
+{% block article %}
+<ol class="breadcrumb">
+	<li><a href="{{ path('admin_index') }}">Inicio</a></li>
+	<li><a href="{{ path('admin_admin_index') }}">Administradores</a></li>
+	<li class="active">Crear administrador</li>
+</ol>
+{{ form_start(adminForm,
+	{
+		'action':  path('admin_admin_create'),
+		'method': 'POST',
+		'role': 'form',
+		'attr': {
+			'class': 'ufuturedesk-administration-edit'
+		}
+	})
+}}
+<fieldset>
+    <legend>Datos de acceso</legend>
+    <div class="form-group">
+        <label>
+            {{ form_label(adminForm.userName) }}
+            {{ form_widget(adminForm.userName, {'attr': {
+                'class': 'form-control'
+            }
+            }) }}
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            Contrase&ntilde;a
+            {{ form_widget(adminForm.password.first, {'attr': {
+                'class': 'form-control'
+            }
+            }) }}
+        </label>
+        <label>
+            Repite la contrase&ntilde;a
+            {{ form_widget(adminForm.password.second, {'attr': {
+                'class': 'form-control'
+            }
+            }) }}
+        </label>
+    </div>
+</fieldset>
+<fieldset>
+    <legend>Permisos de administraci&oacute;n</legend>
+    <div class="form-group">
+    <p><b>Permisos absolutos</b></p>
+        <table>
+            <tr>
+                <td class="checkbox">
+                    <label>
+                        {{ form_widget(adminForm.permissionsSuperuser) }}
+                        Superusuario
+                    </label>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-group">
+        <p><b>Permisos sobre administradores</b></p>
+        <table>
+            <tr>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsAdminView) }}
+                            Lectura
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsAdminCreate) }}
+                            Creaci&oacute;n
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsAdminEdit) }}
+                            Edici&oacute;n
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsAdminDelete) }}
+                            Eliminaci&oacute;n
+                        </label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-group">
+        <p><b>Permisos sobre profesores</b></p>
+        <table>
+            <tr>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsTeacherView) }}
+                            Lectura
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsTeacherCreate) }}
+                            Creaci&oacute;n
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsTeacherEdit) }}
+                            Edici&oacute;n
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsTeacherDelete) }}
+                            Eliminaci&oacute;n
+                        </label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-group">
+        <p><b>Permisos sobre alumnos</b></p>
+        <table>
+            <tr>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsStudentView) }}
+                            Lectura
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsStudentCreate) }}
+                            Creaci&oacute;n
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsStudentEdit) }}
+                            Edici&oacute;n
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsStudentDelete) }}
+                            Eliminaci&oacute;n
+                        </label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-group">
+        <p><b>Permisos sobre cursos</b></p>
+        <table>
+            <tr>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsCourseView) }}
+                            Lectura
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsCourseCreate) }}
+                            Creaci&oacute;n
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsCourseEdit) }}
+                            Edici&oacute;n
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsCourseDelete) }}
+                            Eliminaci&oacute;n
+                        </label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-group">
+        <p><b>Permisos sobre modalidades de cursos</b></p>
+        <table>
+            <tr>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsModalityView) }}
+                            Lectura
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsModalityCreate) }}
+                            Creaci&oacute;n
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsModalityEdit) }}
+                            Edici&oacute;n
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsModalityDelete) }}
+                            Eliminaci&oacute;n
+                        </label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-group">
+        <p><b>Permisos sobre asignaturas</b></p>
+        <table>
+            <tr>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsSubjectView) }}
+                            Lectura
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsSubjectCreate) }}
+                            Creaci&oacute;n
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsSubjectEdit) }}
+                            Edici&oacute;n
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <div class="checkbox">
+                        <label>
+                            {{ form_widget(adminForm.permissionsSubjectDelete) }}
+                            Eliminaci&oacute;n
+                        </label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</fieldset>
+{{ form_rest(adminForm) }}
+<input class="btn btn-primary" type="submit" value="Crear" />
+{% endblock %}

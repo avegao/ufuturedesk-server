@@ -1,6 +1,10 @@
-sync:
+oauth:
+    resource: "@OAuthBundle/Resources/config/routing.yml"
+    prefix:   /oauth
+
+api:
     resource: "@SyncBundle/Resources/config/routing.yml"
-    prefix:   /sync
+    prefix:   /api
     type: rest
 
 NelmioApiDocBundle:
@@ -23,3 +27,8 @@ main:
     resource: "@MainBundle/Resources/config/routing.yml"
     prefix:   /
 
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
