@@ -18,7 +18,7 @@ class Teacher extends User
 {
 
 	/**
-	 * @var string
+	 * @var string Teacher's name
 	 *
 	 * @ORM\Column(name="name", type="string", length=30, nullable=false)
 	 *
@@ -27,7 +27,7 @@ class Teacher extends User
 	private $name;
 
 	/**
-	 * @var string
+	 * @var string Teacher's surname
 	 *
 	 * @ORM\Column(name="surname", type="string", length=30, nullable=false)
 	 *
@@ -36,7 +36,7 @@ class Teacher extends User
 	private $surname;
 
 	/**
-	 * @var string
+	 * @var string Teacher's email
 	 *
 	 * @ORM\Column(name="email", type="string", length=50, nullable=false)
 	 *
@@ -46,7 +46,7 @@ class Teacher extends User
 	private $email;
 
 	/**
-	 * @var string
+	 * @var string Teacher's email
 	 *
 	 * @ORM\Column(name="address", type="string", length=150, nullable=false)
 	 *
@@ -55,16 +55,41 @@ class Teacher extends User
 	private $address;
 
 	/**
-	 * @var \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Telephone
-	 *
-	 * @ORM\OneToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Telephone")
-	 * @ORM\JoinColumn(name="telephone", referencedColumnName="telephone_id")
+	 * @var string Teacher's telephone number
 	 *
 	 * @Assert\NotBlank()
 	 */
 	private $telephone;
 
+    /**
+     * Setter username for Teacher entity
+     *
+     * In the Teacher entity the username is the teacher's email
+     *
+     * @param \string $email Teacher's email
+     *
+     * @return void
+     */
+    public function setUserName($email)
+    {
+        $this->userName = $email;
+    }
+
+    /**
+     * Getter username for Teacher entity
+     *
+     * In the Teacher entity the username is the teacher's email
+     *
+     * @return string Teacher's email
+     */
+    public function getUserName()
+    {
+        return $this->getEmail();
+    }
+
 	/**
+     * Setter for teacher's address
+     *
 	 * @param string $address
 	 */
 	public function setAddress($address)
@@ -128,10 +153,10 @@ class Teacher extends User
 		return $this->surname;
 	}
 
-	/**
-	 * @param \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Telephone $telephone
-	 */
-	public function setTelephone(\Ufuturelabs\Ufuturedesk\MainBundle\Entity\Telephone $telephone)
+    /**
+     * @param string $telephone
+     */
+	public function setTelephone($telephone)
 	{
 		$this->telephone = $telephone;
 	}
@@ -144,12 +169,18 @@ class Teacher extends User
 		return $this->telephone;
 	}
 
-	public function getRoles()
+    /**
+     * @return array
+     */
+    public function getRoles()
 	{
 		return array("ROLE_USER", "ROLE_TEACHER");
 	}
 
-	public function __toString()
+    /**
+     * @return string
+     */
+    public function __toString()
 	{
 		return $this->getName()." ".$this->getSurname();
 	}

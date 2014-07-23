@@ -1,17 +1,17 @@
 {% extends 'AdminBundle:Default:admin.html.twig' %}
 
-{% block title %}{{ parent() }} Administradores{% endblock %}
+{% block title %}{{ parent() }} Profesores{% endblock %}
 
 {% block article %}
     <ol class="breadcrumb">
         <li><a href="{{ path('admin_index') }}">Inicio</a></li>
-        <li class="active">Administradores</li>
+        <li class="active">Profesores</li>
     </ol>
     <div class="ufuturedesk-administration-admin">
         <form class="form-inline" role="form">
-            <a type="button" class="btn btn-primary" href="{{ path('admin_admin_create') }}"><span class="glyphicon glyphicon-plus"></span></a>
+            <a type="button" class="btn btn-primary" href="{{ path('admin_teacher_create') }}"><span class="glyphicon glyphicon-plus"></span></a>
             <div class="search-box form-group">
-                <input type="search" name="admin-search" class="form-control" placeholder="Buscar administrador" />
+                <input type="search" name="teacher-search" class="form-control" placeholder="Buscar profesor" />
                 <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </form>
@@ -20,38 +20,48 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre de usuario</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Email</th>
+                    <th>Direccion</th>
+                    <th>Foto</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                {% for admin in admins %}
+                {% for teacher in teachers %}
                     <tr>
-                        <td>{{ admin.id }}</td>
-                        <td>{{ admin.userName }}</td>
+                        <td>{{ teacher.id }}</td>
+                        <td>{{ teacher.userName }}</td>
+                        <td>{{ teacher.name }}</td>
+                        <td>{{ teacher.surname }}</td>
+                        <td>{{ teacher.email }}</td>
+                        <td>{{ teacher.address }}</td>
+                        <td><img src="{{ teacher.photoPath }}" width="32px" height="32px" /></td>
                         <td>
-                            <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-admin-{{ admin.id }}"><span class="glyphicon glyphicon-remove"></span></a>
-                            <a type="button" class="btn btn-warning" href="{{ path('admin_admin_edit', {'id': admin.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a type="button" class="btn btn-primary" href="{{ path('admin_admin_view', {'id': admin.id}) }}" ><span class="glyphicon glyphicon-eye-open"></span></a>
+                            <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-admin-{{ teacher.id }}"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a type="button" class="btn btn-warning" href="{{ path('admin_teacher_edit', {'id': teacher.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a type="button" class="btn btn-primary" href="{{ path('admin_teacher_view', {'id': teacher.id}) }}" ><span class="glyphicon glyphicon-eye-open"></span></a>
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-        {% for admin in admins %}
-            <div class="modal fade" id="modal-delete-admin-{{ admin.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        {% for teacher in teachers %}
+            <div class="modal fade" id="modal-delete-admin-{{ teacher.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Eliminar administrador</h4>
+                            <h4 class="modal-title" id="myModalLabel">Eliminar profesor</h4>
                         </div>
                         <div class="modal-body">
-                            <p>¿Estás seguro de querer eliminar al administrador con nombre de usuario "{{ admin.userName }}"?</p>
+                            <p>¿Estás seguro de querer eliminar al profesor  "{{ teacher.name ~ " " ~ teacher.surname }}"?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <a class="btn btn-danger" href="{{ path('admin_admin_delete', {'id': admin.id}) }}">Eliminar</a>
+                            <a class="btn btn-danger" href="{{ path('admin_teacher_delete', {'id': teacher.id}) }}">Eliminar</a>
                         </div>
                     </div>
                 </div>

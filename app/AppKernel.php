@@ -26,6 +26,7 @@ class AppKernel extends Kernel
 			new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
             new Ufuturelabs\Ufuturedesk\OAuthBundle\OAuthBundle(),
+            new Ufuturelabs\Ufuturedesk\ApiBundle\ApiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

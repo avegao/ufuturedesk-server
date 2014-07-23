@@ -1,15 +1,14 @@
+api:
+    resource: "@ApiBundle/Resources/config/routing.yml"
+    prefix:   /api
+
 oauth:
     resource: "@OAuthBundle/Resources/config/routing.yml"
     prefix:   /oauth
 
-api:
-    resource: "@SyncBundle/Resources/config/routing.yml"
-    prefix:   /api
-    type: rest
-
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /sync/doc
+    prefix:   /api/doc
 
 teacher:
     resource: "@TeacherBundle/Resources/config/routing.yml"

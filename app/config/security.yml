@@ -24,11 +24,11 @@ security:
             pattern: ^/oauth/v2/token
             security: false
 
-        api:
-            pattern: ^/api
-            fos_oauth: true
-            stateless: true
-            anonymous: false
+        # api:
+            # pattern: ^/api
+            # fos_oauth: true
+            # stateless: true
+            # anonymous: false
 
         user:
             pattern:  ^/*
@@ -46,4 +46,5 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/teacher, roles: ROLE_TEACHER }
         - { path: ^/student, roles: ROLE_STUDENT }
-        - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
+        # - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
+        - { path: ^/api, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
