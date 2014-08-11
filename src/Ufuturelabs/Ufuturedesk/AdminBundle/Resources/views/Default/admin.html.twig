@@ -6,7 +6,9 @@
     <header>
         {{ render(controller('AdminBundle:Default:renderNav')) }}
     </header>
-    <article>
-        {% block article %}{% endblock %}
-    </article>
+    <div class="container">
+        <article>
+            {% block article %}{% endblock %}
+        </article>
+    </div>
 {% endblock %}
