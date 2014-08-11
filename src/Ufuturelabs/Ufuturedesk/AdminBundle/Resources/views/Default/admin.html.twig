@@ -1,16 +1,12 @@
 {% extends '::base.html.twig' %}
 
-{% block stylesheets %}
-<link href="{{ asset("bundles/main/css/styles.css") }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset("bundles/admin/css/admin.css") }}" rel="stylesheet" type="text/css" />
-{% endblock %}
-
 {% block title %}Administración  - {% endblock %}
 
 {% block body %}
-{{ render(controller('MainBundle:Default:renderHeader', {'title': block('title')})) }}
-{{ render(controller('AdminBundle:Default:renderNav')) }}
-<article>
-	{% block article %}{% endblock %}
-</article>
+    <header>
+        {{ render(controller('AdminBundle:Default:renderNav')) }}
+    </header>
+    <article>
+        {% block article %}{% endblock %}
+    </article>
 {% endblock %}

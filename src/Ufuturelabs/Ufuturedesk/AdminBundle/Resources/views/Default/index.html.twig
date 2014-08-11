@@ -3,46 +3,57 @@
 {% block title %}{{ parent() }}Inicio{% endblock %}
 
 {% block article %}
-<ol class="breadcrumb">
-	<li class="active">Inicio</li>
-</ol>
-<div class="ufuturedesk-server-administration-preview">
-	<div class="page-header">
+<div class="row">
+	<div class="page-header col-md-12">
 		<h1><small>uFutureDesk</small></h1>
 	</div>
-	<img class="ufuturedesk-administration-preview-logo" src="{{ asset('img/logo.png') }}" />
-	<ul class="ufuturedesk-administration-preview-info">
-		<li>Producto: uFutureDesk Server</li>
-		<li>Versión: {{ ufuturedesk.version }}</li>
-		<li>Canal de distribución: {{ ufuturedesk.channel }}</li>
-		<li>Idioma: {{ app.request.locale }} </li>
-		<li>Entorno de ejecución: {{ app.environment }}</li>
-		<li>Ruta de instalación: {{ documentRoot }}</li>
-		<li>Dominio: {{ app.request.host }}</li>
-	</ul>
+    <div class="row">
+        <img class="col-md-2" src="{{ asset('img/logo.png') }}" />
+        <ul class="col-md-offset-1 col-md-9">
+            <li>Producto: uFutureDesk Server</li>
+            <li>Versión: {{ ufuturedesk.version }}</li>
+            <li>Canal de distribución: {{ ufuturedesk.channel }}</li>
+            <li>Idioma: {{ app.request.locale }} </li>
+            <li>Entorno de ejecución: {{ app.environment }}</li>
+            <li>Ruta de instalación: {{ documentRoot }}</li>
+            <li>Dominio: {{ app.request.host }}</li>
+        </ul>
+    </div>
 </div>
-<div class="ufuturedesk-school-administration-preview">
-	<div class="page-header">
+<div class="row">
+	<div class="page-header col-md-12">
 		<h1><small>{{ school.name }}</small></h1>
 	</div>
-	{% if school.logoPath is defined %}
-		<img class="ufuturedesk-administration-preview-logo" src="{{ asset('uploads/school/img/' ~ school.logoPath) }}" witdh="144px" height="144" />
-	{% endif %}
-	<ul class="ufuturedesk-administration-preview-info">
-		<li>Nombre: {{ school.name }}</li>
-		<li>Dirección: {{ school.address }}</li>
-		<li>Teléfono: <a href="tel:{{ school.telephone }}">{{ school.telephone }}</a></li>
-		<li>Fax: <a href="fax:{{ school.fax }}">{{ school.fax }}</a></li>
-		<li>Email: <a href="mailto:{{ school.email }}">{{ school.email }}</a></li>
-		<a href="{{ path('admin_school_index') }}" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
-	</ul>
+	{% if school.logoPath is not empty %}
+		<img class="col-md-2" src="{{ asset('uploads/school/img/' ~ school.logoPath) }}" witdh="144px" height="144" />
+        <ul class="col-md-offset-1 col-md-4">
+            <li>Nombre: {{ school.name }}</li>
+            <li>Dirección: {{ school.address }}</li>
+            <li>Teléfono: <a href="tel:{{ school.telephone }}">{{ school.telephone }}</a></li>
+            <li>Fax: <a href="fax:{{ school.fax }}">{{ school.fax }}</a></li>
+            <li>Email: <a href="mailto:{{ school.email }}">{{ school.email }}</a></li>
+        </ul>
+        <div class="col-md-3">
+            <a href="{{ path('admin_school_index') }}" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
+        </div>
+	{% else %}
+        <ul class="col-md-4">
+            <li>Nombre: {{ school.name }}</li>
+            <li>Dirección: {{ school.address }}</li>
+            <li>Teléfono: <a href="tel:{{ school.telephone }}">{{ school.telephone }}</a></li>
+            <li>Fax: <a href="fax:{{ school.fax }}">{{ school.fax }}</a></li>
+            <li>Email: <a href="mailto:{{ school.email }}">{{ school.email }}</a></li>
+        </ul>
+        <div class="col-md-3">
+            <a href="{{ path('admin_school_index') }}" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
+        </div>
+    {% endif %}
 </div>
-<div class="ufuturedesk-data-administration-preview-group">
-	<div class="ufuturedesk-administration-data-preview">
-		<div class="page-header">
-			<h1><small>Administradores</small></h1>
-		</div>
-        <p>Número de administradores: {{ adminsNumber }}<p>
+<div class="row">
+    <div class="col-md-6">
+        <div class="page-header">
+            <h1><small>Administradores</small></h1>
+        </div>
         <form class="form-inline" role="form">
             <div class="form-group">
                 <a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
@@ -51,11 +62,11 @@
                 <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </form>
-	</div>
-	<div class="ufuturedesk-administration-data-preview">
-		<div class="page-header">
-			<h1><small>Profesores</small></h1>
-		</div>
+    </div>
+    <div class="col-md-6">
+        <div class="page-header">
+            <h1><small>Profesores</small></h1>
+        </div>
         <form class="form-inline" role="form">
             <div class="form-group">
                 <a href="{{ path('admin_teacher_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
@@ -64,11 +75,13 @@
                 <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </form>
-	</div>
-	<div class="ufuturedesk-administration-data-preview">
-		<div class="page-header">
-			<h1><small>Alumnos</small></h1>
-		</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="page-header">
+            <h1><small>Alumnos</small></h1>
+        </div>
         <form class="form-inline" role="form">
             <div class="form-group">
                 <a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
@@ -77,11 +90,11 @@
                 <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </form>
-	</div>
-	<div class="ufuturedesk-administration-data-preview">
-		<div class="page-header">
-			<h1><small>Cursos</small></h1>
-		</div>
+    </div>
+    <div class="col-md-6">
+        <div class="page-header">
+            <h1><small>Cursos</small></h1>
+        </div>
         <form class="form-inline" role="form">
             <div class="form-group">
                 <a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
@@ -90,11 +103,13 @@
                 <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </form>
-	</div>
-	<div class="ufuturedesk-administration-data-preview">
-		<div class="page-header">
-			<h1><small>Modalidades</small></h1>
-		</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="page-header">
+            <h1><small>Modalidades</small></h1>
+        </div>
         <form class="form-inline" role="form">
             <div class="form-group">
                 <a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
@@ -103,11 +118,11 @@
                 <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </form>
-	</div>
-	<div class="ufuturedesk-administration-data-preview">
-		<div class="page-header">
-			<h1><small>Asignaturas</small></h1>
-		</div>
+    </div>
+    <div class="col-md-6">
+        <div class="page-header">
+            <h1><small>Asignaturas</small></h1>
+        </div>
         <form class="form-inline" role="form">
             <div class="form-group">
                 <a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
@@ -116,11 +131,13 @@
                 <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </form>
-	</div>
-	<div class="ufuturedesk-administration-data-preview">
-		<div class="page-header">
-			<h1><small>Exámenes</small></h1>
-		</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="page-header">
+            <h1><small>Exámenes</small></h1>
+        </div>
         <form class="form-inline" role="form">
             <div class="form-group">
                 <a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
@@ -129,11 +146,11 @@
                 <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </form>
-	</div>
-	<div class="ufuturedesk-administration-data-preview">
-		<div class="page-header">
-			<h1><small>Tareas</small></h1>
-		</div>
+    </div>
+    <div class="col-md-6">
+        <div class="page-header">
+            <h1><small>Tareas</small></h1>
+        </div>
         <form class="form-inline" role="form">
             <div class="form-group">
                 <a href="{{ path('admin_admin_index') }}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
@@ -142,6 +159,6 @@
                 <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </form>
-	</div>
+    </div>
 </div>
 {% endblock %}
