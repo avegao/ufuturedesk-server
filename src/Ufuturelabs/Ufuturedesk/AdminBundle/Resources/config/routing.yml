@@ -13,3 +13,7 @@ admin_admin:
 admin_teacher:
     prefix: /teacher
     resource: "@AdminBundle/Resources/config/routing/teacher.yml"
+
+admin_course:
+    prefix: /course
+    resource: "@AdminBundle/Resources/config/routing/course.yml"

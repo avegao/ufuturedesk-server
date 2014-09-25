@@ -9,21 +9,7 @@ use Ufuturelabs\Ufuturedesk\TeacherBundle\Entity\Teacher;
 
 class TeacherController extends Controller
 {
-    public function indexAction()
-    {
-        $user = $this->container->get('security.context')->getToken()->getUser();
 
-        if (!$user->getPermissions()['teacher']['view'])
-        {
-            throw new AccessDeniedException("No tienes permisos suficientes");
-        }
-
-        $em = $this->getDoctrine()->getManager();
-
-        $teachers = $em->getRepository("TeacherBundle:Teacher")->findAll();
-
-        return $this->render("AdminBundle:Teacher:index.html.twig", array("teachers" => $teachers));
-    }
 
     public function viewAction($id)
     {
