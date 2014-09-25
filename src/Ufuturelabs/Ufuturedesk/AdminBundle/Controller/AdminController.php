@@ -10,8 +10,13 @@ use Ufuturelabs\Ufuturedesk\AdminBundle\Form\AdminEditType;
 
 class AdminController extends Controller
 {
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throw \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
 	public function indexAction()
 	{
+        /** @var Admin $user */
         $user = $this->container->get('security.context')->getToken()->getUser();
 
         if (!$user->getPermissions()['admin']['view'])
@@ -19,15 +24,23 @@ class AdminController extends Controller
             throw new AccessDeniedException("No tienes permisos suficientes");
         }
 
+        /** @var \Doctrine\Common\Persistence\ObjectManager $em */
 		$em = $this->getDoctrine()->getManager();
 
+        /** @var Admin[] $admins */
 		$admins = $em->getRepository("AdminBundle:Admin")->findAll();
 
 		return $this->render("AdminBundle:Admin:index.html.twig", array("admins" => $admins));
 	}
 
+    /**
+     * @param $id int Admin ID
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throw \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
     public function viewAction($id)
     {
+        /** @var Admin $user */
         $user = $this->container->get('security.context')->getToken()->getUser();
 
         if (!$user->getPermissions()['admin']['view'])
@@ -35,24 +48,33 @@ class AdminController extends Controller
             throw new AccessDeniedException("No tienes permisos suficientes");
         }
 
+        /** @var \Doctrine\Common\Persistence\ObjectManager $em */
         $em = $this->getDoctrine()->getManager();
 
+        /** @var Admin $admin */
         $admin = $em->getRepository("AdminBundle:Admin")->find($id);
 
         return $this->render("AdminBundle:Admin:view.html.twig", array("admin" => $admin));
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throw \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
 	public function createAction()
 	{
+        /** @var Admin $user */
         $user = $this->container->get('security.context')->getToken()->getUser();
 
         if (!$user->getPermissions()['admin']['create'])
             throw new AccessDeniedException("No tienes permisos suficientes");
 
+        /** @var \Symfony\Component\HttpFoundation\Request $request */
 		$request = $this->container->get('request');
 
 		$admin = new Admin();
 
+        /** @var \Symfony\Component\Form\Form $form */
 		$form = $this->createForm(new AdminType(), $admin);
 		$form->handleRequest($request);
 
@@ -159,11 +181,15 @@ class AdminController extends Controller
                 ));
             }
 
+            /** @var \Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface $encoder */
             $encoder = $this->get("security.encoder_factory")->getEncoder($admin);
+
+            /** @var string $encryptedPassword */
             $encryptedPassword = $encoder->encodePassword($admin->getPassword(), $admin->getSalt());
 
             $admin->setPassword($encryptedPassword);
 
+            /** @var \Doctrine\Common\Persistence\ObjectManager $em */
             $em = $this->getDoctrine()->getManager();
 			$em->persist($admin);
 			$em->flush();
@@ -182,8 +208,14 @@ class AdminController extends Controller
 		));
 	}
 
+    /**
+     * @param $id int Admin ID
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throw \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
     public function editAction($id)
     {
+        /** @var Admin $user */
         $user = $this->container->get('security.context')->getToken()->getUser();
 
         if (!$user->getPermissions()['admin']['edit'])
@@ -191,11 +223,16 @@ class AdminController extends Controller
             throw new AccessDeniedException("No tienes permisos suficientes");
         }
 
+        /** @var \Symfony\Component\HttpFoundation\Request $request */
         $request = $this->container->get('request');
+
+        /** @var \Doctrine\Common\Persistence\ObjectManager $em */
         $em = $this->getDoctrine()->getManager();
 
+        /** @var Admin $admin */
         $admin = $em->getRepository("AdminBundle:Admin")->findOneBy(array("id" => $id));
 
+        /** @var \Symfony\Component\Form\Form $form */
         $form = $this->createForm(new AdminEditType(), $admin);
 
         $originalPassword = $admin->getPassword();
@@ -213,6 +250,7 @@ class AdminController extends Controller
             {
                 $admin->setSalt();
 
+                /** @var \Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface $encoder */
                 $encoder = $this->get("security.encoder_factory")->getEncoder($admin);
                 $encryptedPassword = $encoder->encodePassword($admin->getPassword(), $admin->getSalt());
 
@@ -242,20 +280,28 @@ class AdminController extends Controller
         ));
     }
 
+    /**
+     * @param $id int Admin ID
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throw \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     */
     public function deleteAction($id)
     {
+        /** @var Admin $user */
         $user = $this->container->get('security.context')->getToken()->getUser();
 
         if (!$user->getPermissions()['admin']['delete'])
         {
             throw new AccessDeniedException("No tienes permisos suficientes");
         }
+
+        /** @var \Doctrine\Common\Persistence\ObjectManager $em */
         $em = $this->getDoctrine()->getManager();
 
+        /** @var Admin $admin */
         $admin = $em->getRepository("AdminBundle:Admin")->findOneBy(array("id" => $id));
 
         $em->remove($admin);
-
         $em->flush();
 
         return $this->redirect($this->generateUrl('admin_admin_index'));
