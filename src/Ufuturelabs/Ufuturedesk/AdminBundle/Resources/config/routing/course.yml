@@ -1,0 +1,19 @@
+admin_course_index:
+    pattern: /
+    defaults: { _controller: AdminBundle:Course:index }
+
+admin_course_create:
+    pattern: /create
+    defaults: { _controller: AdminBundle:Course:create }
+
+admin_course_edit:
+    pattern: /edit/{id}
+    defaults: { _controller: AdminBundle:Course:edit }
+
+admin_course_delete:
+    pattern: /delete/{id}
+    defaults: { _controller: AdminBundle:Course:delete }
+
+admin_course_view:
+    pattern: /view/{id}
+    defaults: { _controller: AdminBundle:Course:view }

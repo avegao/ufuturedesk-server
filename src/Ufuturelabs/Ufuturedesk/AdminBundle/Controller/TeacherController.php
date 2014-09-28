@@ -10,6 +10,7 @@ use Ufuturelabs\Ufuturedesk\TeacherBundle\Entity\Teacher;
 
 class TeacherController extends Controller
 {
+<<<<<<< HEAD
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws AccessDeniedException
@@ -37,6 +38,9 @@ class TeacherController extends Controller
             return $this->render("AdminBundle:Teacher:teachers_no.html.twig");
         }
     }
+=======
+
+>>>>>>> 266b76b5b7e1b6e64e488ed1ae2199c6566ce2e4
 
     /**
      * @param int $id Teacher's ID

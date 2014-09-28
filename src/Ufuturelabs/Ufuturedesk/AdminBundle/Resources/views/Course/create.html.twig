@@ -1,0 +1,30 @@
+{% extends 'AdminBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }} Crear curso{% endblock %}
+
+{% block article %}
+    {{ form_start(
+        form, {
+            'action':  path('admin_course_create'),
+            'method': 'POST',
+            'role': 'form'
+        })
+    }}
+    <fieldset>
+        <legend>Datos del curso</legend>
+        <div class="form-group row">
+            <div class="col-md-12">
+                <label>
+                    Nombre del curso
+                    {{ form_widget(form.name, {
+                        'attr': {
+                            'class': 'form-control'
+                        }
+                    }) }}
+                </label>
+            </div>
+        </div>
+    </fieldset>
+    {{ form_rest(form) }}
+    <input class="btn btn-primary" type="submit" value="Crear" />
+{% endblock %}
