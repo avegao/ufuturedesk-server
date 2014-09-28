@@ -36,9 +36,7 @@ class User implements UserInterface
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="user_name", type="string", unique=true, length=30, nullable=false)
-	 *
-	 * @Assert\NotBlank()
+	 * @ORM\Column(name="user_name", type="string", unique=true, length=30)
 	 */
 	protected $userName;
 
@@ -47,14 +45,14 @@ class User implements UserInterface
 	 *
 	 * @ORM\Column(name="password", type="string", length=255, nullable=false)
 	 */
-	protected $password;
+	protected $password = "no_password_yet";
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="salt", type="string", length=255, nullable=false)
 	 */
-	protected $salt;
+	protected $salt = "no_salt_yet";
 
 	/**
 	 * @var string
@@ -69,6 +67,26 @@ class User implements UserInterface
 	 * @Assert\Image()
 	 */
 	protected $photo;
+
+    /**
+     * @var boolean Account state
+     *
+     * If the value is true, the account is active, but if the value is false the account
+     * may is inactive, with lost password, etc.
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=false)
+     */
+    protected $active = true;
+
+    /**
+     * @var string URL sent to user's email
+     *
+     * URL sent to user's email to activate the account or recover the password.
+     * It's NULL if the account is active.
+     *
+     * @ORM\Column(name="activation_route", type="string", nullable=true, length=255)
+     */
+    protected $activationRoute;
 
 	/**
 	 * @return int
@@ -188,6 +206,38 @@ class User implements UserInterface
 		$this->photoPath = $photoPath;
 	}
 
+    /**
+     * @param string $activationRoute
+     */
+    public function setActivationRoute($activationRoute)
+    {
+        $this->activationRoute = $activationRoute;
+    }
+
+    /**
+     * @return string
+     */
+    public function getActivationRoute()
+    {
+        return $this->activationRoute;
+    }
+
+    /**
+     * @param boolean $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
 	/**
 	 * @return string
 	 */
@@ -196,6 +246,9 @@ class User implements UserInterface
 		return $this->userName;
 	}
 
+    /**
+     * Upload the user's photo
+     */
 	public function uploadPhoto()
 	{
 		if ($this->photo == null)
@@ -209,4 +262,38 @@ class User implements UserInterface
 		$this->photo->move($path, $name);
 		$this->setPhotoPath($name);
 	}
+
+    /**
+     * Generate the URL to active the user account
+     *
+     * @return string Activation URL
+     */
+    public static function generateActivationRoute()
+    {
+        return base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+    }
+
+    /**
+     * Disable user
+     *
+     * Set to false $active and call $this->resetPassword.
+     * This should not be used to recover the password.
+     */
+    public function disableUser()
+    {
+        $this->active = false;
+        $this->resetPassword();
+    }
+
+    /**
+     * Reset password and salt
+     *
+     * If it will be used to recover password, after  you should call to User::generateActivationRoute
+     * and send an email with the instructions.
+     */
+    public function resetPassword()
+    {
+        $this->password = "no_password_yet";
+        $this->salt = "no_salt_yet";
+    }
 } 

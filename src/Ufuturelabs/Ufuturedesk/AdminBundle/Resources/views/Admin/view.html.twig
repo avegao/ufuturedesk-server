@@ -3,29 +3,24 @@
 {% block title %}{{ parent() }} {{ admin.userName }}{% endblock %}
 
 {% block article %}
-    <ol class="breadcrumb">
-        <li><a href="{{ path('admin_index') }}">Inicio</a></li>
-        <li><a href="{{ path('admin_admin_index') }}">Administradores</a></li>
-        <li class="active">{{ admin.userName }}</li>
-    </ol>
-    <div class="ufuturedesk-administration-admin-view">
-        <table class="info">
-            <tr>
-                <th>
-                    <legend>Datos de usuario</legend>
-                </th>
-                <th>
-                    <legend>Permisos de administraci&oacute;n</legend>
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    {% if admin.photo is defined and admin.photo is not null and admin.photo is not empty %}
+    <div class="row">
+        <div class="col-md-6">
+            <legend>Datos de usuario</legend>
+            <div class="row">
+                {% if admin.photo is defined and admin.photo is not null and admin.photo is not empty %}
+                    <div class="col-md-6">
                         <img src="{{ asset('uploads/users/' ~ admin.photo) }}" width="256px" height="256px" />
-                    {% endif %}
+                    </div>
+                {% endif %}
+                <div class="col-md-6">
                     <p><b>Nombre de usuario: </b> {{ admin.userName }}</p>
-                </td>
-                <td>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <legend>Permisos de administraci&oacute;n</legend>
+            <div class="row">
+                <div class="col-md-6">
                     <p><b>Permisos absolutos</b></p>
                     <div class="checkbox">
                         <label>
@@ -33,11 +28,8 @@
                             Superusuario
                         </label>
                     </div>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
+                </div>
+                <div class="col-md-6">
                     <b>Permisos sobre administradores</b>
                     <table>
                         <tr>
@@ -67,11 +59,10 @@
                             </td>
                         </tr>
                     </table>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
                     <b>Permisos sobre profesores</b>
                     <table>
                         <tr>
@@ -101,11 +92,8 @@
                             </td>
                         </tr>
                     </table>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
+                </div>
+                <div class="col-md-6">
                     <b>Permisos sobre alumnos</b>
                     <table>
                         <tr>
@@ -135,11 +123,10 @@
                             </td>
                         </tr>
                     </table>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
                     <b>Permisos sobre cursos</b>
                     <table>
                         <tr>
@@ -169,11 +156,8 @@
                             </td>
                         </tr>
                     </table>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
+                </div>
+                <div class="col-md-6">
                     <b>Permisos sobre modalidades de cursos</b>
                     <table>
                         <tr>
@@ -203,11 +187,10 @@
                             </td>
                         </tr>
                     </table>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
                     <b>Permisos sobre asignaturas</b>
                     <table>
                         <tr>
@@ -237,8 +220,8 @@
                             </td>
                         </tr>
                     </table>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

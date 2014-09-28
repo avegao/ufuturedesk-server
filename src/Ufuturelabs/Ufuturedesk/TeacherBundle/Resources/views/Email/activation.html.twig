@@ -1,0 +1,18 @@
+{% extends ':Email:base.html.twig' %}
+
+{% block body %}
+    <header>
+        <h1>Bienvenido a uFutureDesk</h1>
+        <h2>{{ school.name }}</h2>
+    </header>
+    <body>
+    <article>
+        <p>
+            Bienvenido al sistema uFutureDesk del centro {{ school.name }}. Has sido registrado/a como profesora.
+            uFutureDesk es un sistema de aula virtual que conecta tanto a alumnos como profesores para la administración
+            de tareas, exámenes, documentos, faltas de asistencia, etc. Para finalizar el registro haga click
+            <a href="{{ host ~ path('teacher_activation', { 'activationRoute': teacher.activationRoute }) }}">aqui</a> e
+            introduzca una contraseña para acceder al servicio y una foto para poder identficarle más facilmente.
+        </p>
+    </article>
+{% endblock %}

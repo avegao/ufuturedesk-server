@@ -3,18 +3,18 @@
 {% block title %}{{ parent() }} Administradores{% endblock %}
 
 {% block article %}
-    <ol class="breadcrumb">
-        <li><a href="{{ path('admin_index') }}">Inicio</a></li>
-        <li class="active">Administradores</li>
-    </ol>
-    <div class="ufuturedesk-administration-admin">
-        <form class="form-inline" role="form">
+    <div class="row">
+        <div class="col-md-9">
             <a type="button" class="btn btn-primary" href="{{ path('admin_admin_create') }}"><span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+        <form class="form-inline col-md-3" role="form">
             <div class="search-box form-group">
                 <input type="search" name="admin-search" class="form-control" placeholder="Buscar administrador" />
                 <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </form>
+    </div>
+    <div class="row">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -29,9 +29,9 @@
                         <td>{{ admin.id }}</td>
                         <td>{{ admin.userName }}</td>
                         <td>
-                            <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-admin-{{ admin.id }}"><span class="glyphicon glyphicon-remove"></span></a>
-                            <a type="button" class="btn btn-warning" href="{{ path('admin_admin_edit', {'id': admin.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a type="button" class="btn btn-primary" href="{{ path('admin_admin_view', {'id': admin.id}) }}" ><span class="glyphicon glyphicon-eye-open"></span></a>
+                            <a type="button" class="btn btn-primary" style="position: relative; left: 70%;" href="{{ path('admin_admin_view', {'id': admin.id}) }}" ><span class="glyphicon glyphicon-eye-open"></span></a>
+                            <a type="button" class="btn btn-warning" style="position: relative; left: 70%;" href="{{ path('admin_admin_edit', {'id': admin.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a type="button" class="btn btn-danger" style="position: relative; left: 70%;" data-toggle="modal" data-target="#modal-delete-admin-{{ admin.id }}"><span class="glyphicon glyphicon-remove"></span></a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -57,10 +57,4 @@
                 </div>
             </div>
         {% endfor %}
-{% endblock %}
-
-{% block javascript %}
-    <script type="text/javascript">
-
-    </script>
 {% endblock %}

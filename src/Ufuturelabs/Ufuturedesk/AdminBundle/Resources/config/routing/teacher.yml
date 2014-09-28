@@ -16,4 +16,4 @@ admin_teacher_edit:
 
 admin_teacher_delete:
     pattern: /delete/{id}
-    defaults: { _controller: AdminBundle:Teacher:view }
+    defaults: { _controller: AdminBundle:Teacher:delete }

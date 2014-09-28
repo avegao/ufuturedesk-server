@@ -8,6 +8,7 @@ app/logs/*
 vendor/*
 web/bundles/*
 web/uploads/*
+web/app_dev.php
 
 # -- Composer -----------------------------------------
 composer.lock
@@ -81,6 +82,7 @@ Icon
 ._*
 .Spotlight-V100
 .Trashes
+docs/
 
 # Documentation
 docs

@@ -1,244 +1,62 @@
 {% extends 'AdminBundle:Default:admin.html.twig' %}
 
-{% block title %}{{ parent() }} {{ admin.userName }}{% endblock %}
+{% block title %}{{ parent() }} {{ teacher }}{% endblock %}
 
 {% block article %}
     <ol class="breadcrumb">
         <li><a href="{{ path('admin_index') }}">Inicio</a></li>
-        <li><a href="{{ path('admin_admin_index') }}">Administradores</a></li>
-        <li class="active">{{ admin.userName }}</li>
+        <li><a href="{{ path('admin_teacher_index') }}">Profesores</a></li>
+        <li class="active">{{ teacher }}</li>
     </ol>
-    <div class="ufuturedesk-administration-admin-view">
-        <table class="info">
-            <tr>
-                <th>
-                    <legend>Datos de usuario</legend>
-                </th>
-                <th>
-                    <legend>Permisos de administraci&oacute;n</legend>
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    {% if admin.photo is defined and admin.photo is not null and admin.photo is not empty %}
-                        <img src="{{ asset('uploads/users/' ~ admin.photo) }}" width="256px" height="256px" />
+    <div class="row">
+        <legend>Datos de usuario</legend>
+        <div class="row">
+            {% if teacher.photo is defined and teacher.photo is not null and teacher.photo is not empty %}
+                <div class="col-md-4">
+                    <img src="{{ asset('uploads/users/' ~ teacher.photo) }}" alt="{{ teacher }}" width="256px" height="256px" />
+                </div>
+            {% endif %}
+            <div class="col-md-5">
+                <p><b>Nombre de usuario: </b> {{ teacher.userName }}</p>
+                <p><b>Nombre: </b> {{ teacher.name }}</p>
+                <p><b>Apellidos: </b> {{ teacher.surname }}</p>
+                <p><b>Email: </b> <a href="mailto:{{ teacher.email }}" >{{ teacher.email }}</a></p>
+                <p><b>Direcci&oacute;n: </b> {{ teacher.address }}</p>
+                <p><b>Tel&eacute;fono: </b> <a href="tel://{{ teacher.telephone }}" >{{ teacher.telephone }}</a></p>
+            </div>
+            <div class="col-md-3">
+                <p>
+                    <a type="button" class="btn btn-warning" href="{{ path('admin_teacher_edit', {'id': teacher.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-teacher-{{ teacher.id }}"><span class="glyphicon glyphicon-remove"></span></a>
+                </p>
+                <p>
+                    {% if teacher.active %}
+                        <a type="button" class="btn btn-danger" href="{{ path('admin_user_disable', {'id': teacher.id}) }}">Desactivar usuario</a>
+                    {% else %}
+                        <a type="button" class="btn btn-success" href="{{ path('admin_user_recovery_password', {'id': teacher.id}) }}">Activar usuario</a>
                     {% endif %}
-                    <p><b>Nombre de usuario: </b> {{ admin.userName }}</p>
-                </td>
-                <td>
-                    <p><b>Permisos absolutos</b></p>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" disabled {% if admin.permissionsSuperuser %}checked{% endif %}/>
-                            Superusuario
-                        </label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <b>Permisos sobre administradores</b>
-                    <table>
-                        <tr>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsAdminView %}checked{% endif %}/>
-                                    Lectura
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsAdminCreate %}checked{% endif %}/>
-                                    Creaci&oacute;n
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsAdminEdit %}checked{% endif %}/>
-                                    Edici&oacute;n
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsAdminDelete %}checked{% endif %}/>
-                                    Eliminaci&oacute;n
-                                </label>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <b>Permisos sobre profesores</b>
-                    <table>
-                        <tr>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsTeacherView %}checked{% endif %}/>
-                                    Lectura
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsTeacherCreate %}checked{% endif %}/>
-                                    Creaci&oacute;n
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsTeacherEdit %}checked{% endif %}/>
-                                    Edici&oacute;n
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsTeacherDelete %}checked{% endif %}/>
-                                    Eliminaci&oacute;n
-                                </label>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <b>Permisos sobre alumnos</b>
-                    <table>
-                        <tr>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsStudentView %}checked{% endif %}/>
-                                    Lectura
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsStudentCreate %}checked{% endif %}/>
-                                    Creaci&oacute;n
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsStudentEdit %}checked{% endif %}/>
-                                    Edici&oacute;n
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsStudentDelete %}checked{% endif %}/>
-                                    Eliminaci&oacute;n
-                                </label>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <b>Permisos sobre cursos</b>
-                    <table>
-                        <tr>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsCourseView %}checked{% endif %}/>
-                                    Lectura
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsCourseCreate %}checked{% endif %}/>
-                                    Creaci&oacute;n
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsCourseEdit %}checked{% endif %}/>
-                                    Edici&oacute;n
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsCourseDelete %}checked{% endif %}/>
-                                    Eliminaci&oacute;n
-                                </label>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <b>Permisos sobre modalidades de cursos</b>
-                    <table>
-                        <tr>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsModalityView %}checked{% endif %}/>
-                                    Lectura
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsModalityCreate %}checked{% endif %}/>
-                                    Creaci&oacute;n
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsModalityEdit %}checked{% endif %}/>
-                                    Edici&oacute;n
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsModalityDelete %}checked{% endif %}/>
-                                    Eliminaci&oacute;n
-                                </label>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <b>Permisos sobre asignaturas</b>
-                    <table>
-                        <tr>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsSubjectView %}checked{% endif %}/>
-                                    Lectura
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsSubjectCreate %}checked{% endif %}/>
-                                    Creaci&oacute;n
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsSubjectEdit %}checked{% endif %}/>
-                                    Edici&oacute;n
-                                </label>
-                            </td>
-                            <td class="checkbox">
-                                <label>
-                                    <input type="checkbox" disabled {% if admin.permissionsSubjectDelete %}checked{% endif %}/>
-                                    Eliminaci&oacute;n
-                                </label>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
+                </p>
+                <p>
+                    <a type="button" class="btn btn-danger" href="{{ path('admin_user_recovery_password', {'id': teacher.id}) }}">Resetear contrase&ntilde;a</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-delete-teacher-{{ teacher.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Eliminar profesor</h4>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de querer eliminar al profesor {{ teacher.name ~ ' ' ~ teacher.surname }}?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <a class="btn btn-danger" href="{{ path('admin_teacher_delete', {'id': teacher.id}) }}">Eliminar</a>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

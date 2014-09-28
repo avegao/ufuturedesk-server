@@ -12,7 +12,7 @@
             <h2>Iniciar sesi&oacute;n</h2>
         </div>
         {% if error %}
-            <div class="form-login-error bg-danger">{{ error.message }}</div>
+            <div class="form-login-error bg-danger">{{ error }}</div>
         {% endif %}
         <div class="form-login-body">
             <input type="text" id="username" class="form-control" name="_username" placeholder="Nombre de usuario" value="{{ last_username }}" required autofocus /><br />

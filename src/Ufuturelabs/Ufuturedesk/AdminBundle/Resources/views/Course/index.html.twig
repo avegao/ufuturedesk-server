@@ -1,0 +1,62 @@
+{% extends 'AdminBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }} Administradores{% endblock %}
+
+{% block article %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('admin_index') }}">Inicio</a></li>
+        <li class="active">Cursos</li>
+    </ol>
+    <div class="row">
+        <div class="col-md-9">
+            <a type="button" class="btn btn-primary" href="{{ path('admin_admin_create') }}"><span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+        <form class="form-inline col-md-3" role="form">
+            <div class="search-box form-group">
+                <input type="search" name="admin-search" class="form-control" placeholder="Buscar administrador" />
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Curso</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for course in courses %}
+                <tr>
+                    <td>{{ course.name }}</td>
+                    <td>
+                        <a type="button" class="btn btn-primary" style="position: relative; left: 70%;" href="{{ path('admin_course_view', {'id': course.id}) }}" ><span class="glyphicon glyphicon-eye-open"></span></a>
+                        <a type="button" class="btn btn-warning" style="position: relative; left: 70%;" href="{{ path('admin_course_edit', {'id': course.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a type="button" class="btn btn-danger" style="position: relative; left: 70%;" data-toggle="modal" data-target="#modal-delete-course-{{ course.id }}"><span class="glyphicon glyphicon-remove"></span></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% for course in courses %}
+        <div class="modal fade" id="modal-delete-course-{{ course.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Eliminar curso</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Estás seguro de querer eliminar el curso "{{ course.name }}"?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <a class="btn btn-danger" href="{{ path('admin_course_delete', {'id': course.id}) }}">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
