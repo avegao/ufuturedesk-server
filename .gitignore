@@ -8,6 +8,7 @@ app/logs/*
 vendor/*
 web/bundles/*
 web/uploads/*
+web/app_dev.php
 
 # -- Composer -----------------------------------------
 composer.lock
@@ -83,4 +84,5 @@ Icon
 .Trashes
 docs/
 
-web/app_dev.php
+# Documentation
+docs
