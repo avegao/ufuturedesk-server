@@ -28,6 +28,7 @@ class UserRepository extends EntityRepository
 
 	/**
 	 * @return integer
+     * @deprecated
 	 */
 	public function findAdminsNumber()
 	{
@@ -43,6 +44,7 @@ class UserRepository extends EntityRepository
 	
 	/**
 	 * @return integer
+     * @deprecated
 	 */
 	public function findTeachersNumber()
 	{
@@ -58,6 +60,7 @@ class UserRepository extends EntityRepository
 	
 	/**
 	 * @return integer
+     * @deprecated
 	 */
 	public function findStudentsNumber()
 	{

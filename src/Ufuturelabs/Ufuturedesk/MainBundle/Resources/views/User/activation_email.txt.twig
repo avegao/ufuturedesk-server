@@ -1,6 +1,0 @@
-Bienvenido al sistema uFutureDesk del centro {{ school.name }}. uFutureDesk es un sistema de aula virtual
-que conecta tanto a alumnos como profesores para la administración de tareas, exámenes, documentos,
-faltas de asistencia, etc. Has sido registrado con el rol de {% if user_type == 'teacher' %}profesor
-{% elseif user_type == 'student' %}alumno{% else %}SIN_ROL{% endif %}. Para finalizar el registro, acceda
-a la siguiente <a href="{{ host ~ '/user/activate/' ~ user.activationRoute }}">web</a> e introduzca una
-contraseña para acceder al servicio y una foto para poder identficarle más facilmente.

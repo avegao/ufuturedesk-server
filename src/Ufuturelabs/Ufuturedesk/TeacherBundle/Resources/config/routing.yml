@@ -1,3 +1,7 @@
 teacher_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: TeacherBundle:Default:index }
+
+teacher_activation:
+    pattern:  /activation/{activationRoute}
+    defaults: { _controller: TeacherBundle:Default:activation }

@@ -7,70 +7,68 @@
         <li><a href="{{ path('admin_index') }}">Inicio</a></li>
         <li class="active">Profesores</li>
     </ol>
-    <div class="ufuturedesk-administration-admin">
-        <form class="form-inline" role="form">
+    <div class="row">
+        <div class="col-md-9">
             <a type="button" class="btn btn-primary" href="{{ path('admin_teacher_create') }}"><span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+        <form class="form-inline col-md-3" role="form">
             <div class="search-box form-group">
                 <input type="search" name="teacher-search" class="form-control" placeholder="Buscar profesor" />
                 <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </form>
+    </div>
+    <div class="row">
         <table class="table table-hover">
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre de usuario</th>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Email</th>
-                    <th>Direccion</th>
-                    <th>Foto</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th>Nombre de usuario</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Email</th>
+                <th>Direcci&oacute;n</th>
+                <th>Tel&eacute;fono</th>
+                <th>Foto</th>
+                <th></th>
+            </tr>
             </thead>
             <tbody>
-                {% for teacher in teachers %}
-                    <tr>
-                        <td>{{ teacher.id }}</td>
-                        <td>{{ teacher.userName }}</td>
-                        <td>{{ teacher.name }}</td>
-                        <td>{{ teacher.surname }}</td>
-                        <td>{{ teacher.email }}</td>
-                        <td>{{ teacher.address }}</td>
-                        <td><img src="{{ teacher.photoPath }}" width="32px" height="32px" /></td>
-                        <td>
-                            <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-admin-{{ teacher.id }}"><span class="glyphicon glyphicon-remove"></span></a>
-                            <a type="button" class="btn btn-warning" href="{{ path('admin_teacher_edit', {'id': teacher.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a type="button" class="btn btn-primary" href="{{ path('admin_teacher_view', {'id': teacher.id}) }}" ><span class="glyphicon glyphicon-eye-open"></span></a>
-                        </td>
-                    </tr>
-                {% endfor %}
+            {% for teacher in teachers %}
+                <tr>
+                    <td>{{ teacher.userName }}</td>
+                    <td>{{ teacher.name }}</td>
+                    <td>{{ teacher.surname }}</td>
+                    <td>{{ teacher.email }}</td>
+                    <td>{{ teacher.address }}</td>
+                    <td>{{ teacher.telephone }}</td>
+                    <td><img src="{{ teacher.photoPath }}" width="32px" height="32px" /></td>
+                    <td>
+                        <a type="button" class="btn btn-primary" href="{{ path('admin_teacher_view', {'id': teacher.id}) }}" ><span class="glyphicon glyphicon-eye-open"></span></a>
+                        <a type="button" class="btn btn-warning" href="{{ path('admin_teacher_edit', {'id': teacher.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-teacher-{{ teacher.id }}"><span class="glyphicon glyphicon-remove"></span></a>
+                   </td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
-        {% for teacher in teachers %}
-            <div class="modal fade" id="modal-delete-admin-{{ teacher.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Eliminar profesor</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>¿Estás seguro de querer eliminar al profesor  "{{ teacher.name ~ " " ~ teacher.surname }}"?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <a class="btn btn-danger" href="{{ path('admin_teacher_delete', {'id': teacher.id}) }}">Eliminar</a>
-                        </div>
+    {% for teacher in teachers %}
+        <div class="modal fade" id="modal-delete-teacher-{{ teacher.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Eliminar profesor</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Estás seguro de querer eliminar al profesor {{ teacher.name ~ ' ' ~ teacher.surname }}?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <a class="btn btn-danger" href="{{ path('admin_teacher_delete', {'id': teacher.id}) }}">Eliminar</a>
                     </div>
                 </div>
             </div>
-        {% endfor %}
-{% endblock %}
-
-{% block javascript %}
-    <script type="text/javascript">
-
-    </script>
+        </div>
+    {% endfor %}
 {% endblock %}

@@ -13,3 +13,11 @@ admin_admin:
 admin_teacher:
     prefix: /teacher
     resource: "@AdminBundle/Resources/config/routing/teacher.yml"
+
+admin_user_disable:
+    path: /user/disable/{id}
+    defaults: { _controller: "AdminBundle:Default:disableUser" }
+
+admin_user_recovery_password:
+    path: /user/recoverypassword/{id}
+    defaults: { _controller: "AdminBundle:Default:recoveryPassword" }

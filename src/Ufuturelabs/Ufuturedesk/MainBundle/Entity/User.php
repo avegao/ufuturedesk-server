@@ -207,7 +207,7 @@ class User implements UserInterface
 	}
 
     /**
-     * @param string $activation_route
+     * @param string $activationRoute
      */
     public function setActivationRoute($activationRoute)
     {
@@ -246,6 +246,9 @@ class User implements UserInterface
 		return $this->userName;
 	}
 
+    /**
+     * Upload the user's photo
+     */
 	public function uploadPhoto()
 	{
 		if ($this->photo == null)
@@ -260,8 +263,37 @@ class User implements UserInterface
 		$this->setPhotoPath($name);
 	}
 
-    public function generateActivationRoute()
+    /**
+     * Generate the URL to active the user account
+     *
+     * @return string Activation URL
+     */
+    public static function generateActivationRoute()
     {
-        $this->setActivationRoute(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
+        return base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+    }
+
+    /**
+     * Disable user
+     *
+     * Set to false $active and call $this->resetPassword.
+     * This should not be used to recover the password.
+     */
+    public function disableUser()
+    {
+        $this->active = false;
+        $this->resetPassword();
+    }
+
+    /**
+     * Reset password and salt
+     *
+     * If it will be used to recover password, after  you should call to User::generateActivationRoute
+     * and send an email with the instructions.
+     */
+    public function resetPassword()
+    {
+        $this->password = "no_password_yet";
+        $this->salt = "no_salt_yet";
     }
 } 

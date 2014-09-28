@@ -6,6 +6,10 @@ use Doctrine\ORM\EntityRepository;
 
 class SchoolRepository extends EntityRepository
 {
+    /**
+     * @return array
+     * @deprecated
+     */
 	public function findSchool()
 	{
 		$em = $this->getEntityManager();

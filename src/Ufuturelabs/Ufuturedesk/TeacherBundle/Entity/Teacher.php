@@ -57,6 +57,8 @@ class Teacher extends User
 	/**
 	 * @var string Teacher's telephone number
 	 *
+     * @ORM\Column(name="telephone", type="string", length=20, nullable=false)
+     *
 	 * @Assert\NotBlank()
 	 */
 	private $telephone;
@@ -162,7 +164,7 @@ class Teacher extends User
 	}
 
 	/**
-	 * @return \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Telephone
+	 * @return string
 	 */
 	public function getTelephone()
 	{
@@ -184,5 +186,4 @@ class Teacher extends User
 	{
 		return $this->getName()." ".$this->getSurname();
 	}
-
 }
