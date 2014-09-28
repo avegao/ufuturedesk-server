@@ -14,7 +14,6 @@ admin_teacher:
     prefix: /teacher
     resource: "@AdminBundle/Resources/config/routing/teacher.yml"
 
-<<<<<<< HEAD
 admin_user_disable:
     path: /user/disable/{id}
     defaults: { _controller: "AdminBundle:Default:disableUser" }
@@ -22,8 +21,7 @@ admin_user_disable:
 admin_user_recovery_password:
     path: /user/recoverypassword/{id}
     defaults: { _controller: "AdminBundle:Default:recoveryPassword" }
-=======
+
 admin_course:
     prefix: /course
     resource: "@AdminBundle/Resources/config/routing/course.yml"
->>>>>>> 266b76b5b7e1b6e64e488ed1ae2199c6566ce2e4
