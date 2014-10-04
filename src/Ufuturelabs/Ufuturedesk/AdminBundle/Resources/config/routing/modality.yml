@@ -1,0 +1,19 @@
+admin_modality_index:
+    path:     /
+    defaults: { _controller: AdminBundle:Modality:index }
+
+admin_modality_view:
+    path:     /view/{id}
+    defaults: { _controller: AdminBundle:Modality:view }
+
+admin_modality_create:
+    path:     /create
+    defaults: { _controller: AdminBundle:Modality:create }
+
+admin_modality_edit:
+    path:     /edit/{id}
+    defaults: { _controller: AdminBundle:Modality:edit }
+
+admin_modality_delete:
+    path:     /delete/{id}
+    defaults: { _controller: AdminBundle:Modality:delete }

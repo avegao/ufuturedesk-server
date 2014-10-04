@@ -27,13 +27,21 @@ class Course {
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="name", type="string", unique=true, length=30, nullable=false)
+	 * @ORM\Column(name="name", type="string", unique=true, length=255, nullable=false)
 	 *
 	 * @Assert\NotBlank()
 	 */
 	private $name;
 
-	/**
+    /**
+     * @return string Course's name
+     */
+    function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
 	 * @return int
 	 */
 	public function getId()

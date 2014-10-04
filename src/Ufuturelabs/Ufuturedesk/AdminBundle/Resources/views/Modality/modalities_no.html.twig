@@ -1,0 +1,15 @@
+{% extends 'AdminBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }} Profesores{% endblock %}
+
+{% block article %}
+    <div class="row">
+        <div class="col-md-1">
+            <h1>:(</h1>
+        </div>
+        <div class="col-md-11">
+            <h3>No hay modalidades para ning&uacute;n curso</h3>
+            <p>Si quieres a&ntilde;adir una modalidad haz click <a href="{{ path('admin_modality_create') }}">aqui</a>.</p>
+        </div>
+    </div>
+{% endblock %}

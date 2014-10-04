@@ -25,3 +25,8 @@ admin_user_recovery_password:
 admin_course:
     prefix: /course
     resource: "@AdminBundle/Resources/config/routing/course.yml"
+
+admin_modality:
+    prefix: /modality
+    resource: "@AdminBundle/Resources/config/routing/modality.yml"
+

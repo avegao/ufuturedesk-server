@@ -28,7 +28,7 @@ class Modality
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="name", type="string", length=20, nullable=false)
+	 * @ORM\Column(name="name", type="string", length=255, nullable=false)
 	 *
 	 * @Assert\NotBlank()
 	 */
@@ -44,7 +44,15 @@ class Modality
 	 */
 	private $course;
 
-	/**
+    /**
+     * @return string Modality's name
+     */
+    function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
 	 * @return int
 	 */
 	public function getId()
@@ -53,7 +61,7 @@ class Modality
 	}
 
 	/**
-	 * @param \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Grade $grade
+	 * @param \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Course $course
 	 */
 	public function setCourse(\Ufuturelabs\Ufuturedesk\MainBundle\Entity\Course $course)
 	{
@@ -83,5 +91,4 @@ class Modality
 	{
 		return $this->name;
 	}
-
 } 

@@ -1,0 +1,65 @@
+{% extends 'AdminBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }} Modalidades{% endblock %}
+
+{% block article %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('admin_index') }}">Inicio</a></li>
+        <li class="active">Modalidades</li>
+    </ol>
+    <div class="row">
+        <div class="col-md-9">
+            <a type="button" class="btn btn-primary" href="{{ path('admin_modality_create') }}"><span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+        <form class="form-inline col-md-3" role="form">
+            <div class="search-box form-group">
+                <input type="search" name="teacher-search" class="form-control" placeholder="Buscar modalidad" />
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Modalidad</th>
+                <th>Curso</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for modality in modalities %}
+                <tr>
+                    <td>{{ modality.name }}</td>
+                    <td>{{ modality.course }}</td>
+                    <td>
+                        <a type="button" class="btn btn-primary" href="{{ path('admin_modality_view', {'id': modality.id}) }}" ><span class="glyphicon glyphicon-eye-open"></span></a>
+                        <a type="button" class="btn btn-warning" href="{{ path('admin_modality_edit', {'id': modality.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-modality-{{ modality.id }}"><span class="glyphicon glyphicon-remove"></span></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% for modality in modalities %}
+        <div class="modal fade" id="modal-delete-modality-{{ modality.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Eliminar modalidad</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Estás seguro de querer eliminar la modalidad {{ modality.name }} del curso {{ modality.course }}?</p>
+                        <p>Tambi&eacute;n se eliminar&aacute;n todas las asignaturas que dependan de esta modalidad.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <a class="btn btn-danger" href="{{ path('admin_modality_delete', {'id': modality.id}) }}">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
