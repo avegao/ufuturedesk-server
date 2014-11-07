@@ -1,3 +1,0 @@
-api_v1:
-    prefix: /v1
-    resource: "@ApiBundle/Resources/config/v1/routing.yml"

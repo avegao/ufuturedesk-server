@@ -61,12 +61,12 @@ class User implements UserInterface
 	 */
 	protected $photoPath;
 
-	/**
-	 * @var UploadedImage
-	 *
-	 * @Assert\Image()
-	 */
-	protected $photo;
+//	/**
+//	 * @var UploadedImage
+//	 *
+//	 * @Assert\Image()
+//	 */
+//	protected $photo;
 
     /**
      * @var boolean Account state
@@ -182,22 +182,22 @@ class User implements UserInterface
 		return $this->photoPath;
 	}
 
-	/**
-	 * @return UploadedImage
-	 */
-	public function getPhoto()
-	{
-		return $this->photo;
-	}
-
-	/**
-	 * @param UploadedImage $photo
-	 */
-	public function setPhoto(UploadedImage $photo = null)
-	{
-		$this->photo = $photo;
-	}
-
+//	/**
+//	 * @return UploadedImage
+//	 */
+//	public function getPhoto()
+//	{
+//		return $this->photo;
+//	}
+//
+//	/**
+//	 * @param UploadedImage $photo
+//	 */
+//	public function setPhoto(UploadedImage $photo = null)
+//	{
+//		$this->photo = $photo;
+//	}
+//
 	/**
 	 * @param string $photoPath
 	 */

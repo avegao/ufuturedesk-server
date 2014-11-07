@@ -30,3 +30,6 @@ admin_modality:
     prefix: /modality
     resource: "@AdminBundle/Resources/config/routing/modality.yml"
 
+admin_subject:
+    prefix: /subject
+    resource: "@AdminBundle/Resources/config/routing/subject.yml"

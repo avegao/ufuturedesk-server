@@ -37,7 +37,7 @@ class Subject
 	/**
 	 * @var \Ufuturelabs\Ufuturedesk\TeacherBundle\Entity\Teacher
 	 *
-	 * @ORM\OneToOne(targetEntity="Ufuturelabs\Ufuturedesk\TeacherBundle\Entity\Teacher")
+	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\TeacherBundle\Entity\Teacher")
 	 * @ORM\JoinColumn(name="teacher", referencedColumnName="user_id")
 	 *
 	 * @Assert\NotBlank()
@@ -47,14 +47,18 @@ class Subject
 	/**
 	 * @var \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Modality
 	 *
-	 * @ORM\OneToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Modality")
+	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Modality")
 	 * @ORM\JoinColumn(name="modality", referencedColumnName="modality_id")
 	 *
-	 * @Assert\NotBlank()
 	 */
 	private $modality;
 
-	/**
+    function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
 	 * @return int
 	 */
 	public function getId()

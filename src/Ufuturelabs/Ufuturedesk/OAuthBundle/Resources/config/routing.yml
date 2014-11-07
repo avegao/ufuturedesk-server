@@ -1,6 +1,0 @@
-oauth_login:
-    path:     /v2/auth/login
-    defaults: { _controller: OAuthBundle:Default:login }
-
-oauth_login_check:
-    path: /v2/auth/login_check

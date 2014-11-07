@@ -1,0 +1,19 @@
+admin_subject_index:
+    path:     /
+    defaults: { _controller: AdminBundle:Subject:index }
+
+admin_subject_view:
+    path:     /view/{id}
+    defaults: { _controller: AdminBundle:Subject:view }
+
+admin_subject_create:
+    path:     /create
+    defaults: { _controller: AdminBundle:Subject:create }
+
+admin_subject_edit:
+    path:     /edit/{id}
+    defaults: { _controller: AdminBundle:Subject:edit }
+
+admin_subject_delete:
+    path:     /delete/{id}
+    defaults: { _controller: AdminBundle:Subject:delete }

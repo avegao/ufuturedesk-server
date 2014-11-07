@@ -20,13 +20,8 @@ class AppKernel extends Kernel
             new Ufuturelabs\Ufuturedesk\AdminBundle\AdminBundle(),
             new Ufuturelabs\Ufuturedesk\StudentBundle\StudentBundle(),
             new Ufuturelabs\Ufuturedesk\TeacherBundle\TeacherBundle(),
-            new Ufuturelabs\Ufuturedesk\SyncBundle\SyncBundle(),
-			new FOS\RestBundle\FOSRestBundle(),
 			new JMS\SerializerBundle\JMSSerializerBundle(),
-			new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
-            new Ufuturelabs\Ufuturedesk\OAuthBundle\OAuthBundle(),
-            new Ufuturelabs\Ufuturedesk\ApiBundle\ApiBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

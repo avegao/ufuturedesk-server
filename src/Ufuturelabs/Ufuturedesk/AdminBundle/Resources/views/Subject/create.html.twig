@@ -1,0 +1,177 @@
+{% extends 'AdminBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }} Crear profesor{% endblock %}
+
+{% block article %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('admin_index') }}">Inicio</a></li>
+        <li><a href="{{ path('admin_subject_index') }}">Asignaturas</a></li>
+        <li class="active">Crear asignatura</li>
+    </ol>
+    {{ form_start(form, {
+        'action':  path('admin_subject_create'),
+        'method': 'POST',
+        'role': 'form'
+    }) }}
+    <fieldset>
+        <legend>Datos de la asignatura</legend>
+        <div class="form-group">
+            <label>
+                Nombre de la asignatura
+                {{ form_widget(form.name, {
+                    'attr': {
+                        'class': 'form-control'
+                    }
+                }) }}
+            </label>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="ufuturelabs_ufuturedesk_mainbundle_subject_course">Curso</label>
+                <select id="ufuturelabs_ufuturedesk_mainbundle_subject_course" name="ufuturelabs_ufuturedesk_mainbundle_subject[course]" class="form-control">
+                    <option></option>
+                    {% for course in courses %}
+                        <option value="{{ course.id }}">{{ course.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="ufuturelabs_ufuturedesk_mainbundle_subject_modality">Modalidad</label>
+                <select id="ufuturelabs_ufuturedesk_mainbundle_subject_modality" name="ufuturelabs_ufuturedesk_mainbundle_subject[modality]" class="form-control"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>
+                Profesor
+                {{ form_widget(form.teacher, {
+                    'attr': {
+                        'class': 'form-control'
+                    }
+                }) }}
+            </label>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Horario</legend>
+        <div id="timetable" class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                    <label for="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_0_day">D&iacute;a</label>
+                    <select id="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_0_day" name="ufuturelabs_ufuturedesk_mainbundle_subject[timetable][0][day]" class="form-control">
+                        <option></option>
+                        <option value="1">Lunes</option>
+                        <option value="2">Martes</option>
+                        <option value="3">Mi&eacute;rcoles</option>
+                        <option value="4">Jueves</option>
+                        <option value="5">Viernes</option>
+                        <option value="6">S&aacute;bado</option>
+                        <option value="7">Domingo</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_0_start_time">Hora de inicio</label>
+                    <input id="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_0_start_time" name="ufuturelabs_ufuturedesk_mainbundle_subject[timetable][0][start_time]" type="time" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <label for="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_0_end_time">Hora de fin</label>
+                    <input id="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_0_end_time" name="ufuturelabs_ufuturedesk_mainbundle_subject[timetable][0][end_time]" type="time" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <label for="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_0_classroom">Aula</label>
+                    <input id="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_0_classroom" name="ufuturelabs_ufuturedesk_mainbundle_subject[timetable][0][classroom]" type="text" maxlength="30" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="form-group">
+                    <a id="more_time_table_button" type="button" class="btn btn-primary" title="A&ntilde;adir m&aacute;s horarios"><span class="glyphicon glyphicon-plus"></span></a>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div class="form-group">
+        <input class="btn btn-primary" type="submit" value="Crear" />
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+
+        $(document).ready(function () {
+
+            var timetableNumber = 1;
+
+            $('#ufuturelabs_ufuturedesk_mainbundle_subject_course').change(function () {
+
+                        var id = $('#ufuturelabs_ufuturedesk_mainbundle_subject_course').val();
+
+                        if (id != "" || id != undefined) {
+
+                            $.ajax({
+                                url: Routing.generate('admin_modality_ajax_get_modalities_by_course_id', {id: id}),
+                                method: "GET",
+                                async: true,
+                                success: function (data) {
+
+                                    if (data.code == 200) {
+
+                                        var message = data.message;
+                                        var modalitySelect = $('#ufuturelabs_ufuturedesk_mainbundle_subject_modality');
+
+                                        modalitySelect.empty();
+                                        $.each(message, function (i, value) {
+                                            modalitySelect.append('<option value="' + value.id + '">' + value.name + '</option>');
+                                        });
+
+                                    }
+
+                                }
+
+                            });
+
+                        }
+                    }
+            );
+
+            $('#more_time_table_button').click( function() {
+
+                $('#timetable').append(
+                    '<div class="row">' +
+                        '<div class="col-md-2">' +
+                            '<label for="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_' + timetableNumber + '_day">D&iacute;a</label>' +
+                            '<select id="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_' + timetableNumber + '_day" name="ufuturelabs_ufuturedesk_mainbundle_subject[timetable][' + timetableNumber + '][day]" class="form-control">' +
+                                '<option></option>' +
+                                '<option value="1">Lunes</option>' +
+                                '<option value="2">Martes</option>' +
+                                '<option value="3">Mi&eacute;rcoles</option>' +
+                                '<option value="4">Jueves</option>' +
+                                '<option value="5">Viernes</option>' +
+                                '<option value="6">S&aacute;bado</option>' +
+                                '<option value="7">Domingo</option>' +
+                            '</select>' +
+                        '</div>' +
+                            '<div class="col-md-2">' +
+                            '<label for="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_' + timetableNumber + '_start_time">Hora de inicio</label>' +
+                            '<input id="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_' + timetableNumber + '_start_time" name="ufuturelabs_ufuturedesk_mainbundle_subject[timetable][' + timetableNumber + '][start_time]" type="time" class="form-control" />' +
+                        '</div>' +
+                        '<div class="col-md-2">' +
+                            '<label for="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_' + timetableNumber + '_end_time">Hora de fin</label>' +
+                            '<input id="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_' + timetableNumber + '_end_time" name="ufuturelabs_ufuturedesk_mainbundle_subject[timetable][' + timetableNumber + '][end_time]" type="time" class="form-control" />' +
+                        '</div>' +
+                        '<div class="col-md-2">' +
+                            '<label for="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_' + timetableNumber + '_classroom">Aula</label>' +
+                            '<input id="ufuturelabs_ufuturedesk_mainbundle_subject_timetable_' + timetableNumber + '_classroom" name="ufuturelabs_ufuturedesk_mainbundle_subject[timetable][' + timetableNumber + '][classroom]" type="text" maxlength="30" class="form-control" />' +
+                        '</div>' +
+                    '</div>'
+                );
+
+                timetableNumber++;
+
+            });
+
+        });
+
+    </script>
+{% endblock %}

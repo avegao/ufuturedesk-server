@@ -1,3 +1,0 @@
-api_v1_user:
-    path: /user
-    defaults: { _controller: ApiBundle:Default:user }

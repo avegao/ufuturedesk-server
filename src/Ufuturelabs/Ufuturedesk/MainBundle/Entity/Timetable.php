@@ -15,32 +15,37 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Timetable
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="timetable_id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
 	/**
 	 * @var integer
 	 *
 	 * @ORM\Column(name="day", type="integer", nullable=false)
-	 * @ORM\Id
 	 *
 	 * @Assert\Length(min=1, max=7)
 	 */
 	private $day;
 
 	/**
-	 * @var \DateTime
+	 * @var string
 	 *
-	 * @ORM\Column(name="start_time", type="time", nullable=false)
-	 * @ORM\Id
+	 * @ORM\Column(name="start_time", type="string", nullable=false)
 	 *
 	 * @Assert\Time()
 	 */
 	private $startTime;
 
 	/**
-	 * @var \DateTime
+	 * @var string
 	 *
-	 * @ORM\Column(name="end_time", type="time", nullable=false)
-	 * @ORM\Id
+	 * @ORM\Column(name="end_time", type="string", nullable=false)
 	 *
 	 * @Assert\Time()
 	 */
@@ -56,11 +61,18 @@ class Timetable
 	/**
 	 * @var \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Subject
 	 *
-	 * @ORM\Id
-	 * @ORM\OneToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Subject")
+	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Subject")
 	 * @ORM\JoinColumn(name="subject", referencedColumnName="subject_id")
 	 */
 	private $subject;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
 	/**
 	 * @param string $classroom

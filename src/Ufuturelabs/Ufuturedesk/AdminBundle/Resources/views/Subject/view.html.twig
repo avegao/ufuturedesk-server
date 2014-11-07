@@ -1,0 +1,62 @@
+{% extends 'AdminBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }} {{ subject }}{% endblock %}
+
+{% block article %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('admin_index') }}">Inicio</a></li>
+        <li><a href="{{ path('admin_subject_index') }}">Asignaturas</a></li>
+        <li class="active">{{ subject }}</li>
+    </ol>
+    <div class="row">
+        <div class="row">
+            <div class="col-md-5">
+                <legend>Datos de la asignatura</legend>
+                <p><b>Nombre de la asignatura: </b> {{ subject }}</p>
+                <p><b>Curso: </b> {{ subject.modality.course }}</p>
+                <p><b>Modalidad: </b> {{ subject.modality }}</p>
+                <p><b>Profesor: </b> {{ subject.teacher }}</p>
+                <a type="button" class="btn btn-warning" href="{{ path('admin_subject_edit', {'id': subject.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-subject-{{ subject.id }}"><span class="glyphicon glyphicon-remove"></span></a>
+            </div>
+            <div class="col-md-7">
+                <legend>Horario</legend>
+                {% for timetable in timetables %}
+                    {% if timetable.day == 1 %}
+                        <p><b>Lunes: </b> De {{ timetable.startTime }} a {{ timetable.endTime }} en la clase {{ timetable.classroom }}</p>
+                    {% elseif timetable.day == 2 %}
+                        <p><b>Martes: </b> De {{ timetable.startTime }} a {{ timetable.endTime }} en la clase {{ timetable.classroom }}</p>
+                    {% elseif timetable.day == 3 %}
+                        <p><b>Mi&eacute;rcoles: </b> De {{ timetable.startTime }} a {{ timetable.endTime }} en la clase {{ timetable.classroom }}</p>
+                    {% elseif timetable.day == 4 %}
+                        <p><b>Jueves: </b> De {{ timetable.startTime }} a {{ timetable.endTime }} en la clase {{ timetable.classroom }}</p>
+                    {% elseif timetable.day == 5 %}
+                        <p><b>Viernes: </b> De {{ timetable.startTime }} a {{ timetable.endTime }} en la clase {{ timetable.classroom }}</p>
+                    {% elseif timetable.day == 6 %}
+                        <p><b>S&aacute;bado: </b> De {{ timetable.startTime }} a {{ timetable.endTime }} en la clase {{ timetable.classroom }}</p>
+                    {% elseif timetable.day == 7 %}
+                        <p><b>Domingo: </b> De {{ timetable.startTime }} a {{ timetable.endTime }} en la clase {{ timetable.classroom }}</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-delete-subject-{{ subject.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Eliminar asignatura</h4>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de querer eliminar la asignatura {{ subject.name }} del curso {{ subject.modality.course }}?</p>
+                    <p>Tambi&eacute;n se eliminar&aacute;n todas las tareas, faltas de asistencia y ex&aacute;menes que dependan de esta asignatura.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <a class="btn btn-danger" href="{{ path('admin_subject_delete', {'id': subject.id}) }}">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

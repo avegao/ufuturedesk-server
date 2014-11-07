@@ -17,3 +17,9 @@ admin_modality_edit:
 admin_modality_delete:
     path:     /delete/{id}
     defaults: { _controller: AdminBundle:Modality:delete }
+
+admin_modality_ajax_get_modalities_by_course_id:
+    path:     /ajax/modality/course/{id}
+    defaults: { _controller: AdminBundle:Modality:ajaxGetModalitiesByCourseId }
+    options:
+        expose: true
