@@ -13,12 +13,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="telephones")
  */
-class Telephone {
-
+class Telephone
+{
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="telephone_id", type="integer", nullable=false)
+	 * @ORM\Column(name="id", type="integer", nullable=false)
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */

@@ -4,6 +4,7 @@ namespace Ufuturelabs\Ufuturedesk\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Ufuturelabs\Ufuturedesk\TeacherBundle\Entity\Teacher;
 
 /**
  * Class Course
@@ -18,11 +19,19 @@ class Course {
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="course_id", type="integer", nullable=false)
+	 * @ORM\Column(name="id", type="integer", nullable=false)
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
 	private $id;
+
+    /**
+     * @var School
+     *
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\School")
+     * @ORM\JoinColumn(name="school", referencedColumnName="id")
+     */
+    private $school;
 
 	/**
 	 * @var string
@@ -32,6 +41,14 @@ class Course {
 	 * @Assert\NotBlank()
 	 */
 	private $name;
+
+    /**
+     * @var Teacher
+     *
+     * @ORM\OneToOne(targetEntity="Ufuturelabs\Ufuturedesk\TeacherBundle\Entity\Teacher")
+     * @ORM\JoinColumn(name="tutor", referencedColumnName="id")
+     */
+    private $tutor;
 
     /**
      * @return string Course's name
@@ -48,6 +65,22 @@ class Course {
 	{
 		return $this->id;
 	}
+
+    /**
+     * @return School
+     */
+    public function getSchool()
+    {
+        return $this->school;
+    }
+
+    /**
+     * @param School $school
+     */
+    public function setSchool($school)
+    {
+        $this->school = $school;
+    }
 
 	/**
 	 * @param string $name

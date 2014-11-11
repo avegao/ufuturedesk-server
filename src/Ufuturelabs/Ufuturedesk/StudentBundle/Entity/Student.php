@@ -49,7 +49,7 @@ class Student extends User
 	 * @var \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Telephone
 	 *
 	 * @ORM\OneToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Telephone")
-	 * @ORM\JoinColumn(name="telephone", referencedColumnName="telephone_id")
+	 * @ORM\JoinColumn(name="telephone", referencedColumnName="id")
 	 *
 	 * @Assert\NotBlank()
 	 */
@@ -68,7 +68,7 @@ class Student extends User
 	 * @var \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Course
 	 *
 	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Course")
-	 * @ORM\JoinColumn(name="course", referencedColumnName="course_id")
+	 * @ORM\JoinColumn(name="course", referencedColumnName="id")
 	 */
 	private $course;
 

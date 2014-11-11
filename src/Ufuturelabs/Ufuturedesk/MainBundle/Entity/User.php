@@ -3,6 +3,7 @@
 namespace Ufuturelabs\Ufuturedesk\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -27,11 +28,19 @@ class User implements UserInterface
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="user_id", type="integer", nullable=false)
+	 * @ORM\Column(name="id", type="integer", nullable=false)
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
 	private $id;
+
+    /**
+     * @var School
+     *
+     * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\School")
+     * @ORM\JoinColumn(name="school", referencedColumnName="id")
+     */
+    private $school;
 
 	/**
 	 * @var string
@@ -61,12 +70,12 @@ class User implements UserInterface
 	 */
 	protected $photoPath;
 
-//	/**
-//	 * @var UploadedImage
-//	 *
-//	 * @Assert\Image()
-//	 */
-//	protected $photo;
+	/**
+	 * @var UploadedFile
+	 *
+	 * @Assert\Image()
+	 */
+	protected $photo;
 
     /**
      * @var boolean Account state
@@ -88,13 +97,37 @@ class User implements UserInterface
      */
     protected $activationRoute;
 
-	/**
-	 * @return int
-	 */
-	public function getId()
-	{
-		return $this->id;
-	}
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return School
+     */
+    public function getSchool()
+    {
+        return $this->school;
+    }
+
+    /**
+     * @param School $school
+     */
+    public function setSchool($school)
+    {
+        $this->school = $school;
+    }
 
 	/**
 	 * @param string $password

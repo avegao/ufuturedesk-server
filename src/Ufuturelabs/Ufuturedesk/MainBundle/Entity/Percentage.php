@@ -25,7 +25,7 @@ class Percentage
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="percentage_id", type="integer", nullable=false)
+	 * @ORM\Column(name="id", type="integer", nullable=false)
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
@@ -54,7 +54,7 @@ class Percentage
 	 * @var \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Subject
 	 *
 	 * @ORM\OneToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Subject")
-	 * @ORM\JoinColumn(name="subject", referencedColumnName="subject_id")
+	 * @ORM\JoinColumn(name="subject", referencedColumnName="id")
 	 *
 	 * @Assert\NotBlank()
 	 */

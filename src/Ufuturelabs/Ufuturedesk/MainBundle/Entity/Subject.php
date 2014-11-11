@@ -19,7 +19,7 @@ class Subject
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="subject_id", type="integer", nullable=false)
+	 * @ORM\Column(name="id", type="integer", nullable=false)
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
@@ -38,7 +38,7 @@ class Subject
 	 * @var \Ufuturelabs\Ufuturedesk\TeacherBundle\Entity\Teacher
 	 *
 	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\TeacherBundle\Entity\Teacher")
-	 * @ORM\JoinColumn(name="teacher", referencedColumnName="user_id")
+	 * @ORM\JoinColumn(name="teacher", referencedColumnName="id")
 	 *
 	 * @Assert\NotBlank()
 	 */
@@ -48,7 +48,7 @@ class Subject
 	 * @var \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Modality
 	 *
 	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Modality")
-	 * @ORM\JoinColumn(name="modality", referencedColumnName="modality_id")
+	 * @ORM\JoinColumn(name="modality", referencedColumnName="id")
 	 *
 	 */
 	private $modality;

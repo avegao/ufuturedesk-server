@@ -12,16 +12,23 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package Ufuturelabs\Ufuturedesk\MainBundle\Entity
  *
  * @ORM\Entity(repositoryClass="Ufuturelabs\Ufuturedesk\MainBundle\Entity\SchoolRepository")
- * @ORM\Table(name="school")
+ * @ORM\Table(name="schools")
  */
 class School
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="name", type="string", length=30, nullable=false)
-	 * @ORM\Id
 	 *
 	 * @Assert\NotBlank()
 	 */
@@ -76,13 +83,21 @@ class School
 	 */
 	private $logo;
 
-	/**
-	 * @return integer
-	 */
-	public function getId()
-	{
-		return $this->id;
-	}
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
 	/**
 	 * @param string $address
