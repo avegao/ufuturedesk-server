@@ -1,6 +1,6 @@
 <?php
 
-namespace Ufuturelabs\Ufuturedesk\MainBundle\Entity;
+namespace Ufuturelabs\Ufuturedesk\ExamBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Class Exam
  *
- * @package Ufuturelabs\Ufuturedesk\MainBundle\Entity
+ * @package Ufuturelabs\Ufuturedesk\ExamBundle\Entity
  *
  * @ORM\Entity
  * @ORM\Table(name="exams")
@@ -19,7 +19,7 @@ class Exam
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="exam_id", type="integer", nullable=false)
+	 * @ORM\Column(name="id", type="integer", nullable=false)
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
@@ -64,7 +64,7 @@ class Exam
 	 * @var \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Percentage
 	 *
 	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Percentage")
-	 * @ORM\JoinColumn(name="percentage", referencedColumnName="percentage_id")
+	 * @ORM\JoinColumn(name="percentage", referencedColumnName="id")
 	 *
 	 * @Assert\NotBlank()
 	 */
@@ -74,11 +74,21 @@ class Exam
 	 * @var \Ufuturelabs\Ufuturedesk\MainBundle\Entity\Subject
 	 *
 	 * @ORM\ManyToOne(targetEntity="Ufuturelabs\Ufuturedesk\MainBundle\Entity\Subject")
-	 * @ORM\JoinColumn(name="subject", referencedColumnName="subject_id")
+	 * @ORM\JoinColumn(name="subject", referencedColumnName="id")
 	 *
 	 * @Assert\NotBlank()
 	 */
 	private $subject;
+
+    /**
+     * @var Question[]
+     *
+     * @ORM\OneToMany(
+     *      targetEntity="Ufuturelabs\Ufuturedesk\ExamBundle\Entity\Question",
+     *      mappedBy="exam"
+     * )
+     */
+    private $questions;
 
 	/**
 	 * @param float $calification

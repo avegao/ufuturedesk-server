@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Ufuturelabs\Ufuturedesk\TeacherBundle\TeacherBundle(),
 			new JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Ufuturelabs\Ufuturedesk\ExamBundle\UfuturedeskExamBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

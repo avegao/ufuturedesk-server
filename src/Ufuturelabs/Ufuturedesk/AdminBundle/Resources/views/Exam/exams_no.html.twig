@@ -1,0 +1,15 @@
+{% extends 'AdminBundle:Default:admin.html.twig' %}
+
+{% block title %}{{ parent() }} Ex&aacute;menes{% endblock %}
+
+{% block article %}
+    <div class="row">
+        <div class="col-md-1">
+            <h1>:(</h1>
+        </div>
+        <div class="col-md-11">
+            <h3>No hay ex&aacute;menes</h3>
+            <p>Si quieres a&ntilde;adir un examen haz click <a href="{{ path('admin_exam_create') }}">aqui</a>.</p>
+        </div>
+    </div>
+{% endblock %}

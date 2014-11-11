@@ -1,3 +1,7 @@
+ufuturedesk_exam:
+    resource: "@UfuturedeskExamBundle/Resources/config/routing.yml"
+    prefix:   /
+
 teacher:
     resource: "@TeacherBundle/Resources/config/routing.yml"
     prefix:   /teacher

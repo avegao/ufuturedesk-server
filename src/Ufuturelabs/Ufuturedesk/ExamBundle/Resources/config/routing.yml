@@ -1,0 +1,3 @@
+ufuturedesk_exam_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: UfuturedeskExamBundle:Default:index }

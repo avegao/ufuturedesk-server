@@ -1,0 +1,4 @@
+services:
+#    ufuturedesk_exam.example:
+#        class: Ufuturelabs\Ufuturedesk\ExamBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
